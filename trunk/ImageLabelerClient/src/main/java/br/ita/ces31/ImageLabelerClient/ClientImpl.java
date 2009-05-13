@@ -1,12 +1,12 @@
 /*
  * Image Labeler - Projeto de CES-31
  */
-package br.ita.ces33.ImageLabelerClient;
+package br.ita.ces31.ImageLabelerClient;
 
-import br.ita.ces33.ImageLabelerCommon.Client;
-import br.ita.ces33.ImageLabelerCommon.Game;
-import br.ita.ces33.ImageLabelerCommon.GameServer;
-import br.ita.ces33.ImageLabelerCommon.GameSummary;
+import br.ita.ces31.ImageLabelerCommon.Client;
+import br.ita.ces31.ImageLabelerCommon.Game;
+import br.ita.ces31.ImageLabelerCommon.GameServer;
+import br.ita.ces31.ImageLabelerCommon.GameSummary;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
