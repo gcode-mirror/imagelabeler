@@ -2,20 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <groupId>br.ita.ces33</groupId>
+        <groupId>br.ita.ces31</groupId>
         <artifactId>ImageLabeler</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>br.ita.ces33</groupId>
+    <groupId>br.ita.ces31</groupId>
     <artifactId>ImageLabelerServer</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>ImageLabelerServer</name>
     <dependencies>
         <dependency>
-            <groupId>br.ita.ces33</groupId>
+            <groupId>br.ita.ces31</groupId>
             <artifactId>ImageLabelerCommon</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
@@ -39,7 +39,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>br.ita.ces33.ImageLabelerServer.ServerMain</mainClass>
+                            <mainClass>br.ita.ces31.ImageLabelerServer.ServerMain</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

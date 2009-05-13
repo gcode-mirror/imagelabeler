@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <groupId>br.ita.ces33</groupId>
+        <groupId>br.ita.ces31</groupId>
         <artifactId>ImageLabeler</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -12,7 +12,7 @@
     <name>ImageLabelerClient</name>
     <dependencies>
         <dependency>
-            <groupId>br.ita.ces33</groupId>
+            <groupId>br.ita.ces31</groupId>
             <artifactId>ImageLabelerCommon</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
@@ -48,7 +48,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>br.ita.ces33.ImageLabelerClient.ClientMain</mainClass>
+                            <mainClass>br.ita.ces31.ImageLabelerClient.ClientMain</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

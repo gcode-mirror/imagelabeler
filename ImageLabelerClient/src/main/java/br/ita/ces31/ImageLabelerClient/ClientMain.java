@@ -1,9 +1,9 @@
 /*
  * Image Labeler - Projeto de CES-31
  */
-package br.ita.ces33.ImageLabelerClient;
+package br.ita.ces31.ImageLabelerClient;
 
-import br.ita.ces33.ImageLabelerClient.ui.LoginScreen;
+import br.ita.ces31.ImageLabelerClient.ui.LoginScreen;
 
 /**
  *

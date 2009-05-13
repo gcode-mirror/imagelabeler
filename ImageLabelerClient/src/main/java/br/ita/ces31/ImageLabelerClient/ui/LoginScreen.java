@@ -7,10 +7,10 @@
  *
  * Created on May 10, 2009, 7:03:33 PM
  */
-package br.ita.ces33.ImageLabelerClient.ui;
+package br.ita.ces31.ImageLabelerClient.ui;
 
-import br.ita.ces33.ImageLabelerClient.ClientImpl;
-import br.ita.ces33.ImageLabelerCommon.Client;
+import br.ita.ces31.ImageLabelerClient.ClientImpl;
+import br.ita.ces31.ImageLabelerCommon.Client;
 import java.rmi.RemoteException;
 import javax.swing.*;
 

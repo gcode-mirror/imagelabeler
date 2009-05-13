@@ -1,9 +1,9 @@
 /*
  * Image Labeler - Projeto de CES-31
  */
-package br.ita.ces33.ImageLabelerServer;
+package br.ita.ces31.ImageLabelerServer;
 
-import br.ita.ces33.ImageLabelerCommon.GameServer;
+import br.ita.ces31.ImageLabelerCommon.GameServer;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 
