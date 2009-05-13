@@ -39,7 +39,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>br.ita.ces33.ImageLabelerServer.Server</mainClass>
+                            <mainClass>br.ita.ces33.ImageLabelerServer.ServerMain</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
