@@ -8,6 +8,18 @@
     <name>ImageLabeler</name>
     <developers>
         <developer>
+            <id>diego.alvarez</id>
+            <name>Diego Alvarez</name>
+            <email>dalvac@gmail.com</email>
+            <organization>Image Labeler</organization>
+            <organizationUrl>http://code.google.com/p/imagelabeler/</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>-3</timezone>
+        </developer>
+        <developer>
             <id>helder.suzuki</id>
             <name>Helder Suzuki</name>
             <email>heldersuzuki@gmail.com</email>
@@ -20,9 +32,21 @@
             <timezone>-3</timezone>
         </developer>
         <developer>
-            <id>diego.alvarez</id>
-            <name>Diego Alvarez</name>
-            <email>dalvac@gmail.com</email>
+            <id>livia.palomo</id>
+            <name>Lívia Palomo</name>
+            <email>liviapalomo@gmail.com</email>
+            <organization>Image Labeler</organization>
+            <organizationUrl>http://code.google.com/p/imagelabeler/</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>-3</timezone>
+        </developer>
+        <developer>
+            <id>maykon.bergamaschi</id>
+            <name>Maykon Bergamaschi</name>
+            <email>maykonlb@gmail.com</email>
             <organization>Image Labeler</organization>
             <organizationUrl>http://code.google.com/p/imagelabeler/</organizationUrl>
             <roles>
