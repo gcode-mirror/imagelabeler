@@ -10,7 +10,7 @@ import java.rmi.RemoteException;
  *
  * @author Helder Suzuki <helder@aluno.ita.br>
  */
-public interface GameServer extends Remote {
+public interface Server extends Remote {
 
     public static String referenceName = "ImageLabelerServer";
     public static int serverPort = 1099;
