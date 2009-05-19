@@ -15,7 +15,15 @@ public interface Server extends Remote {
     public static String referenceName = "ImageLabelerServer";
     public static int serverPort = 1099;
 
-    public void login(Client client) throws RemoteException;
+    public boolean isAlive() throws RemoteException;
 
-    public void cancelLogin(Client client) throws RemoteException;
+    public boolean identify(Client client) throws RemoteException;
+
+    public void notifyPenico() throws RemoteException;
+
+    public void notifyWait(Client client) throws RemoteException;
+
+    public void cancelWait(Client client) throws RemoteException;
+
+    public void sendLabel(String label) throws RemoteException;
 }

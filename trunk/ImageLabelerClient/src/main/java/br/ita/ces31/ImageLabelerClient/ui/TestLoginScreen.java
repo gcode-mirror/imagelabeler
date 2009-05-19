@@ -3,28 +3,34 @@
  */
 
 /*
- * LoginScreen.java
+ * TestLoginScreen.java
  *
  * Created on May 10, 2009, 7:03:33 PM
  */
 package br.ita.ces31.ImageLabelerClient.ui;
 
-import br.ita.ces31.ImageLabelerClient.ClientImpl;
-import br.ita.ces31.ImageLabelerCommon.Client;
-import java.rmi.RemoteException;
+import br.ita.ces31.ImageLabelerClient.communicator.CommunicationException;
+import br.ita.ces31.ImageLabelerClient.communicator.Communicator;
+import br.ita.ces31.ImageLabelerClient.communicator.CommunicatorObserver;
+import br.ita.ces31.ImageLabelerClient.communicator.CommunicatorSingleton;
+import br.ita.ces31.ImageLabelerCommon.GameSummary;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
  *
  * @author Helder Suzuki <helder@aluno.ita.br>
  */
-public class LoginScreen extends JFrame {
+public class TestLoginScreen extends JFrame implements CommunicatorObserver {
 
-    private Client client;
+    private Communicator communicator;
 
-    /** Creates new form LoginScreen */
-    public LoginScreen() {
+    /** Creates new form TestLoginScreen */
+    public TestLoginScreen() throws CommunicationException {
         initComponents();
+        communicator = CommunicatorSingleton.getCommunicator();
+        communicator.addObserver(this);
     }
 
     /** This method is called from within the constructor to
@@ -91,16 +97,16 @@ public class LoginScreen extends JFrame {
 }//GEN-LAST:event_userNameFieldActionPerformed
 
     private void connectButtonAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectButtonAction
-        connect();
+        try {
+            login();
+        } catch (CommunicationException ex) {
+            Logger.getLogger(TestLoginScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
 }//GEN-LAST:event_connectButtonAction
 
-    private void connect() {
+    private void login() throws CommunicationException {
         System.out.println(userNameField.getText() + " connect!");
-        try {
-            client = new ClientImpl(userNameField.getText(), null);
-        } catch (RemoteException ex) {
-            // Logger.getLogger(LoginScreen.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        communicator.identify(userNameField.getText());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -109,4 +115,24 @@ public class LoginScreen extends JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField userNameField;
     // End of variables declaration//GEN-END:variables
+
+    public String getLoginName() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void notifyMatch(String match) {
+        System.out.println("Match: " + match);
+    }
+
+    public void startGame(int seconds) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void endGame(GameSummary summary) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void engGameByPenico() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

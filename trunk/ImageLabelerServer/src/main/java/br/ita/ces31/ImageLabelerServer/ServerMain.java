@@ -3,7 +3,7 @@
  */
 package br.ita.ces31.ImageLabelerServer;
 
-import br.ita.ces31.ImageLabelerCommon.GameServer;
+import br.ita.ces31.ImageLabelerCommon.Server;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 
@@ -16,9 +16,9 @@ public class ServerMain{
     public static void main(String args[]) {
         System.out.println(" Codebase: " + System.getProperty("java.rmi.server.codebase"));
         try {
-            GameServer server = new GameServerImpl(); 
-            java.rmi.registry.LocateRegistry.createRegistry (1099);
-            Naming.rebind(GameServer.referenceName, server);
+            Server server = new ServerImpl();
+            java.rmi.registry.LocateRegistry.createRegistry (Server.serverPort);
+            Naming.rebind(Server.referenceName, server);
         } catch (java.net.MalformedURLException e) {
             System.out.println("Malformed URL for helloServer " + e.toString());
         } catch (RemoteException e) {
