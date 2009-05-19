@@ -13,6 +13,9 @@ import java.rmi.RemoteException;
 public interface GameServer extends Remote {
 
     public static String referenceName = "ImageLabelerServer";
+    public static int serverPort = 1099;
 
     public void login(Client client) throws RemoteException;
+
+    public void cancelLogin(Client client) throws RemoteException;
 }
