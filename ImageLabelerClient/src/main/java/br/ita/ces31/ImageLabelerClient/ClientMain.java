@@ -3,13 +3,14 @@
  */
 package br.ita.ces31.ImageLabelerClient;
 
-import br.ita.ces31.ImageLabelerClient.ui.LoginScreen;
+import br.ita.ces31.ImageLabelerClient.communicator.CommunicationException;
+import br.ita.ces31.ImageLabelerClient.ui.TestLoginScreen;
 
 /**
  *
  * @author Helder Suzuki <helder@aluno.ita.br>
  */
-public class ClientMain{
+public class ClientMain {
 
     /**
      * @param args the command line arguments
@@ -18,7 +19,11 @@ public class ClientMain{
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new LoginScreen().setVisible(true);
+                try {
+                    new TestLoginScreen().setVisible(true);
+                } catch (CommunicationException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
 
