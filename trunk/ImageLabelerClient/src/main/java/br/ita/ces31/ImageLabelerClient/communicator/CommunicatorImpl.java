@@ -6,6 +6,7 @@ package br.ita.ces31.ImageLabelerClient.communicator;
 import br.ita.ces31.ImageLabelerCommon.Client;
 import br.ita.ces31.ImageLabelerCommon.Server;
 import br.ita.ces31.ImageLabelerCommon.GameSummary;
+import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -25,10 +26,10 @@ public class CommunicatorImpl extends UnicastRemoteObject implements Client, Com
     private Server server;
 
     public CommunicatorImpl(String serverURI) throws RemoteException {
-        registry = LocateRegistry.getRegistry(serverURI);
-        try {
-            server = (Server) registry.lookup(Server.referenceName);
-        } catch (Exception ex) {
+        try{
+        server = (Server) Naming.lookup("//" + serverURI + ":" +
+                Server.serverPort + "/" + Server.referenceName);
+        } catch (Exception ex){
             ex.printStackTrace();
             throw new RemoteException();
         }
