@@ -3,7 +3,7 @@
  */
 package br.ita.ces31.ImageLabelerServer.persistence;
 
-import br.ita.ces31.ImageLabelerServer.Player;
+import br.ita.ces31.ImageLabelerCommon.Player;
 import java.util.List;
 
 /**

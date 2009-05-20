@@ -6,52 +6,43 @@ package br.ita.ces31.ImageLabelerServer;
 import br.ita.ces31.ImageLabelerCommon.Client;
 import br.ita.ces31.ImageLabelerCommon.GameSummary;
 import java.rmi.RemoteException;
+import java.rmi.server.RemoteObject;
+import javax.management.RuntimeErrorException;
 
 /**
  *
  * @author Helder Suzuki <helder@aluno.ita.br>
  */
-public class TestClient implements Client {
+public class TestClient extends RemoteObject implements Client {
 
-    private boolean loginNameCall = false;
-    private String match;
-    private int seconds = -1;
-    private GameSummary summary;
-    private boolean isAliveCall = false;
-    private boolean isAliveResponse;
-    public boolean canStartGame = false;
-    public boolean canEndGame = false;
-    public boolean canIsAlive = false;
+    public String match = null;
+    public int duration = -1;
+    public GameSummary summary;
+    public String loginName = "John";
+    public boolean isAlive = true;
+    public boolean penicoNotified = false;
 
     public String getLoginName() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return loginName;
     }
 
     public void notifyMatch(String match) throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.match = match;
     }
 
     public void startGame(int seconds) throws RemoteException {
-        if(canStartGame)
-            throw new RemoteException("TEST: Call to startGame not expected!");
-        this.seconds = seconds;
+        this.duration = seconds;
     }
 
     public void endGame(GameSummary summary) throws RemoteException {
-        if(canEndGame)
-            throw new RemoteException("TEST: Call to endGame not expected!");
         this.summary = summary;
     }
 
     public boolean isAlive() throws RemoteException {
-        if(canIsAlive){
-            throw new RemoteException("TEST: Call to isAlive not expected!");
-        }
-        isAliveCall = true;
-        return isAliveResponse;
+        return isAlive;
     }
 
     public void notifyPenico() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        penicoNotified = true;
     }
 }

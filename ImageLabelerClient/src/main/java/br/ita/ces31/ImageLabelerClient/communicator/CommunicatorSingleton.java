@@ -12,7 +12,7 @@ import java.rmi.RemoteException;
 public class CommunicatorSingleton {
 
     private static Communicator communicator;
-    private static String serverURI = null;
+    private static String serverURI = "localhost";
 
     public synchronized static Communicator getCommunicator()
             throws CommunicationException {

@@ -8,7 +8,6 @@ import br.ita.ces31.ImageLabelerCommon.Server;
 import br.ita.ces31.ImageLabelerCommon.GameSummary;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -22,14 +21,13 @@ public class CommunicatorImpl extends UnicastRemoteObject implements Client, Com
 
     private List<CommunicatorObserver> observers;
     private String loginName;
-    private Registry registry;
     private Server server;
 
     public CommunicatorImpl(String serverURI) throws RemoteException {
-        try{
-        server = (Server) Naming.lookup("//" + serverURI + ":" +
-                Server.serverPort + "/" + Server.referenceName);
-        } catch (Exception ex){
+        try {
+            server = (Server) Naming.lookup("//" + serverURI + ":" +
+                    Server.serverPort + "/" + Server.referenceName);
+        } catch (Exception ex) {
             ex.printStackTrace();
             throw new RemoteException();
         }

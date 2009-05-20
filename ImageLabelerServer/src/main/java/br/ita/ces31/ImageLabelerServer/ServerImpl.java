@@ -3,12 +3,18 @@
  */
 package br.ita.ces31.ImageLabelerServer;
 
+import br.ita.ces31.ImageLabelerServer.persistence.PersistenceException;
+import br.ita.ces31.ImageLabelerServer.timer.Timer;
 import br.ita.ces31.ImageLabelerCommon.Client;
+import br.ita.ces31.ImageLabelerCommon.GameSummary;
+import br.ita.ces31.ImageLabelerCommon.Player;
 import br.ita.ces31.ImageLabelerCommon.Server;
+import br.ita.ces31.ImageLabelerServer.persistence.PlayerPersistence;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimerTask;
 
 /**
  *
@@ -19,14 +25,27 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
     private List<Client> loggedClients;
     private Client wait;
     private Game game;
+    private PlayerPersistence playerPersistence;
+    private Timer timer;
 
     public ServerImpl() throws RemoteException {
         loggedClients = new ArrayList<Client>();
         wait = null;
     }
 
+    private GameSummary getSummary() {
+        try {
+            List<Player> rank;
+            rank = playerPersistence.getBestPlayers(10);
+            return new GameSummary(this.game.getScore(), rank,
+                    game.getMatches());
+        } catch (Exception ex) {
+            return new GameSummary();
+        }
+    }
+
     private void removeDeadClients() throws RemoteException {
-        for (Client c : loggedClients) {
+        for (Client c : new ArrayList<Client>(loggedClients)) {
             if (!c.isAlive()) {
                 loggedClients.remove(c);
             }
@@ -34,8 +53,6 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
     }
 
     public synchronized boolean identify(Client client) throws RemoteException {
-        System.out.println("New client " + client.getLoginName());
-
         // Cliente ja logado.
         if (loggedClients.contains(client)) {
             return true;
@@ -77,16 +94,13 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
         return true;
     }
 
-    public void sendLabel(String label) throws RemoteException {
-        if (game.addLabel(label)) {  // ocorreu match
-            try {
-                game.getClient1().notifyMatch(label);
-            } catch (RemoteException ex) {
-            }
-
-            try {
-                game.getClient2().notifyMatch(label);
-            } catch (RemoteException ex) {
+    public synchronized void sendLabel(String label) throws RemoteException {
+        if (game != null && game.addLabel(label)) {  // ocorreu match
+            for (Client c : loggedClients) {
+                try {
+                    c.notifyMatch(label);
+                } catch (RemoteException ex) {
+                }
             }
         }
     }
@@ -96,12 +110,69 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
                 loggedClients.get(0),
                 loggedClients.get(1));
 
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                notifyTimeout();
+            }
+        }, Game.duration * 1000);
+
         for (Client c : loggedClients) {
             c.startGame(Game.duration);
         }
+
+
     }
 
-    public void notifyPenico() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    private void updateScore() throws PersistenceException, RemoteException {
+        int score = game.getScore();
+        Player p1 = playerPersistence.getPlayer(game.getClient1().getLoginName());
+        Player p2 = playerPersistence.getPlayer(game.getClient2().getLoginName());
+
+        p1.setScore(p1.getScore() + score);
+        p2.setScore(p2.getScore() + score);
+        playerPersistence.update(p1);
+        playerPersistence.update(p2);
+    }
+
+    public synchronized void notifyTimeout() {
+        try {
+            updateScore();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        GameSummary summary = getSummary();
+
+        if (game != null) {
+            for (Client c : loggedClients) {
+                try {
+                    c.endGame(summary);
+                } catch (RemoteException ex) {
+                }
+            }
+        }
+    }
+
+    public synchronized void notifyPenico() throws RemoteException {
+        for (Client c : loggedClients) {
+            c.notifyPenico();
+        }
+        game = null;
+    }
+
+    /**
+     * @param playerPersistence the playerPersistence to set
+     */
+    public void setPlayerPersistence(PlayerPersistence playerPersistence) {
+        this.playerPersistence = playerPersistence;
+    }
+
+    /**
+     * @param timer the timer to set
+     */
+    public void setTimer(Timer timer) {
+        this.timer = timer;
     }
 }
