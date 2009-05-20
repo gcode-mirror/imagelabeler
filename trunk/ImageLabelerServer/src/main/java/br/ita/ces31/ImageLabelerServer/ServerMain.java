@@ -11,13 +11,13 @@ import java.rmi.RemoteException;
  *
  * @author Helder Suzuki <helder@aluno.ita.br>
  */
-public class ServerMain{
+public class ServerMain {
 
     public static void main(String args[]) {
         System.out.println(" Codebase: " + System.getProperty("java.rmi.server.codebase"));
         try {
-            Server server = new ServerImpl();
-            java.rmi.registry.LocateRegistry.createRegistry (Server.serverPort);
+            Server server = ServerSingleton.getServer();
+            java.rmi.registry.LocateRegistry.createRegistry(Server.serverPort);
             Naming.rebind(Server.referenceName, server);
         } catch (java.net.MalformedURLException e) {
             System.out.println("Malformed URL for helloServer " + e.toString());

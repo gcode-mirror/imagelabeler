@@ -3,7 +3,7 @@
  */
 package br.ita.ces31.ImageLabelerServer.persistence;
 
-import br.ita.ces31.ImageLabelerServer.Player;
+import br.ita.ces31.ImageLabelerCommon.Player;
 import java.util.List;
 import junit.framework.TestCase;
 
@@ -11,7 +11,7 @@ import junit.framework.TestCase;
  *
  * @author Helder Suzuki <helder@aluno.ita.br>
  */
-public class PlayerPersistenceTest extends TestCase {
+public class PlayerPersistenceImplTest extends TestCase {
 
     private PlayerPersistence playerPersistence;
 
@@ -86,5 +86,16 @@ public class PlayerPersistenceTest extends TestCase {
         assertNotNull(content);
         assertEquals(1, content.size());
         assertEquals("Jobs", content.get(0).getName());
+    }
+
+    public void testGetPlayer() throws PersistenceException {
+        playerPersistence.update(new Player("Jobs", 17));
+        Player jobs = playerPersistence.getPlayer("Jobs");
+        assertEquals(17, jobs.getScore());
+    }
+
+    public void testGetPlayer2() throws PersistenceException {
+        Player jobs = playerPersistence.getPlayer("Jobs");
+        assertEquals(0, jobs.getScore());
     }
 }

@@ -14,6 +14,8 @@ import br.ita.ces31.ImageLabelerClient.communicator.Communicator;
 import br.ita.ces31.ImageLabelerClient.communicator.CommunicatorObserver;
 import br.ita.ces31.ImageLabelerClient.communicator.CommunicatorSingleton;
 import br.ita.ces31.ImageLabelerCommon.GameSummary;
+import br.ita.ces31.ImageLabelerCommon.Player;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -25,9 +27,11 @@ import javax.swing.*;
 public class TestLoginScreen extends JFrame implements CommunicatorObserver {
 
     private Communicator communicator;
+    private Vector<String> matches;
 
     /** Creates new form TestLoginScreen */
     public TestLoginScreen() throws CommunicationException {
+        matches = new Vector<String>();
         initComponents();
         communicator = CommunicatorSingleton.getCommunicator();
         communicator.addObserver(this);
@@ -41,14 +45,22 @@ public class TestLoginScreen extends JFrame implements CommunicatorObserver {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        matchListPane = new javax.swing.JScrollPane();
+        matchList = new javax.swing.JList();
         userNameField = new javax.swing.JTextField();
         connectButton = new javax.swing.JButton();
+        labelField = new javax.swing.JTextField();
+        sendLabelButton = new javax.swing.JButton();
+        SummaryPanel = new javax.swing.JPanel();
+        summaryMatchPane = new javax.swing.JScrollPane();
+        summaryMatchList = new javax.swing.JList();
+        rankingPane = new javax.swing.JScrollPane();
+        rankingList = new javax.swing.JList();
+        waitGame = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jScrollPane1.setViewportView(jList1);
+        matchListPane.setViewportView(matchList);
 
         userNameField.setToolTipText("Your name");
         userNameField.addActionListener(new java.awt.event.ActionListener() {
@@ -57,10 +69,56 @@ public class TestLoginScreen extends JFrame implements CommunicatorObserver {
             }
         });
 
-        connectButton.setText("Connect");
+        connectButton.setText("Identify");
         connectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 connectButtonAction(evt);
+            }
+        });
+
+        labelField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                labelFieldActionPerformed(evt);
+            }
+        });
+
+        sendLabelButton.setText("Send Label");
+        sendLabelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendLabelButtonActionPerformed(evt);
+            }
+        });
+
+        SummaryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Summary"));
+
+        summaryMatchPane.setViewportView(summaryMatchList);
+
+        rankingPane.setViewportView(rankingList);
+
+        org.jdesktop.layout.GroupLayout SummaryPanelLayout = new org.jdesktop.layout.GroupLayout(SummaryPanel);
+        SummaryPanel.setLayout(SummaryPanelLayout);
+        SummaryPanelLayout.setHorizontalGroup(
+            SummaryPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(SummaryPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .add(summaryMatchPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 94, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
+                .add(rankingPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 82, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
+        );
+        SummaryPanelLayout.setVerticalGroup(
+            SummaryPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(SummaryPanelLayout.createSequentialGroup()
+                .add(SummaryPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(summaryMatchPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(rankingPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        waitGame.setText("Wait game");
+        waitGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                waitGameActionPerformed(evt);
             }
         });
 
@@ -70,23 +128,40 @@ public class TestLoginScreen extends JFrame implements CommunicatorObserver {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(37, 37, 37)
-                .add(userNameField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 113, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, SummaryPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                        .add(matchListPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 127, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(18, 18, 18)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(labelField)
+                            .add(userNameField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 113, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .add(18, 18, 18)
-                .add(connectButton)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(connectButton)
+                    .add(sendLabelButton)
+                    .add(waitGame))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                        .add(userNameField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(connectButton))
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 140, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(149, Short.MAX_VALUE))
+                    .add(matchListPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 91, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(userNameField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(connectButton))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(waitGame)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 13, Short.MAX_VALUE)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(labelField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(sendLabelButton))))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(SummaryPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -104,16 +179,46 @@ public class TestLoginScreen extends JFrame implements CommunicatorObserver {
         }
 }//GEN-LAST:event_connectButtonAction
 
+    private void labelFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labelFieldActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_labelFieldActionPerformed
+
+    private void sendLabelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendLabelButtonActionPerformed
+        System.out.println("sending label " + labelField.getText());
+        try {
+            communicator.sendLabel(labelField.getText());
+        } catch (CommunicationException ex) {
+            Logger.getLogger(TestLoginScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}//GEN-LAST:event_sendLabelButtonActionPerformed
+
+    private void waitGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_waitGameActionPerformed
+        System.out.println("notifyWait!");
+        try {
+            communicator.notifyWait();
+        } catch (CommunicationException ex) {
+            Logger.getLogger(TestLoginScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}//GEN-LAST:event_waitGameActionPerformed
+
     private void login() throws CommunicationException {
         System.out.println(userNameField.getText() + " connect!");
         communicator.identify(userNameField.getText());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel SummaryPanel;
     private javax.swing.JButton connectButton;
-    private javax.swing.JList jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField labelField;
+    private javax.swing.JList matchList;
+    private javax.swing.JScrollPane matchListPane;
+    private javax.swing.JList rankingList;
+    private javax.swing.JScrollPane rankingPane;
+    private javax.swing.JButton sendLabelButton;
+    private javax.swing.JList summaryMatchList;
+    private javax.swing.JScrollPane summaryMatchPane;
     private javax.swing.JTextField userNameField;
+    private javax.swing.JButton waitGame;
     // End of variables declaration//GEN-END:variables
 
     public String getLoginName() {
@@ -121,18 +226,26 @@ public class TestLoginScreen extends JFrame implements CommunicatorObserver {
     }
 
     public void notifyMatch(String match) {
-        System.out.println("Match: " + match);
+        System.out.println("Match received " + match);
+        matches.add(match);
+        matchList.setListData(matches);
     }
 
     public void startGame(int seconds) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println("Start game: " + seconds + " seconds");
     }
 
     public void endGame(GameSummary summary) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println("End game!");
+        summaryMatchList.setListData(summary.getMatches().toArray());
+        Vector<String> rank = new Vector<String>();
+        for (Player p : summary.getTopPlayers()) {
+            rank.add(p.getName() + " com " + p.getScore() + " pontos");
+        }
+        rankingList.setListData(rank);
     }
 
     public void engGameByPenico() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println("PENICO!!!!");
     }
 }

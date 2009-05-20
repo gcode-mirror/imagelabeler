@@ -3,7 +3,7 @@
  */
 package br.ita.ces31.ImageLabelerServer.persistence;
 
-import br.ita.ces31.ImageLabelerServer.Player;
+import br.ita.ces31.ImageLabelerCommon.Player;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -87,7 +87,13 @@ public class PlayerPersistenceImpl implements PlayerPersistence {
 
     public synchronized Player getPlayer(String name)
             throws PersistenceException {
-        return new Player(_getPlayer(name));
+
+        Player p = _getPlayer(name);
+        if (p == null) {
+            return new Player(name, 0);
+        } else {
+            return new Player(p);
+        }
     }
 
     public synchronized void deleteAll() throws PersistenceException {

@@ -5,6 +5,7 @@ package br.ita.ces31.ImageLabelerServer;
 
 import br.ita.ces31.ImageLabelerCommon.Client;
 import br.ita.ces31.ImageLabelerServer.scorer.ScoreCalculator;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +26,8 @@ public class Game {
         this.client1 = player1;
         this.client2 = player2;
         this.score = 0;
+        this.labels = new ArrayList<String>();
+        this.matches = new ArrayList<String>();
     }
 
     private void addMatch(String match) {

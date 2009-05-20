@@ -1,7 +1,7 @@
 /*
  * Image Labeler - Projeto de CES-31
  */
-package br.ita.ces31.ImageLabelerServer;
+package br.ita.ces31.ImageLabelerCommon;
 
 import java.io.Serializable;
 
@@ -62,5 +62,16 @@ public class Player implements Serializable, Comparable {
     public int compareTo(Object o) {
         Player p = (Player) o;
         return compareTo(p);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Player p = (Player) o;
+        return (name.equals(p.getName()) && score == p.getScore());
+    }
+
+    @Override
+    public String toString() {
+        return "Player(" + name + ", " + score + ")";
     }
 }
