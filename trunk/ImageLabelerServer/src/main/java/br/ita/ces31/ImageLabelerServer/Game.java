@@ -30,17 +30,19 @@ public class Game {
         this.matches = new ArrayList<String>();
     }
 
-    private void addMatch(String match) {
+    private boolean addMatch(String match) {
         if (!matches.contains(match)) {
             matches.add(match);
             this.score += scorer.calculateScore(match);
+            
+            return true;
         }
+        return false;
     }
 
     public boolean addLabel(String label) {
         if (labels.contains(label)) {
-            addMatch(label);
-            return true;
+            return addMatch(label);
         }
 
         labels.add(label);

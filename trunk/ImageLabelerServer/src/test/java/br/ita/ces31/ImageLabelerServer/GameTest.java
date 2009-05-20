@@ -22,16 +22,27 @@ public class GameTest extends TestCase {
     }
 
     public void testMatch() {
-        game.addLabel("abas");
-        game.addLabel("babas");
+        assertFalse(game.addLabel("abas"));
+        assertFalse(game.addLabel("babas"));
         assertEquals(0, game.getMatches().size());
 
-        game.addLabel("abas");
+        assertTrue(game.addLabel("abas"));
         assertEquals(1, game.getMatches().size());
 
-        game.addLabel("babas");
+        assertTrue(game.addLabel("babas"));
         assertEquals(2, game.getMatches().size());
 
         assertEquals(9, game.getScore());
+    }
+    
+    public void testRepeatMatch() {
+        assertFalse(game.addLabel("abas"));
+        assertTrue(game.addLabel("abas"));
+        assertFalse(game.addLabel("abas"));
+        assertFalse(game.addLabel("abas"));
+        assertFalse(game.addLabel("abas"));
+        
+        assertEquals(1, game.getMatches().size());
+        assertEquals(4, game.getScore());
     }
 }
