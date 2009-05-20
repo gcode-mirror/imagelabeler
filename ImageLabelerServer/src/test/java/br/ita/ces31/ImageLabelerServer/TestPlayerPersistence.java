@@ -21,6 +21,7 @@ public class TestPlayerPersistence implements PlayerPersistence {
 
     public TestPlayerPersistence() {
         unexpectedUpdateCalls = new ArrayList<Player>();
+        updateCalls = new ArrayList<Player>();
     }
 
     public void update(Player player) throws PersistenceException {

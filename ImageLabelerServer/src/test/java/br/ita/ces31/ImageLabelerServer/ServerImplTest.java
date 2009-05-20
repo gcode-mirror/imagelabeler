@@ -203,6 +203,24 @@ public class ServerImplTest extends TestCase {
         assertEquals(label, client1.match);
         assertEquals(label, client2.match);
     }
+    
+        public void testNotifyMatchRepeat() throws RemoteException {
+        String label = "teste";
+        startGame();
+
+        server.sendLabel(label);
+        server.sendLabel(label);
+        assertEquals(label, client1.match);
+        assertEquals(label, client2.match);
+        
+        client1.match = client2.match = null;
+        
+        // Não deve notificar match repetidos
+        server.sendLabel(label);
+        server.sendLabel(label);
+        assertEquals(null, client1.match);
+        assertEquals(null, client2.match);
+    }
 
     public void testNotifyPenico() throws RemoteException {
         startGame();
