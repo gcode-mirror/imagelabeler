@@ -12,7 +12,7 @@ package br.ita.ces31.ImageLabelerClient.ui;
 import br.ita.ces31.ImageLabelerClient.communicator.CommunicationException;
 import br.ita.ces31.ImageLabelerClient.communicator.Communicator;
 import br.ita.ces31.ImageLabelerClient.communicator.CommunicatorObserver;
-import br.ita.ces31.ImageLabelerClient.communicator.CommunicatorSingleton;
+import br.ita.ces31.ImageLabelerClient.communicator.ClientCommunicatorSingleton;
 import br.ita.ces31.ImageLabelerCommon.GameSummary;
 import br.ita.ces31.ImageLabelerCommon.Player;
 import java.util.Vector;
@@ -33,7 +33,7 @@ public class TestLoginScreen extends JFrame implements CommunicatorObserver {
     public TestLoginScreen() throws CommunicationException {
         matches = new Vector<String>();
         initComponents();
-        communicator = CommunicatorSingleton.getCommunicator();
+        communicator = ClientCommunicatorSingleton.getCommunicator();
         communicator.addObserver(this);
     }
 
@@ -231,7 +231,7 @@ public class TestLoginScreen extends JFrame implements CommunicatorObserver {
         matchList.setListData(matches);
     }
 
-    public void startGame(int seconds) {
+    public void startGame(String image, int seconds) {
         System.out.println("Start game: " + seconds + " seconds");
     }
 

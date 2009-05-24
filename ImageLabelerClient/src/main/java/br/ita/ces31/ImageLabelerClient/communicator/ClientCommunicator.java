@@ -6,9 +6,7 @@ package br.ita.ces31.ImageLabelerClient.communicator;
 import br.ita.ces31.ImageLabelerCommon.Client;
 import br.ita.ces31.ImageLabelerCommon.Server;
 import br.ita.ces31.ImageLabelerCommon.GameSummary;
-import java.rmi.Naming;
 import java.rmi.RemoteException;
-import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,20 +15,15 @@ import java.util.List;
  *
  * @author Helder Suzuki <helder@aluno.ita.br>
  */
-public class CommunicatorImpl extends UnicastRemoteObject implements Client, Communicator {
+public class ClientCommunicator extends UnicastRemoteObject
+    implements Client, Communicator {
 
     private List<CommunicatorObserver> observers;
     private String loginName;
     private Server server;
 
-    public CommunicatorImpl(String serverURI) throws RemoteException {
-        try {
-            server = (Server) Naming.lookup("//" + serverURI + ":" +
-                    Server.serverPort + "/" + Server.referenceName);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            throw new RemoteException();
-        }
+    public ClientCommunicator(Server server) throws RemoteException {
+        this.server = server;
         observers = new ArrayList<CommunicatorObserver>();
     }
 
@@ -50,9 +43,9 @@ public class CommunicatorImpl extends UnicastRemoteObject implements Client, Com
         }
     }
 
-    public void startGame(int seconds) throws RemoteException {
+    public void startGame(String image, int seconds) throws RemoteException {
         for (CommunicatorObserver o : observers) {
-            o.startGame(seconds);
+            o.startGame(image, seconds);
         }
     }
 

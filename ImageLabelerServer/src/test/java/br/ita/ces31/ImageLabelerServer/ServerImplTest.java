@@ -33,6 +33,7 @@ public class ServerImplTest extends TestCase {
 
         playerPersistance = new TestPlayerPersistence();
         server.setPlayerPersistence(playerPersistance);
+        server.setImageServer(new ImageServerImpl());
     }
 
     // Exercita caso em que só podem existir 2 identificados.
@@ -203,8 +204,8 @@ public class ServerImplTest extends TestCase {
         assertEquals(label, client1.match);
         assertEquals(label, client2.match);
     }
-    
-        public void testNotifyMatchRepeat() throws RemoteException {
+
+    public void testNotifyMatchRepeat() throws RemoteException {
         String label = "teste";
         startGame();
 
@@ -212,9 +213,9 @@ public class ServerImplTest extends TestCase {
         server.sendLabel(label);
         assertEquals(label, client1.match);
         assertEquals(label, client2.match);
-        
+
         client1.match = client2.match = null;
-        
+
         // Não deve notificar match repetidos
         server.sendLabel(label);
         server.sendLabel(label);

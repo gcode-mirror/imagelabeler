@@ -22,6 +22,7 @@ public class ServerSingleton {
             server.setTimer(new TimerImpl());
             server.setPlayerPersistence(
                     PlayerPersistenceSingleton.getPlayerPersistence());
+            server.setImageServer(new ImageServerImpl());
         }
 
         return server;

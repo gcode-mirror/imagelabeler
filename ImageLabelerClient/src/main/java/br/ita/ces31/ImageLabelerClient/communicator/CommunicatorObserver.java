@@ -17,7 +17,7 @@ public interface CommunicatorObserver {
 
     public void notifyMatch(String match);
 
-    public void startGame(int seconds);
+    public void startGame(String image, int seconds);
 
     public void endGame(GameSummary summary);
 }

@@ -7,7 +7,6 @@ import br.ita.ces31.ImageLabelerCommon.Client;
 import br.ita.ces31.ImageLabelerCommon.GameSummary;
 import java.rmi.RemoteException;
 import java.rmi.server.RemoteObject;
-import javax.management.RuntimeErrorException;
 
 /**
  *
@@ -30,7 +29,7 @@ public class TestClient extends RemoteObject implements Client {
         this.match = match;
     }
 
-    public void startGame(int seconds) throws RemoteException {
+    public void startGame(String image, int seconds) throws RemoteException {
         this.duration = seconds;
     }
 
