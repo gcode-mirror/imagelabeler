@@ -26,6 +26,7 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
     private Client wait;
     private Game game;
     private PlayerPersistence playerPersistence;
+    private ImageServer imageServer;
     private Timer timer;
 
     public ServerImpl() throws RemoteException {
@@ -38,7 +39,7 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
             List<Player> rank;
             rank = playerPersistence.getBestPlayers(10);
             return new GameSummary(this.game.getScore(), rank,
-                    game.getMatches());
+                                   game.getMatches());
         } catch (Exception ex) {
             return new GameSummary();
         }
@@ -107,8 +108,8 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
 
     private void startGame() throws RemoteException {
         game = GameBuilder.createGame(
-                loggedClients.get(0),
-                loggedClients.get(1));
+            loggedClients.get(0),
+            loggedClients.get(1));
 
         timer.schedule(new TimerTask() {
 
@@ -119,10 +120,8 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
         }, Game.duration * 1000);
 
         for (Client c : loggedClients) {
-            c.startGame(Game.duration);
+            c.startGame(imageServer.getImage(), Game.duration);
         }
-
-
     }
 
     private void updateScore() throws PersistenceException, RemoteException {
@@ -174,5 +173,12 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
      */
     public void setTimer(Timer timer) {
         this.timer = timer;
+    }
+
+    /**
+     * @param imageServer the imageServer to set
+     */
+    public void setImageServer(ImageServer imageServer) {
+        this.imageServer = imageServer;
     }
 }

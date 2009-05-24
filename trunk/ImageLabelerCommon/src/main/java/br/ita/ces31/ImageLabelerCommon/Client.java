@@ -18,7 +18,7 @@ public interface Client extends Remote {
 
     public void notifyPenico() throws RemoteException;
 
-    public void startGame(int seconds) throws RemoteException;
+    public void startGame(String image, int seconds) throws RemoteException;
 
     public void endGame(GameSummary summary) throws RemoteException;
 
