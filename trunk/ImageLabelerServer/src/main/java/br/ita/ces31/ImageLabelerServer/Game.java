@@ -14,13 +14,22 @@ import java.util.List;
  */
 public class Game {
 
-    public static int duration = 100;
+    /**
+     * Duração da partida em segundos.
+     */
+    public static int duration = 70;
     private List<String> labels;
     private List<String> matches;
     private int score;
     private ScoreCalculator scorer;
     private Client client1,  client2;
 
+    /**
+     * Cria instância de Game.
+     * @param scorer
+     * @param player1
+     * @param player2
+     */
     public Game(ScoreCalculator scorer, Client player1, Client player2) {
         this.scorer = scorer;
         this.client1 = player1;
@@ -40,6 +49,11 @@ public class Game {
         return false;
     }
 
+    /**
+     * Registra rótulo na partida.
+     * @param label
+     * @return
+     */
     public boolean addLabel(String label) {
         if (labels.contains(label)) {
             return addMatch(label);

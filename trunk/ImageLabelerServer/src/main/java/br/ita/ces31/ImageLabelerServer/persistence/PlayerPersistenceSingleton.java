@@ -11,6 +11,10 @@ public class PlayerPersistenceSingleton {
 
     private static PlayerPersistence playerPersistence;
 
+    /**
+     * Adquire instância de PlayerPersistence.
+     * @return
+     */
     public synchronized static PlayerPersistence getPlayerPersistence() {
         if (playerPersistence == null) {
             playerPersistence = new PlayerPersistenceImpl();

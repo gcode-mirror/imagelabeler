@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * 
  * @author Helder Suzuki <helder@aluno.ita.br>
  */
 public class GameSummary {
@@ -22,6 +22,12 @@ public class GameSummary {
         this.matches = new ArrayList<String>();
     }
 
+    /**
+     *
+     * @param score
+     * @param topPlayers
+     * @param matches
+     */
     public GameSummary(int score, List<Player> topPlayers,
             List<String> matches) {
         this.score = score;
@@ -29,14 +35,26 @@ public class GameSummary {
         this.matches = matches;
     }
 
+    /**
+     * Score da partida.
+     * @return
+     */
     public int getScore() {
         return this.score;
     }
 
+    /**
+     * Ranking com top players.
+     * @return
+     */
     public List<Player> getTopPlayers() {
         return this.topPlayers;
     }
 
+    /**
+     * Matches ocorridos na partida.
+     * @return
+     */
     public List<String> getMatches() {
         return this.matches;
     }

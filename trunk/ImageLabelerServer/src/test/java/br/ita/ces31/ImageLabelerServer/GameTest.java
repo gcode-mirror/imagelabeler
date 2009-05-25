@@ -18,7 +18,7 @@ public class GameTest extends TestCase {
     public void setUp() {
         client1 = new TestClient();
         client2 = new TestClient();
-        game = GameBuilder.createGame(client1, client2);
+        game = GameBuilder.createLengthGame(client1, client2);
     }
 
     public void testMatch() {
