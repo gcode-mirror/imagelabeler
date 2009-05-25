@@ -9,5 +9,10 @@ package br.ita.ces31.ImageLabelerServer.scorer;
  */
 public interface ScoreCalculator {
 
+    /**
+     * Calcula score de um match.
+     * @param match
+     * @return
+     */
     public int calculateScore(String match);
 }

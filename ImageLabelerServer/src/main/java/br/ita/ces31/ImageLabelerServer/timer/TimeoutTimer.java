@@ -9,9 +9,12 @@ import java.util.TimerTask;
  *
  * @author Helder Suzuki <helder@aluno.ita.br>
  */
-public class TimerImpl implements Timer {
+public interface TimeoutTimer {
 
-    public void schedule(TimerTask task, long delay) {
-        TimerSingleton.getTimer().schedule(task, delay);
-    }
+    /**
+     * Registra evento de tempo limite.
+     * @param task
+     * @param delay
+     */
+    public void schedule(TimerTask task, long delay);
 }

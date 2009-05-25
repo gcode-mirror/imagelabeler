@@ -20,20 +20,20 @@ public class ServerImplTest extends TestCase {
     private TestClient client1,  client2,  client3;
     private TestPlayerPersistence playerPersistance;
     TestTimer timer;
+    private ImageServerImpl imageServer;
 
     @Override
     public void setUp() throws RemoteException {
-        server = new ServerImpl();
         client1 = new TestClient();
         client2 = new TestClient();
         client3 = new TestClient();
 
-        timer = new TestTimer();
-        server.setTimer(timer);
-
         playerPersistance = new TestPlayerPersistence();
-        server.setPlayerPersistence(playerPersistance);
-        server.setImageServer(new ImageServerImpl());
+        imageServer = new ImageServerImpl();
+        timer = new TestTimer();
+
+        server = new ServerImpl(playerPersistance, imageServer, timer);
+
     }
 
     // Exercita caso em que só podem existir 2 identificados.

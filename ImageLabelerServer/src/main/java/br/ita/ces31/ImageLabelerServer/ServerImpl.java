@@ -4,7 +4,7 @@
 package br.ita.ces31.ImageLabelerServer;
 
 import br.ita.ces31.ImageLabelerServer.persistence.PersistenceException;
-import br.ita.ces31.ImageLabelerServer.timer.Timer;
+import br.ita.ces31.ImageLabelerServer.timer.TimeoutTimer;
 import br.ita.ces31.ImageLabelerCommon.Client;
 import br.ita.ces31.ImageLabelerCommon.GameSummary;
 import br.ita.ces31.ImageLabelerCommon.Player;
@@ -27,9 +27,14 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
     private Game game;
     private PlayerPersistence playerPersistence;
     private ImageServer imageServer;
-    private Timer timer;
+    private TimeoutTimer timer;
 
-    public ServerImpl() throws RemoteException {
+    public ServerImpl(PlayerPersistence playerPersistence,
+                      ImageServer imageServer,
+                      TimeoutTimer timer) throws RemoteException {
+        this.playerPersistence = playerPersistence;
+        this.imageServer = imageServer;
+        this.timer = timer;
         loggedClients = new ArrayList<Client>();
         wait = null;
     }
@@ -91,10 +96,6 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
         }
     }
 
-    public synchronized boolean isAlive() throws RemoteException {
-        return true;
-    }
-
     public synchronized void sendLabel(String label) throws RemoteException {
         if (game != null && game.addLabel(label)) {  // ocorreu match
             for (Client c : loggedClients) {
@@ -107,7 +108,7 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
     }
 
     private void startGame() throws RemoteException {
-        game = GameBuilder.createGame(
+        game = GameBuilder.createLengthGame(
             loggedClients.get(0),
             loggedClients.get(1));
 
@@ -159,26 +160,5 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
             c.notifyPenico();
         }
         game = null;
-    }
-
-    /**
-     * @param playerPersistence the playerPersistence to set
-     */
-    public void setPlayerPersistence(PlayerPersistence playerPersistence) {
-        this.playerPersistence = playerPersistence;
-    }
-
-    /**
-     * @param timer the timer to set
-     */
-    public void setTimer(Timer timer) {
-        this.timer = timer;
-    }
-
-    /**
-     * @param imageServer the imageServer to set
-     */
-    public void setImageServer(ImageServer imageServer) {
-        this.imageServer = imageServer;
     }
 }

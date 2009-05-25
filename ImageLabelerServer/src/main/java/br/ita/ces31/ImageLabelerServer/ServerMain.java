@@ -13,6 +13,10 @@ import java.rmi.RemoteException;
  */
 public class ServerMain {
 
+    /**
+     * Ponto de partida do servidor.
+     * @param args
+     */
     public static void main(String args[]) {
         System.out.println(" Codebase: " + System.getProperty("java.rmi.server.codebase"));
         try {

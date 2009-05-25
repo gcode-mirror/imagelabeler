@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Bridge entre interface de usuário (representado pela interface Communicator)
+ * e servidor (representado pela interface Client).
  * @author Helder Suzuki <helder@aluno.ita.br>
  */
 public class ClientCommunicator extends UnicastRemoteObject

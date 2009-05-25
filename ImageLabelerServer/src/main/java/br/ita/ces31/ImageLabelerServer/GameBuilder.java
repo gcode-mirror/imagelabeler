@@ -15,7 +15,13 @@ public class GameBuilder {
 
     private static ScoreCalculator scorer = new LengthScoreCalculator();
 
-    public static Game createGame(Client player1, Client player2) {
+    /**
+     * Cria instância de Game utilizando LengthScoreCalculator.
+     * @param player1
+     * @param player2
+     * @return
+     */
+    public static Game createLengthGame(Client player1, Client player2) {
         return new Game(scorer, player1, player2);
     }
 }

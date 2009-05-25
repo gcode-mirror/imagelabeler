@@ -19,6 +19,11 @@ public class Player implements Serializable, Comparable {
         this.score = p.score;
     }
 
+    /**
+     *
+     * @param name
+     * @param score
+     */
     public Player(String name, int score) {
         this.name = name;
         this.score = score;
@@ -45,10 +50,20 @@ public class Player implements Serializable, Comparable {
         this.score = score;
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     public boolean equals(Player p) {
         return name.equals(p.getName());
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     public int compareTo(Player p) {
         if (this.score < p.score) {
             return 1;

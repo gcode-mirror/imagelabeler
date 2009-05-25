@@ -12,11 +12,32 @@ import java.util.List;
  */
 public interface PlayerPersistence {
 
+    /**
+     * Atualiza registro de Player no banco de dados.
+     * @param player
+     * @throws br.ita.ces31.ImageLabelerServer.persistence.PersistenceException
+     */
     public void update(Player player) throws PersistenceException;
 
+    /**
+     * Adquire registro de Player no banco de dados.
+     * @param name
+     * @return
+     * @throws br.ita.ces31.ImageLabelerServer.persistence.PersistenceException
+     */
     public Player getPlayer(String name) throws PersistenceException;
 
+    /**
+     * Deleta todos registros no banco de dados.
+     * @throws br.ita.ces31.ImageLabelerServer.persistence.PersistenceException
+     */
     public void deleteAll() throws PersistenceException;
 
+    /**
+     * Adquire lista com n players que possuem as maiores pontuações.
+     * @param n
+     * @return
+     * @throws br.ita.ces31.ImageLabelerServer.persistence.PersistenceException
+     */
     public List<Player> getBestPlayers(int n) throws PersistenceException;
 }
