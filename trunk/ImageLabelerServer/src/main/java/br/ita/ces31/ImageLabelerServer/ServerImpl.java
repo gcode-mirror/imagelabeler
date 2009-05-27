@@ -58,6 +58,10 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
         }
     }
 
+    /*
+     * Caso de uso 1.4.2.2.1 b) Identificar participante
+     * Realiza identificação do cliente.
+     */
     public synchronized boolean identify(Client client) throws RemoteException {
         // Cliente ja logado.
         if (loggedClients.contains(client)) {
@@ -74,6 +78,9 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
         return false;
     }
 
+    /*
+     * Caso de uso 1.4.2.2.1 e) Aguardar Início de Partida
+     */
     public synchronized void notifyWait(Client client) throws RemoteException {
         if (wait == null) {
             wait = client;
@@ -89,6 +96,9 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
         }
     }
 
+    /*
+     * 1.4.1.2.2.1h) Caso de Uso: Notificar Cancelamento da Espera
+     */
     public synchronized void cancelWait(Client client) throws RemoteException {
         if (wait == client) {
             wait = null;
@@ -96,6 +106,10 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
         }
     }
 
+    /*
+     * Caso de uso 1.4.2.2.1 c) Registrar Rótulo
+     * Envia rótulo.
+     */
     public synchronized void sendLabel(String label) throws RemoteException {
         if (game != null && game.addLabel(label)) {  // ocorreu match
             for (Client c : loggedClients) {
@@ -107,6 +121,11 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
         }
     }
 
+    /*
+     * Caso de uso 1.4.2.2.1 e) Aguardar Início de Partida
+     * Iniciar Partida
+     * Envia rótulo.
+     */
     private void startGame() throws RemoteException {
         game = GameBuilder.createLengthGame(
             loggedClients.get(0),
@@ -136,6 +155,9 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
         playerPersistence.update(p2);
     }
 
+    /*
+     * 1.4.2.2.2 a) Caso de Uso: Notificar Término
+     */
     public synchronized void notifyTimeout() {
         try {
             updateScore();
@@ -155,6 +177,9 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
         }
     }
 
+    /*
+     * 1.4.2.2.1f) Caso de Uso:  Notificar Desistência
+     */
     public synchronized void notifyPenico() throws RemoteException {
         for (Client c : loggedClients) {
             c.notifyPenico();

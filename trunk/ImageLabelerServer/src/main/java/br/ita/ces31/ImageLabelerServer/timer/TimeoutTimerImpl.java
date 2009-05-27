@@ -19,7 +19,7 @@ public class TimeoutTimerImpl implements TimeoutTimer {
     }
 
     /**
-     *
+     * 1.4.3.2.1a) Caso de Uso: Temporizar
      * @param task
      * @param delay
      */

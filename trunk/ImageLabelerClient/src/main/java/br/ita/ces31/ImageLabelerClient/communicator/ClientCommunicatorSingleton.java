@@ -22,6 +22,9 @@ public class ClientCommunicatorSingleton {
             try {
                 String name = ("//" + serverURI + ":" +
                                Server.serverPort + "/" + Server.referenceName);
+                /*
+                 * Caso de uso 1.4.2.2.1 a) Conectar
+                 */
                 server = (Server) Naming.lookup(name);
                 communicator = new ClientCommunicator(server);
             } catch (Exception ex) {
