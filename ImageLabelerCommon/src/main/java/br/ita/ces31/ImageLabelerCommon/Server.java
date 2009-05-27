@@ -22,6 +22,7 @@ public interface Server extends Remote {
     public static int serverPort = 1099;
 
     /**
+     * Caso de uso 1.4.2.2.1 b) Identificar participante
      * Realiza identificação do cliente.
      * @param client
      * @return
@@ -51,6 +52,7 @@ public interface Server extends Remote {
 
     /**
      * Envia rótulo digitado pelo cliente.
+     * Caso de uso 1.4.2.2.1 c) Identificar Rótulo
      * @param label
      * @throws java.rmi.RemoteException
      */

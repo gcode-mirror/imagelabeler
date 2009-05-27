@@ -12,6 +12,7 @@ import java.util.TimerTask;
 public interface TimeoutTimer {
 
     /**
+     * 1.4.3.2.1a) Caso de Uso: Temporizar
      * Registra evento de tempo limite.
      * @param task
      * @param delay

@@ -50,6 +50,7 @@ public class Game {
     }
 
     /**
+     * Caso de uso 1.4.2.2.1 c) Identificar Rótulo
      * Registra rótulo na partida.
      * @param label
      * @return
