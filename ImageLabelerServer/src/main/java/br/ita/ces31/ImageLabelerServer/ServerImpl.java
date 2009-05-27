@@ -50,7 +50,7 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
         }
     }
 
-    private void removeDeadClients() throws RemoteException {
+    private void removeDisconnectedClients() throws RemoteException {
         for (Client c : new ArrayList<Client>(loggedClients)) {
             if (!c.isAlive()) {
                 loggedClients.remove(c);
@@ -68,7 +68,7 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
             return true;
         }
 
-        removeDeadClients();
+        removeDisconnectedClients();
 
         if (loggedClients.size() < 2) {
             loggedClients.add(client);
