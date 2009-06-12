@@ -3,6 +3,7 @@
  */
 package br.ita.ces31.ImageLabelerServer.timer;
 
+import br.ita.ces31.ImageLabelerServer.timer.TimeoutNotifiable;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -13,9 +14,17 @@ import java.util.TimerTask;
 public class TimeoutTimerImpl implements TimeoutTimer {
 
     private Timer timer;
+    private TimeoutNotifiable server;
 
     public TimeoutTimerImpl() {
         timer = new Timer();
+    }
+
+    /*
+     * 1.4.2.2.2 a) Caso de Uso: Notificar Término
+     */
+    private void notifyTimeout() {
+        server.notifyTimeout();
     }
 
     /**
@@ -23,7 +32,20 @@ public class TimeoutTimerImpl implements TimeoutTimer {
      * @param task
      * @param delay
      */
-    public void schedule(TimerTask task, long delay) {
-        timer.schedule(task, delay);
+    public void schedule(long delay) {
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                notifyTimeout();
+            }
+        }, delay);
+    }
+
+    /**
+     * @param server the server to set
+     */
+    public void setServer(TimeoutNotifiable server) {
+        this.server = server;
     }
 }

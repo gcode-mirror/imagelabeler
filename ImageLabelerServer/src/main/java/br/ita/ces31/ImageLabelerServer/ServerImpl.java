@@ -3,6 +3,7 @@
  */
 package br.ita.ces31.ImageLabelerServer;
 
+import br.ita.ces31.ImageLabelerServer.timer.TimeoutNotifiable;
 import br.ita.ces31.ImageLabelerServer.persistence.PersistenceException;
 import br.ita.ces31.ImageLabelerServer.timer.TimeoutTimer;
 import br.ita.ces31.ImageLabelerCommon.Client;
@@ -14,13 +15,13 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimerTask;
 
 /**
  *
  * @author Helder Suzuki <helder@aluno.ita.br>
  */
-public class ServerImpl extends UnicastRemoteObject implements Server {
+public class ServerImpl extends UnicastRemoteObject
+    implements Server, TimeoutNotifiable {
 
     private List<Client> loggedClients;
     private Client wait;
@@ -131,16 +132,11 @@ public class ServerImpl extends UnicastRemoteObject implements Server {
             loggedClients.get(0),
             loggedClients.get(1));
 
-        timer.schedule(new TimerTask() {
+        timer.schedule(Game.duration * 1000);
 
-            @Override
-            public void run() {
-                notifyTimeout();
-            }
-        }, Game.duration * 1000);
-
+        String image = imageServer.getImage();
         for (Client c : loggedClients) {
-            c.startGame(imageServer.getImage(), Game.duration);
+            c.startGame(image, Game.duration);
         }
     }
 
