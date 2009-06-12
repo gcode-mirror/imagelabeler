@@ -75,6 +75,8 @@ public class ServerImplTest extends TestCase {
 
         assertEquals(Game.duration, client1.duration);
         assertEquals(Game.duration, client2.duration);
+        assertEquals(client1.image, client2.image);
+        assertNotNull(client1.image);
     }
 
     // exercita casos em que client1 cai e client3 entra depois.
@@ -238,7 +240,6 @@ public class ServerImplTest extends TestCase {
     public void testStartGameScheduleTask() throws RemoteException {
         startGame();
 
-        assertNotNull(timer.task);
         assertEquals(Game.duration * 1000, timer.delay);
     }
 

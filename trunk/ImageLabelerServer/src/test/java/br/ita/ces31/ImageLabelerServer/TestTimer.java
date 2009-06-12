@@ -4,7 +4,6 @@
 package br.ita.ces31.ImageLabelerServer;
 
 import br.ita.ces31.ImageLabelerServer.timer.TimeoutTimer;
-import java.util.TimerTask;
 
 /**
  *
@@ -12,11 +11,9 @@ import java.util.TimerTask;
  */
 public class TestTimer implements TimeoutTimer {
 
-    public TimerTask task = null;
     public long delay = -1;
 
-    public void schedule(TimerTask task, long delay) {
-        this.task = task;
+    public void schedule(long delay) {
         this.delay = delay;
     }
 }

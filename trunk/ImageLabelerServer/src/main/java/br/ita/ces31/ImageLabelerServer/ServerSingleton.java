@@ -23,10 +23,12 @@ public class ServerSingleton {
      */
     public synchronized static Server getServer() throws RemoteException {
         if (server == null) {
+            TimeoutTimerImpl timer = new TimeoutTimerImpl();
             server = new ServerImpl(
                 PlayerPersistenceSingleton.getPlayerPersistence(),
                 new ImageServerImpl(),
-                new TimeoutTimerImpl());
+                timer);
+            timer.setServer(server);
         }
 
         return server;

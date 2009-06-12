@@ -14,12 +14,13 @@ import java.rmi.server.RemoteObject;
  */
 public class TestClient extends RemoteObject implements Client {
 
-    public String match = null;
+    public String match;
     public int duration = -1;
     public GameSummary summary;
     public String loginName = "John";
     public boolean isAlive = true;
     public boolean penicoNotified = false;
+    public String image;
 
     public String getLoginName() throws RemoteException {
         return loginName;
@@ -31,6 +32,7 @@ public class TestClient extends RemoteObject implements Client {
 
     public void startGame(String image, int seconds) throws RemoteException {
         this.duration = seconds;
+        this.image = image;
     }
 
     public void endGame(GameSummary summary) throws RemoteException {
