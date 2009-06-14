@@ -89,6 +89,7 @@ public class ClientCommunicator extends UnicastRemoteObject
         this.loginName = loginName;
         try {
             if (server.identify(this)) {
+                notifyWait();
                 return true;
             }
         } catch (RemoteException ex) {
@@ -114,4 +115,5 @@ public class ClientCommunicator extends UnicastRemoteObject
     public synchronized void removeObserver(CommunicatorObserver observer) {
         observers.remove(observer);
     }
+
 }
