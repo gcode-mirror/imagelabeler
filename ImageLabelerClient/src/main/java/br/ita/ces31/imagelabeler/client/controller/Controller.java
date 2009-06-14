@@ -83,25 +83,23 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         } else {
             getPartnerFoundUI().setVisible(false);
             getGameUI().setVisible(true);
+            timer.scheduleEndGameRegressiveCounting(1000);
+        }
+    }
+
+    public void notifySecondPassedOnEndGameRegressiveCounting(){
+        int counting = getGameUI().getRegressiveCounting();
+
+        if(counting != 1){
+            getGameUI().updateRegressiveCounting();
+            timer.scheduleEndGameRegressiveCounting(1000);
         }
     }
 
     //From interface CommunicatorObserver
     public void endGame(GameSummary summary){
-
-    }
-
-    public void notifySecondPassedOnEndGameRegressiveCounting(){
-        int counting = getPartnerFoundUI().getRegressiveCounting();
-
-        if(counting != 1){
-            getPartnerFoundUI().updateRegressiveCounting();
-
-            timer.scheduleEndGameRegressiveCounting(1000);
-        } else {
-            getPartnerFoundUI().setVisible(false);
-            getGameUI().setVisible(true);
-        }
+        getGameUI().setVisible(false);
+        getSummaryGameUI().setVisible(true);
     }
 
     public void connect(){

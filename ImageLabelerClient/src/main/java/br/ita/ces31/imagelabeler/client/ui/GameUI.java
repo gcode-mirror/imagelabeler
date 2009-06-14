@@ -43,6 +43,16 @@ public class GameUI extends UserInterface {
         this.screen = screen;
     }
 
+    public int getRegressiveCounting(){
+        return Integer.parseInt(this.screen.getLblRegressiveCounting());
+    }
+
+    public void updateRegressiveCounting(){
+        int pastCounting = Integer.parseInt(this.screen.getLblRegressiveCounting());
+        int currentCounting = pastCounting - 1;
+        this.screen.setLblRegressiveCounting(String.valueOf(currentCounting));
+    }
+    
     public void setImage(String image){
         //ImageIcon imageIcon = new ImageIcon(image);
         ImageIcon imageIcon = new ImageIcon("D:\\pictures\\Fotos\\humberto.jpg");
@@ -65,14 +75,6 @@ public class GameUI extends UserInterface {
         g2.drawImage(srcImg, 0, 0, w, h, null);
         g2.dispose();
         return resizedImg;
-    }
-
-    public String getPlayer1(){
-        return this.screen.getLblPlayer1();
-    }
-
-    public String getPlayer2(){
-        return this.screen.getLblPlayer2();
     }
 
     public void setPlayer1Name(String player1Name){

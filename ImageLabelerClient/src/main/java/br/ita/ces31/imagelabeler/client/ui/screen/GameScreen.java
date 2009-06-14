@@ -42,6 +42,17 @@ public class GameScreen extends javax.swing.JFrame {
         lblPlayer2 = new javax.swing.JLabel();
         pnlImage = new javax.swing.JPanel();
         lblImage = new javax.swing.JLabel();
+        lblLetsLabel = new javax.swing.JLabel();
+        txtLabel = new javax.swing.JTextField();
+        pnlTypedLabels = new javax.swing.JScrollPane();
+        listTypedLabels = new javax.swing.JList();
+        pnlMatchedLabels = new javax.swing.JScrollPane();
+        listMatchedLabels = new javax.swing.JList();
+        lblPoints = new javax.swing.JLabel();
+        lblTimeRemaining = new javax.swing.JLabel();
+        lblMatches = new javax.swing.JLabel();
+        lblPointsAmmount = new javax.swing.JLabel();
+        lblRegressiveCounting = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Image Labeler");
@@ -67,6 +78,20 @@ public class GameScreen extends javax.swing.JFrame {
             .addComponent(lblImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
         );
 
+        lblLetsLabel.setText("Let's Label!");
+
+        pnlTypedLabels.setViewportView(listTypedLabels);
+
+        pnlMatchedLabels.setViewportView(listMatchedLabels);
+
+        lblPoints.setText("Points:");
+
+        lblTimeRemaining.setText("Time remaining:");
+
+        lblMatches.setText("Matches");
+
+        lblRegressiveCounting.setText("60");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,7 +99,21 @@ public class GameScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pnlImage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(pnlImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnlTypedLabels, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblPoints)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblPointsAmmount))
+                            .addComponent(lblLetsLabel)
+                            .addComponent(txtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblTimeRemaining)
+                                .addGap(2, 2, 2)
+                                .addComponent(lblRegressiveCounting))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblPlayers)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -83,20 +122,47 @@ public class GameScreen extends javax.swing.JFrame {
                         .addComponent(lblAnd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblPlayer2)))
-                .addContainerGap(296, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblMatches)
+                    .addComponent(pnlMatchedLabels, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPlayers)
-                    .addComponent(lblPlayer1)
-                    .addComponent(lblAnd)
-                    .addComponent(lblPlayer2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPlayers)
+                            .addComponent(lblPlayer1)
+                            .addComponent(lblAnd)
+                            .addComponent(lblPlayer2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnlImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblLetsLabel)
+                                    .addComponent(lblMatches))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(pnlTypedLabels, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(lblTimeRemaining)
+                                            .addComponent(lblRegressiveCounting, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(pnlMatchedLabels, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE))))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPoints)
+                            .addComponent(lblPointsAmmount))
+                        .addGap(31, 31, 31))))
         );
 
         pack();
@@ -116,10 +182,21 @@ public class GameScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblAnd;
     private javax.swing.JLabel lblImage;
+    private javax.swing.JLabel lblLetsLabel;
+    private javax.swing.JLabel lblMatches;
     private javax.swing.JLabel lblPlayer1;
     private javax.swing.JLabel lblPlayer2;
     private javax.swing.JLabel lblPlayers;
+    private javax.swing.JLabel lblPoints;
+    private javax.swing.JLabel lblPointsAmmount;
+    private javax.swing.JLabel lblRegressiveCounting;
+    private javax.swing.JLabel lblTimeRemaining;
+    private javax.swing.JList listMatchedLabels;
+    private javax.swing.JList listTypedLabels;
     private javax.swing.JPanel pnlImage;
+    private javax.swing.JScrollPane pnlMatchedLabels;
+    private javax.swing.JScrollPane pnlTypedLabels;
+    private javax.swing.JTextField txtLabel;
     // End of variables declaration//GEN-END:variables
 
     public JLabel getLblImage() {
@@ -148,5 +225,13 @@ public class GameScreen extends javax.swing.JFrame {
 
     public JPanel getPnlImage() {
         return pnlImage;
+    }
+
+    public String getLblRegressiveCounting() {
+        return lblRegressiveCounting.getText();
+    }
+
+    public void setLblRegressiveCounting(String lblRegressiveCounting) {
+        this.lblRegressiveCounting.setText(lblRegressiveCounting);
     }
 }
