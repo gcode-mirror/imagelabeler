@@ -10,6 +10,7 @@ package br.ita.ces31.imagelabeler.client.timer;
  */
 public interface TimeoutNotifiable {
 
-    void notifySecondPassedOnRegressiveCounting();
+    void notifySecondPassedOnStartGameRegressiveCounting();
+    void notifySecondPassedOnEndGameRegressiveCounting();
 
 }
