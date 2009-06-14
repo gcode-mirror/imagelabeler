@@ -18,7 +18,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author Helder Suzuki <helder@aluno.ita.br>
+ * @author diego
  */
 public class ClientMain {
     private static JFrame connectionFailedScreen;
@@ -31,9 +31,6 @@ public class ClientMain {
     private static JFrame summaryGameScreen;
     private static JFrame waitScreen;
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
 
         initializeUI();
