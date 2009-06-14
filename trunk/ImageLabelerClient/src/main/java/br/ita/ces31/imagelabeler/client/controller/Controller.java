@@ -1,21 +1,21 @@
-package br.ita.ces31.ImageLabelerClient.ui.Controller;
+package br.ita.ces31.imagelabeler.client.controller;
 
-import br.ita.ces31.ImageLabelerClient.communicator.ClientCommunicator;
-import br.ita.ces31.ImageLabelerClient.communicator.ClientCommunicatorSingleton;
-import br.ita.ces31.ImageLabelerClient.communicator.CommunicationException;
-import br.ita.ces31.ImageLabelerClient.communicator.Communicator;
-import br.ita.ces31.ImageLabelerClient.communicator.CommunicatorObserver;
-import br.ita.ces31.ImageLabelerClient.timer.TimeoutNotifiable;
-import br.ita.ces31.ImageLabelerClient.timer.TimeoutTimer;
-import br.ita.ces31.ImageLabelerClient.timer.TimeoutTimerImpl;
-import br.ita.ces31.ImageLabelerClient.ui.ConnectionFailedUI;
-import br.ita.ces31.ImageLabelerClient.ui.ConnectionLostUI;
-import br.ita.ces31.ImageLabelerClient.ui.GameUI;
-import br.ita.ces31.ImageLabelerClient.ui.LoginUI;
-import br.ita.ces31.ImageLabelerClient.ui.PartnerFoundUI;
-import br.ita.ces31.ImageLabelerClient.ui.ServerBusyUI;
-import br.ita.ces31.ImageLabelerClient.ui.UserInterface;
-import br.ita.ces31.ImageLabelerClient.ui.WaitUI;
+import br.ita.ces31.imagelabeler.client.communicator.ClientCommunicator;
+import br.ita.ces31.imagelabeler.client.communicator.ClientCommunicatorSingleton;
+import br.ita.ces31.imagelabeler.client.communicator.CommunicationException;
+import br.ita.ces31.imagelabeler.client.communicator.Communicator;
+import br.ita.ces31.imagelabeler.client.communicator.CommunicatorObserver;
+import br.ita.ces31.imagelabeler.client.timer.TimeoutNotifiable;
+import br.ita.ces31.imagelabeler.client.timer.TimeoutTimer;
+import br.ita.ces31.imagelabeler.client.timer.TimeoutTimerImpl;
+import br.ita.ces31.imagelabeler.client.ui.ConnectionFailedUI;
+import br.ita.ces31.imagelabeler.client.ui.ConnectionLostUI;
+import br.ita.ces31.imagelabeler.client.ui.GameUI;
+import br.ita.ces31.imagelabeler.client.ui.LoginUI;
+import br.ita.ces31.imagelabeler.client.ui.PartnerFoundUI;
+import br.ita.ces31.imagelabeler.client.ui.ServerBusyUI;
+import br.ita.ces31.imagelabeler.client.ui.UserInterface;
+import br.ita.ces31.imagelabeler.client.ui.WaitUI;
 import br.ita.ces31.ImageLabelerCommon.GameSummary;
 
 /**

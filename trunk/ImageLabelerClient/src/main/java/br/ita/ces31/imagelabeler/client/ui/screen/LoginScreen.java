@@ -9,7 +9,7 @@
  */
 package br.ita.ces31.imagelabeler.client.ui.screen;
 
-import br.ita.ces31.ImageLabelerClient.ui.LoginUI;
+import br.ita.ces31.imagelabeler.client.ui.LoginUI;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;

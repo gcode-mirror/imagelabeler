@@ -11,7 +11,7 @@
 
 package br.ita.ces31.imagelabeler.client.ui.screen;
 
-import br.ita.ces31.ImageLabelerClient.ui.PartnerFoundUI;
+import br.ita.ces31.imagelabeler.client.ui.PartnerFoundUI;
 import javax.swing.JLabel;
 
 /**

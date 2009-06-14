@@ -11,7 +11,7 @@
 
 package br.ita.ces31.imagelabeler.client.ui.screen;
 
-import br.ita.ces31.ImageLabelerClient.ui.SummaryGameUI;
+import br.ita.ces31.imagelabeler.client.ui.SummaryGameUI;
 
 /**
  *

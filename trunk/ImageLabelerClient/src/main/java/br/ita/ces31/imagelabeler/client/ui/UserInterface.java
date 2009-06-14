@@ -3,9 +3,9 @@
  * and open the template in the editor.
  */
 
-package br.ita.ces31.ImageLabelerClient.ui;
+package br.ita.ces31.imagelabeler.client.ui;
 
-import br.ita.ces31.ImageLabelerClient.ui.Controller.Controller;
+import br.ita.ces31.imagelabeler.client.controller.Controller;
 
 /**
  *

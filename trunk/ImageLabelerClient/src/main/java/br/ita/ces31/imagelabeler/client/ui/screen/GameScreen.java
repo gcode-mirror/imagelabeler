@@ -11,7 +11,7 @@
 
 package br.ita.ces31.imagelabeler.client.ui.screen;
 
-import br.ita.ces31.ImageLabelerClient.ui.GameUI;
+import br.ita.ces31.imagelabeler.client.ui.GameUI;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -64,7 +64,7 @@ public class GameScreen extends javax.swing.JFrame {
         );
         pnlImageLayout.setVerticalGroup(
             pnlImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+            .addComponent(lblImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -83,7 +83,7 @@ public class GameScreen extends javax.swing.JFrame {
                         .addComponent(lblAnd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblPlayer2)))
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(296, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
