@@ -7,14 +7,14 @@
  *
  * Created on May 10, 2009, 7:03:33 PM
  */
-package br.ita.ces31.imagelabeler.client.ui;
+package br.ita.ces31.imagelabeler.client.ui.screen;
 
 import br.ita.ces31.imagelabeler.client.communicator.CommunicationException;
 import br.ita.ces31.imagelabeler.client.communicator.Communicator;
 import br.ita.ces31.imagelabeler.client.communicator.CommunicatorObserver;
 import br.ita.ces31.imagelabeler.client.communicator.ClientCommunicatorSingleton;
-import br.ita.ces31.ImageLabelerCommon.GameSummary;
-import br.ita.ces31.ImageLabelerCommon.Player;
+import br.ita.ces31.imagelabeler.common.GameSummary;
+import br.ita.ces31.imagelabeler.common.Player;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
