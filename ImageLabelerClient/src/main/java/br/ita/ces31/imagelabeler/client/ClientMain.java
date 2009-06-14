@@ -1,10 +1,10 @@
 /*
  * Image Labeler - Projeto de CES-31
  */
-package br.ita.ces31.ImageLabelerClient;
+package br.ita.ces31.imagelabeler.client;
 
-import br.ita.ces31.ImageLabelerClient.ui.Controller.Controller;
-import br.ita.ces31.ImageLabelerClient.ui.UserInterface;
+import br.ita.ces31.imagelabeler.client.controller.Controller;
+import br.ita.ces31.imagelabeler.client.ui.UserInterface;
 import br.ita.ces31.imagelabeler.client.ui.screen.ConnectionFailedScreen;
 import br.ita.ces31.imagelabeler.client.ui.screen.ConnectionLostScreen;
 import br.ita.ces31.imagelabeler.client.ui.screen.GameScreen;
