@@ -3,9 +3,9 @@
  */
 package br.ita.ces31.imagelabeler.client.communicator;
 
-import br.ita.ces31.ImageLabelerCommon.Client;
-import br.ita.ces31.ImageLabelerCommon.Server;
-import br.ita.ces31.ImageLabelerCommon.GameSummary;
+import br.ita.ces31.imagelabeler.common.Client;
+import br.ita.ces31.imagelabeler.common.Server;
+import br.ita.ces31.imagelabeler.common.GameSummary;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;

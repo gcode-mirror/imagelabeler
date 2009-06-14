@@ -3,7 +3,7 @@
  */
 package br.ita.ces31.imagelabeler.client.communicator;
 
-import br.ita.ces31.ImageLabelerCommon.Server;
+import br.ita.ces31.imagelabeler.common.Server;
 import java.rmi.Naming;
 
 /**

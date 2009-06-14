@@ -3,7 +3,7 @@
  */
 package br.ita.ces31.imagelabeler.client.communicator;
 
-import br.ita.ces31.ImageLabelerCommon.GameSummary;
+import br.ita.ces31.imagelabeler.common.GameSummary;
 
 /**
  *
