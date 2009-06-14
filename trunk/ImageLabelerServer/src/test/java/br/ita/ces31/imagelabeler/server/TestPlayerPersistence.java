@@ -1,11 +1,11 @@
 /*
  * Image Labeler - Projeto de CES-31
  */
-package br.ita.ces31.ImageLabelerServer;
+package br.ita.ces31.imagelabeler.server;
 
-import br.ita.ces31.ImageLabelerCommon.Player;
-import br.ita.ces31.ImageLabelerServer.persistence.PersistenceException;
-import br.ita.ces31.ImageLabelerServer.persistence.PlayerPersistence;
+import br.ita.ces31.imagelabeler.common.Player;
+import br.ita.ces31.imagelabeler.server.persistence.PersistenceException;
+import br.ita.ces31.imagelabeler.server.persistence.PlayerPersistence;
 import java.util.ArrayList;
 import java.util.List;
 

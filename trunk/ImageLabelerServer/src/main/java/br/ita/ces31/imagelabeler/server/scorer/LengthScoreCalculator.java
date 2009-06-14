@@ -1,7 +1,7 @@
 /*
  * Image Labeler - Projeto de CES-31
  */
-package br.ita.ces31.ImageLabelerServer.scorer;
+package br.ita.ces31.imagelabeler.server.scorer;
 
 /**
  * Estratégia de pontuação com base no comprimento do match.

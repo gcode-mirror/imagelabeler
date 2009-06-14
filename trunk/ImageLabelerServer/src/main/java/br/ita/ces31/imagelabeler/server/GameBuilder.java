@@ -1,11 +1,11 @@
 /*
  * Image Labeler - Projeto de CES-31
  */
-package br.ita.ces31.ImageLabelerServer;
+package br.ita.ces31.imagelabeler.server;
 
-import br.ita.ces31.ImageLabelerCommon.Client;
-import br.ita.ces31.ImageLabelerServer.scorer.LengthScoreCalculator;
-import br.ita.ces31.ImageLabelerServer.scorer.ScoreCalculator;
+import br.ita.ces31.imagelabeler.common.Client;
+import br.ita.ces31.imagelabeler.server.scorer.LengthScoreCalculator;
+import br.ita.ces31.imagelabeler.server.scorer.ScoreCalculator;
 
 /**
  *

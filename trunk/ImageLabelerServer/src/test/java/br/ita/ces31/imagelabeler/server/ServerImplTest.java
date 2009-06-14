@@ -1,7 +1,10 @@
-package br.ita.ces31.ImageLabelerServer;
+package br.ita.ces31.imagelabeler.server;
 
-import br.ita.ces31.ImageLabelerCommon.Player;
-import br.ita.ces31.ImageLabelerCommon.Server;
+import br.ita.ces31.imagelabeler.server.ImageServerImpl;
+import br.ita.ces31.imagelabeler.server.ServerImpl;
+import br.ita.ces31.imagelabeler.server.Game;
+import br.ita.ces31.imagelabeler.common.Player;
+import br.ita.ces31.imagelabeler.common.Server;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;

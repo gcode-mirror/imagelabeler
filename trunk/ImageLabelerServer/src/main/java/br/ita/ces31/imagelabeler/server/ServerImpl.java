@@ -1,16 +1,16 @@
 /*
  * Image Labeler - Projeto de CES-31
  */
-package br.ita.ces31.ImageLabelerServer;
+package br.ita.ces31.imagelabeler.server;
 
-import br.ita.ces31.ImageLabelerServer.timer.TimeoutNotifiable;
-import br.ita.ces31.ImageLabelerServer.persistence.PersistenceException;
-import br.ita.ces31.ImageLabelerServer.timer.TimeoutTimer;
-import br.ita.ces31.ImageLabelerCommon.Client;
-import br.ita.ces31.ImageLabelerCommon.GameSummary;
-import br.ita.ces31.ImageLabelerCommon.Player;
-import br.ita.ces31.ImageLabelerCommon.Server;
-import br.ita.ces31.ImageLabelerServer.persistence.PlayerPersistence;
+import br.ita.ces31.imagelabeler.server.time.TimeoutNotifiable;
+import br.ita.ces31.imagelabeler.server.persistence.PersistenceException;
+import br.ita.ces31.imagelabeler.server.time.TimeoutTimer;
+import br.ita.ces31.imagelabeler.common.Client;
+import br.ita.ces31.imagelabeler.common.GameSummary;
+import br.ita.ces31.imagelabeler.common.Player;
+import br.ita.ces31.imagelabeler.common.Server;
+import br.ita.ces31.imagelabeler.server.persistence.PlayerPersistence;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
