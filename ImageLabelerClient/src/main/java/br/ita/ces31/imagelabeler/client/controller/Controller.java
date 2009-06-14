@@ -1,3 +1,6 @@
+/*
+ * Image Labeler - Projeto de CES-31
+ */
 package br.ita.ces31.imagelabeler.client.controller;
 
 import br.ita.ces31.imagelabeler.client.communicator.ClientCommunicator;
@@ -11,10 +14,11 @@ import br.ita.ces31.imagelabeler.client.timer.TimeoutTimerImpl;
 import br.ita.ces31.imagelabeler.client.ui.ConnectionFailedUI;
 import br.ita.ces31.imagelabeler.client.ui.ConnectionLostUI;
 import br.ita.ces31.imagelabeler.client.ui.GameUI;
+import br.ita.ces31.imagelabeler.client.ui.InterruptionGameUI;
 import br.ita.ces31.imagelabeler.client.ui.LoginUI;
 import br.ita.ces31.imagelabeler.client.ui.PartnerFoundUI;
 import br.ita.ces31.imagelabeler.client.ui.ServerBusyUI;
-import br.ita.ces31.imagelabeler.client.ui.UserInterface;
+import br.ita.ces31.imagelabeler.client.ui.SummaryGameUI;
 import br.ita.ces31.imagelabeler.client.ui.WaitUI;
 import br.ita.ces31.imagelabeler.common.GameSummary;
 
@@ -26,84 +30,102 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
     private Communicator clientCommunicator;
     private TimeoutTimer timer;
-    private UserInterface connectionFailedUI;
-    private UserInterface connectionLostUI;
-    private UserInterface gameUI;
-    private UserInterface interruptionGameUI;
-    private UserInterface loginUI;
-    private UserInterface partnerFoundUI;
-    private UserInterface serverBusyUI;
-    private UserInterface summaryGameUI;
-    private UserInterface waitUI;
+    private ConnectionFailedUI connectionFailedUI;
+    private ConnectionLostUI connectionLostUI;
+    private GameUI gameUI;
+    private InterruptionGameUI interruptionGameUI;
+    private LoginUI loginUI;
+    private PartnerFoundUI partnerFoundUI;
+    private ServerBusyUI serverBusyUI;
+    private SummaryGameUI summaryGameUI;
+    private WaitUI waitUI;
 
     public Controller(){
         this.timer =  new TimeoutTimerImpl(this);
     }
 
+    //From interface CommunicatorObserver
     public String getLoginName(){
         return ((ClientCommunicator) getClientCommunicator()).getLoginName();
     }
 
+    //From interface CommunicatorObserver
     public void engGameByPenico(){
 
     }
 
+    //From interface CommunicatorObserver
     public void notifyMatch(String match){
 
     }
 
+    //From interface CommunicatorObserver
     public void startGame(String image, int seconds, String partner){
-        ((WaitUI) getWaitUI()).setVisible(false);
+        getWaitUI().setVisible(false);
         
-        ((PartnerFoundUI) getPartnerFoundUI()).setPartnerName(getLoginName());
-        ((PartnerFoundUI) getPartnerFoundUI()).setVisible(true);
+        getPartnerFoundUI().setPartnerName(partner);
+        getPartnerFoundUI().setVisible(true);
 
-        ((GameUI) getGameUI()).setImage(image);
-        ((GameUI) getGameUI()).setPlayer1Name(getLoginName());
-        ((GameUI) getGameUI()).setPlayer2Name(partner);
+        //prepare GameUI
+        getGameUI().setImage(image);
+        getGameUI().setPlayer1Name(getLoginName());
+        getGameUI().setPlayer2Name(partner);
 
-
-        timer.scheduleRegressiveCounting(1000);
+        timer.scheduleStartGameRegressiveCounting(1000);
     }
 
-    public void notifySecondPassedOnRegressiveCounting(){
-        int counting = ((PartnerFoundUI) getPartnerFoundUI()).getRegressiveCounting();
+    public void notifySecondPassedOnStartGameRegressiveCounting(){
+        int counting = getPartnerFoundUI().getRegressiveCounting();
 
         if(counting != 1){
-            ((PartnerFoundUI) getPartnerFoundUI()).updateRegressiveCounting();
-
-            timer.scheduleRegressiveCounting(1000);
+            getPartnerFoundUI().updateRegressiveCounting();
+            timer.scheduleStartGameRegressiveCounting(1000);
         } else {
-            ((PartnerFoundUI) getPartnerFoundUI()).setVisible(false);
-            ((GameUI) getGameUI()).setVisible(true);
+            getPartnerFoundUI().setVisible(false);
+            getGameUI().setVisible(true);
         }
     }
 
+    //From interface CommunicatorObserver
     public void endGame(GameSummary summary){
 
+    }
+
+    public void notifySecondPassedOnEndGameRegressiveCounting(){
+        int counting = getPartnerFoundUI().getRegressiveCounting();
+
+        if(counting != 1){
+            getPartnerFoundUI().updateRegressiveCounting();
+
+            timer.scheduleEndGameRegressiveCounting(1000);
+        } else {
+            getPartnerFoundUI().setVisible(false);
+            getGameUI().setVisible(true);
+        }
     }
 
     public void connect(){
         try {
             setClientCommunicator(ClientCommunicatorSingleton.getCommunicator());
             getClientCommunicator().addObserver(this);
-            ((LoginUI) getLoginUI()).setVisible(true);
+            getLoginUI().setVisible(true);
         } catch (CommunicationException ex) {
-            ((ConnectionFailedUI) getConnectionFailedUI()).setVisible(true);
+            getConnectionFailedUI().setVisible(true);
             ex.printStackTrace();
         }
     }
 
     public void identify(String loginName){
-        ((LoginUI) getLoginUI()).setVisible(false);
-        ((WaitUI) getWaitUI()).setVisible(true);
+        getLoginUI().setVisible(false);
+        getWaitUI().setVisible(true);
+        
         try {
             if( !getClientCommunicator().identify(loginName) ){
-                ((ServerBusyUI) getServerBusyUI()).setVisible(true);
+                getServerBusyUI().setVisible(true);
             }
         } catch (CommunicationException ex) {
             ex.printStackTrace();
-            ((ConnectionLostUI) getConnectionLostUI()).setVisible(true);
+            getConnectionLostUI().setVisible(true);
         }
     }
 
@@ -139,75 +161,83 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         this.clientCommunicator = clientCommunicator;
     }
 
-    public void setConnectionFailedUI(UserInterface connectionFailedUI) {
-        this.connectionFailedUI = connectionFailedUI;
-    }
-
-    public void setConnectionLostUI(UserInterface connectionLostUI) {
-        this.connectionLostUI = connectionLostUI;
-    }
-
-    public void setGameUI(UserInterface gameUI) {
-        this.gameUI = gameUI;
-    }
-
-    public void setInterruptionGameUI(UserInterface interruptionGameUI) {
-        this.interruptionGameUI = interruptionGameUI;
-    }
-
-    public void setLoginUI(UserInterface loginUI) {
-        this.loginUI = loginUI;
-    }
-
-    public void setPartnerFoundUI(UserInterface partnerFoundUI) {
-        this.partnerFoundUI = partnerFoundUI;
-    }
-
-    public void setServerBusyUI(UserInterface serverBusyUI) {
-        this.serverBusyUI = serverBusyUI;
-    }
-
-    public void setSummaryGameUI(UserInterface summaryGameUI) {
-        this.summaryGameUI = summaryGameUI;
-    }
-
-    public void setWaitUI(UserInterface waitUI) {
-        this.waitUI = waitUI;
-    }
-
-    public UserInterface getConnectionFailedUI() {
+    public ConnectionFailedUI getConnectionFailedUI() {
         return connectionFailedUI;
     }
 
-    public UserInterface getConnectionLostUI() {
+    public void setConnectionFailedUI(ConnectionFailedUI connectionFailedUI) {
+        this.connectionFailedUI = connectionFailedUI;
+    }
+
+    public ConnectionLostUI getConnectionLostUI() {
         return connectionLostUI;
     }
 
-    public UserInterface getGameUI() {
+    public void setConnectionLostUI(ConnectionLostUI connectionLostUI) {
+        this.connectionLostUI = connectionLostUI;
+    }
+
+    public GameUI getGameUI() {
         return gameUI;
     }
 
-    public UserInterface getInterruptionGameUI() {
+    public void setGameUI(GameUI gameUI) {
+        this.gameUI = gameUI;
+    }
+
+    public InterruptionGameUI getInterruptionGameUI() {
         return interruptionGameUI;
     }
 
-    public UserInterface getLoginUI() {
+    public void setInterruptionGameUI(InterruptionGameUI interruptionGameUI) {
+        this.interruptionGameUI = interruptionGameUI;
+    }
+
+    public LoginUI getLoginUI() {
         return loginUI;
     }
 
-    public UserInterface getPartnerFoundUI() {
+    public void setLoginUI(LoginUI loginUI) {
+        this.loginUI = loginUI;
+    }
+
+    public PartnerFoundUI getPartnerFoundUI() {
         return partnerFoundUI;
     }
 
-    public UserInterface getServerBusyUI() {
+    public void setPartnerFoundUI(PartnerFoundUI partnerFoundUI) {
+        this.partnerFoundUI = partnerFoundUI;
+    }
+
+    public ServerBusyUI getServerBusyUI() {
         return serverBusyUI;
     }
 
-    public UserInterface getSummaryGameUI() {
+    public void setServerBusyUI(ServerBusyUI serverBusyUI) {
+        this.serverBusyUI = serverBusyUI;
+    }
+
+    public SummaryGameUI getSummaryGameUI() {
         return summaryGameUI;
     }
 
-    public UserInterface getWaitUI() {
+    public void setSummaryGameUI(SummaryGameUI summaryGameUI) {
+        this.summaryGameUI = summaryGameUI;
+    }
+
+    public TimeoutTimer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(TimeoutTimer timer) {
+        this.timer = timer;
+    }
+
+    public WaitUI getWaitUI() {
         return waitUI;
+    }
+
+    public void setWaitUI(WaitUI waitUI) {
+        this.waitUI = waitUI;
     }
 }
