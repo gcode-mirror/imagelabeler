@@ -26,7 +26,25 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="pnlImage" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="pnlImage" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="pnlTypedLabels" pref="135" max="32767" attributes="1"/>
+                          <Group type="102" attributes="0">
+                              <Component id="lblPoints" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblPointsAmmount" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="lblLetsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtLabel" alignment="0" min="-2" pref="135" max="-2" attributes="1"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblTimeRemaining" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                              <Component id="lblRegressiveCounting" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="lblPlayers" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -37,23 +55,61 @@
                       <Component id="lblPlayer2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="296" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblMatches" min="-2" max="-2" attributes="0"/>
+                  <Component id="pnlMatchedLabels" pref="131" max="32767" attributes="1"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblPlayers" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblPlayer1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblAnd" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblPlayer2" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblPlayers" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPlayer1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAnd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPlayer2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="pnlImage" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblLetsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMatches" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="txtLabel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="pnlTypedLabels" min="-2" pref="189" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lblTimeRemaining" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblRegressiveCounting" alignment="3" min="-2" pref="14" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="pnlMatchedLabels" pref="257" max="32767" attributes="1"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblPoints" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPointsAmmount" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="pnlImage" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -105,5 +161,66 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="lblLetsLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Let&apos;s Label!"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtLabel">
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="pnlTypedLabels">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JList" name="listTypedLabels">
+          <Properties>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JScrollPane" name="pnlMatchedLabels">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JList" name="listMatchedLabels">
+          <Properties>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="lblPoints">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Points:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTimeRemaining">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Time remaining:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMatches">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Matches"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPointsAmmount">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblRegressiveCounting">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="60"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
