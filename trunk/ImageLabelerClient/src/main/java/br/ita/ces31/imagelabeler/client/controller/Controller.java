@@ -16,7 +16,7 @@ import br.ita.ces31.imagelabeler.client.ui.PartnerFoundUI;
 import br.ita.ces31.imagelabeler.client.ui.ServerBusyUI;
 import br.ita.ces31.imagelabeler.client.ui.UserInterface;
 import br.ita.ces31.imagelabeler.client.ui.WaitUI;
-import br.ita.ces31.ImageLabelerCommon.GameSummary;
+import br.ita.ces31.imagelabeler.common.GameSummary;
 
 /**
  *
