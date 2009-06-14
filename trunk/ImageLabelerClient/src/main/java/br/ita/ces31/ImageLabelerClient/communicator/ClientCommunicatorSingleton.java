@@ -14,7 +14,6 @@ public class ClientCommunicatorSingleton {
 
     private static Communicator communicator;
     private static String serverURI = "localhost";
-    private static Server server;
 
     public synchronized static Communicator getCommunicator()
         throws CommunicationException {
@@ -22,10 +21,11 @@ public class ClientCommunicatorSingleton {
             try {
                 String name = ("//" + serverURI + ":" +
                                Server.serverPort + "/" + Server.referenceName);
+
                 /*
                  * Caso de uso 1.4.2.2.1 a) Conectar
                  */
-                server = (Server) Naming.lookup(name);
+                Server server = (Server) Naming.lookup(name);
                 communicator = new ClientCommunicator(server);
             } catch (Exception ex) {
                 ex.printStackTrace();
