@@ -30,7 +30,7 @@ public class TestClient extends RemoteObject implements Client {
         this.match = match;
     }
 
-    public void startGame(String image, int seconds) throws RemoteException {
+    public void startGame(String image, int seconds, String partner) throws RemoteException {
         this.duration = seconds;
         this.image = image;
     }

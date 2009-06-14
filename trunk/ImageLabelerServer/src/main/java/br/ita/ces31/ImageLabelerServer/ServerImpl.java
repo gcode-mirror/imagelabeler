@@ -128,16 +128,16 @@ public class ServerImpl extends UnicastRemoteObject
      * Envia rótulo.
      */
     private void startGame() throws RemoteException {
-        game = GameBuilder.createLengthGame(
-            loggedClients.get(0),
-            loggedClients.get(1));
+        Client c1 = loggedClients.get(0);
+        Client c2 = loggedClients.get(1);
 
+        game = GameBuilder.createLengthGame(c1, c2);
         timer.schedule(Game.duration * 1000);
 
         String image = imageServer.getImage();
-        for (Client c : loggedClients) {
-            c.startGame(image, Game.duration);
-        }
+
+        c1.startGame(image, Game.duration, c2.getLoginName());
+        c2.startGame(image, Game.duration, c1.getLoginName());
     }
 
     private void updateScore() throws PersistenceException, RemoteException {
