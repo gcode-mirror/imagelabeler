@@ -231,8 +231,8 @@ public class TestLoginScreen extends JFrame implements CommunicatorObserver {
         matchList.setListData(matches);
     }
 
-    public void startGame(String image, int seconds) {
-        System.out.println("Start game: " + seconds + " seconds");
+    public void startGame(String image, int seconds, String partner) {
+        System.out.println("Start game: " + seconds + " seconds" + " partner=" + partner);
     }
 
     public void endGame(GameSummary summary) {

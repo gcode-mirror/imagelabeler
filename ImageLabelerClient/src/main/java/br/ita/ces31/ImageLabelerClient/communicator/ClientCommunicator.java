@@ -44,9 +44,9 @@ public class ClientCommunicator extends UnicastRemoteObject
         }
     }
 
-    public void startGame(String image, int seconds) throws RemoteException {
+    public void startGame(String image, int seconds, String partner) throws RemoteException {
         for (CommunicatorObserver o : observers) {
-            o.startGame(image, seconds);
+            o.startGame(image, seconds, partner);
         }
     }
 

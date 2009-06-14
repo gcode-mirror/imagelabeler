@@ -36,9 +36,10 @@ public interface Client extends Remote {
      * Inicia a partida.
      * @param image
      * @param seconds
+     * @param partner 
      * @throws java.rmi.RemoteException
      */
-    public void startGame(String image, int seconds) throws RemoteException;
+    public void startGame(String image, int seconds, String partner) throws RemoteException;
 
     /**
      * Encerra a partida.
@@ -53,5 +54,4 @@ public interface Client extends Remote {
      * @throws java.rmi.RemoteException
      */
     public boolean isAlive() throws RemoteException;
-
 }
