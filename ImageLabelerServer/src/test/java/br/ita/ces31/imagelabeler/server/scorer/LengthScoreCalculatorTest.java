@@ -1,8 +1,10 @@
 /*
  * Image Labeler - Projeto de CES-31
  */
-package br.ita.ces31.ImageLabelerServer.scorer;
+package br.ita.ces31.imagelabeler.server.scorer;
 
+import br.ita.ces31.imagelabeler.server.scorer.LengthScoreCalculator;
+import br.ita.ces31.imagelabeler.server.scorer.ScoreCalculator;
 import junit.framework.TestCase;
 
 /**

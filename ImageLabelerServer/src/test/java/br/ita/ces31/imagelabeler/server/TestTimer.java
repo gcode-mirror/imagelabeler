@@ -1,9 +1,9 @@
 /*
  * Image Labeler - Projeto de CES-31
  */
-package br.ita.ces31.ImageLabelerServer;
+package br.ita.ces31.imagelabeler.server;
 
-import br.ita.ces31.ImageLabelerServer.timer.TimeoutTimer;
+import br.ita.ces31.imagelabeler.server.time.TimeoutTimer;
 
 /**
  *

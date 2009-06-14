@@ -1,11 +1,11 @@
 /*
  * Image Labeler - Projeto de CES-31
  */
-package br.ita.ces31.ImageLabelerServer;
+package br.ita.ces31.imagelabeler.server;
 
-import br.ita.ces31.ImageLabelerCommon.Server;
-import br.ita.ces31.ImageLabelerServer.persistence.PlayerPersistenceSingleton;
-import br.ita.ces31.ImageLabelerServer.timer.TimeoutTimerImpl;
+import br.ita.ces31.imagelabeler.common.Server;
+import br.ita.ces31.imagelabeler.server.persistence.PlayerPersistenceSingleton;
+import br.ita.ces31.imagelabeler.server.time.TimeoutTimerImpl;
 import java.rmi.RemoteException;
 
 /**
