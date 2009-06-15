@@ -56,7 +56,7 @@ public class ClientCommunicator extends UnicastRemoteObject
 
     public void notifyPenico() throws RemoteException {
         for (CommunicatorObserver o : observers) {
-            o.engGameByPenico();
+            o.endGameByPenico();
         }
     }
 
