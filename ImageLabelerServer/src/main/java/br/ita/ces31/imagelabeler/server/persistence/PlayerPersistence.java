@@ -4,7 +4,7 @@
 package br.ita.ces31.imagelabeler.server.persistence;
 
 import br.ita.ces31.imagelabeler.common.Player;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -39,5 +39,5 @@ public interface PlayerPersistence {
      * @return
      * @throws br.ita.ces31.ImageLabelerServer.persistence.PersistenceException
      */
-    public List<Player> getBestPlayers(int n) throws PersistenceException;
+    public ArrayList<Player> getBestPlayers(int n) throws PersistenceException;
 }

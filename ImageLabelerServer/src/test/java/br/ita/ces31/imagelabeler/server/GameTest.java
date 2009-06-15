@@ -47,4 +47,15 @@ public class GameTest extends TestCase {
         assertEquals(1, game.getMatches().size());
         assertEquals(4, game.getScore());
     }
+
+
+    public void testMatchCase() {
+        assertEquals(0, game.getMatches().size());
+
+        assertFalse(game.addLabel("abas"));
+        assertTrue(game.addLabel("aBas"));
+
+        assertEquals(1, game.getMatches().size());
+        assertEquals(4, game.getScore());
+    }
 }

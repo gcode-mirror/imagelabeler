@@ -11,7 +11,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 /**
  *
@@ -19,7 +18,7 @@ import java.util.List;
  */
 public class PlayerPersistenceImpl implements PlayerPersistence {
 
-    private static List<Player> content;
+    private static ArrayList<Player> content;
 
     private static void serialize() throws PersistenceException {
         FileOutputStream fout;
@@ -38,7 +37,7 @@ public class PlayerPersistenceImpl implements PlayerPersistence {
         try {
             FileInputStream fin = new FileInputStream("image_labeler.db");
             ObjectInputStream ois = new ObjectInputStream(fin);
-            content = (List<Player>) ois.readObject();
+            content = (ArrayList<Player>) ois.readObject();
             ois.close();
             fin.close();
         } catch (FileNotFoundException ex) {
@@ -62,7 +61,7 @@ public class PlayerPersistenceImpl implements PlayerPersistence {
         serialize();
     }
 
-    public synchronized List<Player> getBestPlayers(int n)
+    public synchronized ArrayList<Player> getBestPlayers(int n)
             throws PersistenceException {
         deserialize();
 
@@ -70,7 +69,7 @@ public class PlayerPersistenceImpl implements PlayerPersistence {
         n = Math.min(n, content.size());
 
         // Se der algum bug bizarro, é pq devia retornar uma "deep copy" aqui.
-        return content.subList(0, n);
+        return new ArrayList<Player>(content.subList(0, n));
     }
 
     private Player _getPlayer(String name) throws PersistenceException {
