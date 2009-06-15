@@ -38,9 +38,9 @@ public class ClientCommunicator extends UnicastRemoteObject
         }
     }
 
-    public void notifyMatch(String match) throws RemoteException {
+    public void notifyMatch(String match, int score) throws RemoteException {
         for (CommunicatorObserver o : observers) {
-            o.notifyMatch(match);
+            o.notifyMatch(match, score);
         }
     }
 

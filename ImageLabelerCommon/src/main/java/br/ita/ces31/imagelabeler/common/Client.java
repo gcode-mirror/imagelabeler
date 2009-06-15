@@ -22,9 +22,10 @@ public interface Client extends Remote {
     /**
      * Notifica cliente da ocorrência de um match.
      * @param match
+     * @param score
      * @throws java.rmi.RemoteException
      */
-    public void notifyMatch(String match) throws RemoteException;
+    public void notifyMatch(String match, int score) throws RemoteException;
 
     /**
      * Notifica cliente de que foi solicitado penico.
