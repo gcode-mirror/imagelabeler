@@ -47,6 +47,7 @@ public class ServerImpl extends UnicastRemoteObject
             return new GameSummary(this.game.getScore(), rank,
                                    (ArrayList<String>) game.getMatches());
         } catch (Exception ex) {
+            ex.printStackTrace();
             return new GameSummary();
         }
     }
@@ -132,7 +133,7 @@ public class ServerImpl extends UnicastRemoteObject
         Client c1 = loggedClients.get(0);
         Client c2 = loggedClients.get(1);
 
-        game = GameBuilder.createLengthGame(c1, c2);
+        game = GameFactory.createLengthGame(c1, c2);
         timer.schedule(Game.duration * 1000);
 
         String image = imageServer.getImage();

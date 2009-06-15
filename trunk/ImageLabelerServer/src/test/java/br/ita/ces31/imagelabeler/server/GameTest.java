@@ -3,7 +3,7 @@
  */
 package br.ita.ces31.imagelabeler.server;
 
-import br.ita.ces31.imagelabeler.server.GameBuilder;
+import br.ita.ces31.imagelabeler.server.GameFactory;
 import br.ita.ces31.imagelabeler.server.Game;
 import junit.framework.TestCase;
 
@@ -20,7 +20,7 @@ public class GameTest extends TestCase {
     public void setUp() {
         client1 = new TestClient();
         client2 = new TestClient();
-        game = GameBuilder.createLengthGame(client1, client2);
+        game = GameFactory.createLengthGame(client1, client2);
     }
 
     public void testMatch() {
