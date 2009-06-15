@@ -11,7 +11,7 @@ import br.ita.ces31.imagelabeler.server.scorer.ScoreCalculator;
  *
  * @author Helder Suzuki <helder@aluno.ita.br>
  */
-public class GameBuilder {
+public class GameFactory {
 
     private static ScoreCalculator scorer = new LengthScoreCalculator();
 
