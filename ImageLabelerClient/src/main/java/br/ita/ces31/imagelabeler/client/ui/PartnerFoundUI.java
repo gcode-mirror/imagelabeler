@@ -19,12 +19,10 @@ public class PartnerFoundUI extends UserInterface{
         controller.setPartnerFoundUI(this);
     }
     
-    @Override
     public void penico() {
         PartnerFoundUI.controller.penico();
     }
 
-    @Override
     public void setVisible(boolean visible){
         this.screen.setVisible(visible);
     }

@@ -56,7 +56,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
     //From interface CommunicatorObserver
     public void notifyMatch(String match){
-
+        getGameUI().notifyMatch(match);
     }
 
     //From interface CommunicatorObserver
@@ -139,8 +139,12 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         //vai para a tela de interrupção de jogo
     }
 
-    public void sendLabel(){
-        //continua na mesma tela
+    public void sendLabel(String label){
+        try {
+            getClientCommunicator().sendLabel(label);
+        } catch (CommunicationException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void playAgain(){

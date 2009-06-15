@@ -24,17 +24,19 @@ public class GameUI extends UserInterface {
         controller.setGameUI(this);
     }
 
-    @Override
-    public void sendLabel() {
-        GameUI.controller.sendLabel();
+    public void sendLabel(String label) {
+        GameUI.controller.sendLabel(label);
     }
 
-    @Override
     public void penico() {
         GameUI.controller.penico();
     }
 
-    @Override
+    public void notifyMatch(String match){
+        this.screen.ProcessMatch(match);
+    }
+
+
     public void setVisible(boolean visible){
         this.screen.setVisible(visible);
     }

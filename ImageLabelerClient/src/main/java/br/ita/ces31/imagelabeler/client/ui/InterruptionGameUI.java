@@ -19,17 +19,14 @@ public class InterruptionGameUI extends UserInterface {
         controller.setInterruptionGameUI(this);
     }
 
-    @Override
     public void playAgain() {
         InterruptionGameUI.controller.playAgain();
     }
 
-    @Override
     public void exit() {
         InterruptionGameUI.controller.exit();
     }
 
-    @Override
     public void setVisible(boolean visible){
         this.screen.setVisible(visible);
     }

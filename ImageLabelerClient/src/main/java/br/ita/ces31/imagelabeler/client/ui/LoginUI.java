@@ -19,17 +19,14 @@ public class LoginUI extends UserInterface {
         controller.setLoginUI(this);
     }
 
-    @Override
     public void identify(String loginName) {
         LoginUI.controller.identify(loginName);
     }
 
-    @Override
     public void exit() {
         LoginUI.controller.exit();
     }
 
-    @Override
     public void setVisible(boolean visible){
         this.screen.setVisible(visible);
     }

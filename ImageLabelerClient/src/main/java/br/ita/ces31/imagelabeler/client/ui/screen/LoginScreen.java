@@ -14,21 +14,18 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 /**
  *
  * @author Helder Suzuki <helder@aluno.ita.br>
  */
 public class LoginScreen extends JFrame {
-    private ImageIcon icon = new ImageIcon("D:\\pictures\\Fotos\\humberto.jpg");
     private LoginUI loginUI;
 
     /** Creates new form LoginScreen */
     public LoginScreen() {
         setLoginUI(new LoginUI(this));
         initComponents();
-        //lblImage.setIcon(new ImageIcon(getScaledImage(icon.getImage(), 300, 100)));
     }
 
     /** This method is called from within the constructor to

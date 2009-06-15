@@ -19,12 +19,10 @@ public class WaitUI extends UserInterface {
         controller.setWaitUI(this);
     }
 
-    @Override
     public void cancel(){
         WaitUI.controller.cancel();
     }
 
-    @Override
     public void setVisible(boolean visible){
         this.screen.setVisible(visible);
     }
