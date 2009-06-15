@@ -12,7 +12,6 @@
 package br.ita.ces31.imagelabeler.client.ui.screen;
 
 import br.ita.ces31.imagelabeler.client.ui.PartnerFoundUI;
-import javax.swing.JLabel;
 
 /**
  *
@@ -139,12 +138,12 @@ public class PartnerFoundScreen extends javax.swing.JFrame {
         this.lblPartnerName.setText(partnerName);
     }
 
-    public String getLblRegressiveCounting() {
-        return lblRegressiveCounting.getText();
+    public int getLblRegressiveCounting() {
+        return Integer.parseInt(lblRegressiveCounting.getText());
     }
 
-    public void setLblRegressiveCounting(String lblRegressiveCounting) {
-        this.lblRegressiveCounting.setText(lblRegressiveCounting);
+    public void setLblRegressiveCounting(int lblRegressiveCounting) {
+        this.lblRegressiveCounting.setText(String.valueOf(lblRegressiveCounting));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -32,8 +32,8 @@ public class GameUI extends UserInterface {
         GameUI.controller.penico();
     }
 
-    public void notifyMatch(String match){
-        this.screen.ProcessMatch(match);
+    public void notifyMatch(String match, int score){
+        this.screen.ProcessMatch(match, score);
     }
 
 

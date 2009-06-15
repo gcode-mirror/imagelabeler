@@ -36,12 +36,12 @@ public class PartnerFoundUI extends UserInterface{
     }
 
     public int getRegressiveCounting(){
-        return Integer.parseInt(this.screen.getLblRegressiveCounting());
+        return this.screen.getLblRegressiveCounting();
     }
 
     public void updateRegressiveCounting(){
-        int pastCounting = Integer.parseInt(this.screen.getLblRegressiveCounting());
+        int pastCounting = this.screen.getLblRegressiveCounting();
         int currentCounting = pastCounting - 1;
-        this.screen.setLblRegressiveCounting(String.valueOf(currentCounting));
+        this.screen.setLblRegressiveCounting(currentCounting);
     }
 }
