@@ -22,4 +22,6 @@ public abstract class UserInterface {
     public static Controller getController() {
         return controller;
     }
+
+    public abstract void setVisible(boolean visible);
 }
