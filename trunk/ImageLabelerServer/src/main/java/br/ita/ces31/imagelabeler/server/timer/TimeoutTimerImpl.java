@@ -48,4 +48,9 @@ public class TimeoutTimerImpl implements TimeoutTimer {
     public void setServer(TimeoutNotifiable server) {
         this.server = server;
     }
+
+    public void cancel() {
+        timer.cancel();
+        timer = new Timer();
+    }
 }
