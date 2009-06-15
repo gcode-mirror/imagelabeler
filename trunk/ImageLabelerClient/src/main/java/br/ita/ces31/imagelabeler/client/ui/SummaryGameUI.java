@@ -19,17 +19,14 @@ public class SummaryGameUI extends UserInterface {
         controller.setSummaryGameUI(this);
     }
 
-    @Override
     public void playAgain() {
         SummaryGameUI.controller.playAgain();
     }
 
-    @Override
     public void exit() {
         SummaryGameUI.controller.exit();
     }
 
-    @Override
     public void setVisible(boolean visible){
         this.screen.setVisible(visible);
     }

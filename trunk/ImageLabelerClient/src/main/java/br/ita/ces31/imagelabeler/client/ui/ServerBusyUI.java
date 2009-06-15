@@ -19,12 +19,10 @@ public class ServerBusyUI extends UserInterface {
         controller.setServerBusyUI(this);
     }
     
-    @Override
     public void ok() {
         ServerBusyUI.controller.ok();
     }
 
-    @Override
     public void setVisible(boolean visible){
         this.screen.setVisible(visible);
     }

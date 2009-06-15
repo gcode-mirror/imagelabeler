@@ -12,6 +12,7 @@
 package br.ita.ces31.imagelabeler.client.ui.screen;
 
 import br.ita.ces31.imagelabeler.client.ui.GameUI;
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -45,9 +46,11 @@ public class GameScreen extends javax.swing.JFrame {
         lblLetsLabel = new javax.swing.JLabel();
         txtLabel = new javax.swing.JTextField();
         pnlTypedLabels = new javax.swing.JScrollPane();
-        listTypedLabels = new javax.swing.JList();
+        typedLabelsElements = new DefaultListModel();
+        listTypedLabels = new javax.swing.JList(typedLabelsElements);
         pnlMatchedLabels = new javax.swing.JScrollPane();
-        listMatchedLabels = new javax.swing.JList();
+        matchedLabelsElements = new DefaultListModel();
+        listMatchedLabels = new javax.swing.JList(matchedLabelsElements);
         lblPoints = new javax.swing.JLabel();
         lblTimeRemaining = new javax.swing.JLabel();
         lblMatches = new javax.swing.JLabel();
@@ -79,6 +82,12 @@ public class GameScreen extends javax.swing.JFrame {
         );
 
         lblLetsLabel.setText("Let's Label!");
+
+        txtLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLabelActionPerformed(evt);
+            }
+        });
 
         pnlTypedLabels.setViewportView(listTypedLabels);
 
@@ -168,6 +177,32 @@ public class GameScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLabelActionPerformed
+        sendLabel(txtLabel.getText());
+        addElementOnTypedLabelsList(txtLabel.getText());
+        clearTextField();
+    }//GEN-LAST:event_txtLabelActionPerformed
+
+    private void sendLabel(String label){
+        getGameUI().sendLabel(label);
+    }
+
+    public void addElementOnTypedLabelsList(String label){
+        typedLabelsElements.addElement(label);
+    }
+
+    public void addElementOnMatchedLabelsList(String label){
+        matchedLabelsElements.addElement(label);
+    }
+
+    public void clearTextField(){
+        txtLabel.setText("");
+    }
+    
+    public void ProcessMatch(String match){
+        addElementOnMatchedLabelsList(match);
+    }
+    
     /**
     * @param args the command line arguments
     */
@@ -191,7 +226,9 @@ public class GameScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblPointsAmmount;
     private javax.swing.JLabel lblRegressiveCounting;
     private javax.swing.JLabel lblTimeRemaining;
+    private DefaultListModel matchedLabelsElements;
     private javax.swing.JList listMatchedLabels;
+    private DefaultListModel typedLabelsElements;
     private javax.swing.JList listTypedLabels;
     private javax.swing.JPanel pnlImage;
     private javax.swing.JScrollPane pnlMatchedLabels;
@@ -199,6 +236,14 @@ public class GameScreen extends javax.swing.JFrame {
     private javax.swing.JTextField txtLabel;
     // End of variables declaration//GEN-END:variables
 
+    public GameUI getGameUI() {
+        return gameUI;
+    }
+
+    public void setGameUI(GameUI gameUI) {
+        this.gameUI = gameUI;
+    }
+    
     public JLabel getLblImage() {
         return lblImage;
     }

@@ -19,12 +19,10 @@ public class ConnectionLostUI extends UserInterface {
         controller.setConnectionLostUI(this);
     }
 
-    @Override
     public void ok(){
         ConnectionLostUI.controller.ok();
     }
 
-    @Override
     public void setVisible(boolean visible){
         this.screen.setVisible(visible);
     }
