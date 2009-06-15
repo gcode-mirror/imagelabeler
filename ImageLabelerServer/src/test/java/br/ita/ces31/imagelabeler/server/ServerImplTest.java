@@ -1,12 +1,7 @@
 package br.ita.ces31.imagelabeler.server;
 
-import br.ita.ces31.imagelabeler.server.ImageServerImpl;
-import br.ita.ces31.imagelabeler.server.ServerImpl;
-import br.ita.ces31.imagelabeler.server.Game;
 import br.ita.ces31.imagelabeler.common.Player;
-import br.ita.ces31.imagelabeler.common.Server;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
 import junit.framework.TestCase;
 
@@ -20,7 +15,7 @@ import junit.framework.TestCase;
 public class ServerImplTest extends TestCase {
 
     private ServerImpl server;
-    private TestClient client1,  client2,  client3;
+    private TestClient client1,  client2,  client3,  client4;
     private TestPlayerPersistence playerPersistance;
     TestTimer timer;
     private ImageServerImpl imageServer;
@@ -30,6 +25,7 @@ public class ServerImplTest extends TestCase {
         client1 = new TestClient();
         client2 = new TestClient();
         client3 = new TestClient();
+        client4 = new TestClient();
 
         playerPersistance = new TestPlayerPersistence();
         imageServer = new ImageServerImpl();
@@ -134,6 +130,20 @@ public class ServerImplTest extends TestCase {
         assertEquals(Game.duration, client3.duration);
     }
 
+    public void testThirdPlayerWithDropDuringGame() throws RemoteException {
+        server.identify(client1);
+        server.notifyWait(client1);
+
+        server.identify(client2);
+        server.notifyWait(client2);
+        client1.isAlive = false;
+
+        assertEquals(Game.duration, client1.duration);
+        assertEquals(Game.duration, client2.duration);
+
+        assertFalse(server.identify(client3));
+    }
+
     // exercita casos em que client1 cancela e client3 entra depois.
     public void testStartGameCancelWait() throws RemoteException {
         server.identify(client1);
@@ -232,12 +242,117 @@ public class ServerImplTest extends TestCase {
         startGame();
 
         assertEquals(false, client1.penicoNotified);
-        assertEquals(false, client1.penicoNotified);
+        assertEquals(false, client2.penicoNotified);
 
         server.notifyPenico();
+        assertTrue(timer.canceled);
 
         assertEquals(true, client1.penicoNotified);
-        assertEquals(true, client1.penicoNotified);
+        assertEquals(true, client2.penicoNotified);
+    }
+
+    public void testPenicoWithDropPlayerAndRematch() throws RemoteException {
+        startGame();
+        server.notifyPenico();
+        client1.isAlive = false;
+        server.notifyWait(client2);
+
+        server.identify(client3);
+        server.notifyWait(client3);
+        assertEquals(Game.duration, client2.duration);
+        assertEquals(Game.duration, client3.duration);
+    }
+
+    public void testPenicoWithDropPlayerAndRematch2() throws RemoteException {
+        startGame();
+        server.notifyPenico();
+        client1.isAlive = false;
+
+        server.identify(client3);
+        server.notifyWait(client2);
+        server.notifyWait(client3);
+        assertEquals(Game.duration, client2.duration);
+        assertEquals(Game.duration, client3.duration);
+    }
+
+    public void testPenicoWithDropPlayerAndRematch3() throws RemoteException {
+        startGame();
+        server.notifyPenico();
+        client1.isAlive = false;
+
+        server.identify(client3);
+        server.notifyWait(client3);
+        server.notifyWait(client2);
+        assertEquals(Game.duration, client2.duration);
+        assertEquals(Game.duration, client3.duration);
+    }
+
+    public void testPenicoWithDropPlayers() throws RemoteException {
+        startGame();
+        server.notifyPenico();
+        client1.isAlive = false;
+
+        assertTrue(server.identify(client3));
+        server.notifyWait(client3);
+
+        assertFalse(server.identify(client4));
+        client2.isAlive = false;
+
+        assertTrue(server.identify(client4));
+        server.notifyWait(client4);
+
+        assertEquals(Game.duration, client3.duration);
+        assertEquals(Game.duration, client4.duration);
+    }
+
+    public void testPenicoWithDropPlayers2() throws RemoteException {
+        startGame();
+        server.notifyPenico();
+        client1.isAlive = false;
+        client2.isAlive = false;
+
+        assertTrue(server.identify(client3));
+        server.notifyWait(client3);
+
+        assertTrue(server.identify(client4));
+        server.notifyWait(client4);
+
+        assertEquals(Game.duration, client3.duration);
+        assertEquals(Game.duration, client4.duration);
+    }
+
+    public void testPenicoWithDropPlayers3() throws RemoteException {
+        startGame();
+        server.notifyPenico();
+
+        assertFalse(server.identify(client3));
+        client1.isAlive = false;
+        assertTrue(server.identify(client3));
+        client2.isAlive = false;
+        assertTrue(server.identify(client4));
+
+        server.notifyWait(client3);
+        server.notifyWait(client4);
+
+        assertEquals(Game.duration, client3.duration);
+        assertEquals(Game.duration, client4.duration);
+    }
+
+    public void testPenicoWithDropPlayers4() throws RemoteException {
+        startGame();
+        server.notifyPenico();
+
+        assertFalse(server.identify(client3));
+        client1.isAlive = false;
+        assertTrue(server.identify(client3));
+        server.notifyWait(client3);
+
+        client2.isAlive = false;
+        assertTrue(server.identify(client4));
+        server.notifyWait(client4);
+
+        assertEquals(Game.duration, client3.duration);
+        assertEquals(Game.duration, client4.duration);
     }
 
     public void testStartGameScheduleTask() throws RemoteException {

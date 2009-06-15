@@ -15,4 +15,6 @@ public interface TimeoutTimer {
      * @param delay
      */
     public void schedule(long delay);
+
+    public void cancel();
 }

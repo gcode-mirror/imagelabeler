@@ -12,8 +12,13 @@ import br.ita.ces31.imagelabeler.server.timer.TimeoutTimer;
 public class TestTimer implements TimeoutTimer {
 
     public long delay = -1;
+    public boolean canceled = false;
 
     public void schedule(long delay) {
         this.delay = delay;
+    }
+
+    public void cancel() {
+        canceled = true;
     }
 }

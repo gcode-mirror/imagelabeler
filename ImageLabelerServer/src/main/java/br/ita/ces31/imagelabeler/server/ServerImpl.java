@@ -15,6 +15,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -41,6 +43,7 @@ public class ServerImpl extends UnicastRemoteObject
     }
 
     private GameSummary getSummary() {
+        removeDisconnectedClients();
         try {
             ArrayList<Player> rank;
             rank = playerPersistence.getBestPlayers(10);
@@ -52,11 +55,26 @@ public class ServerImpl extends UnicastRemoteObject
         }
     }
 
-    private void removeDisconnectedClients() throws RemoteException {
+    private boolean testConnection(Client c) {
+        boolean test = false;
+
+        try {
+            test = c.isAlive();
+        } catch (RemoteException ex) {
+        }
+
+        return test;
+    }
+
+    private void removeDisconnectedClients() {
         for (Client c : new ArrayList<Client>(loggedClients)) {
-            if (!c.isAlive()) {
+            if (!testConnection(c)) {
                 loggedClients.remove(c);
             }
+        }
+
+        if (!loggedClients.contains(wait)) {
+            wait = null;
         }
     }
 
@@ -65,12 +83,16 @@ public class ServerImpl extends UnicastRemoteObject
      * Realiza identificação do cliente.
      */
     public synchronized boolean identify(Client client) throws RemoteException {
+        removeDisconnectedClients();
+
         // Cliente ja logado.
         if (loggedClients.contains(client)) {
             return true;
         }
 
-        removeDisconnectedClients();
+        if (isGameRunning()) {
+            return false;
+        }
 
         if (loggedClients.size() < 2) {
             loggedClients.add(client);
@@ -84,24 +106,27 @@ public class ServerImpl extends UnicastRemoteObject
      * Caso de uso 1.4.2.2.1 e) Aguardar Início de Partida
      */
     public synchronized void notifyWait(Client client) throws RemoteException {
+        removeDisconnectedClients();
+
+        if (isGameRunning()) {
+            return;
+        }
+
         if (wait == null) {
             wait = client;
             return;
         }
 
-        if (wait.isAlive()) {
-            startGame();
-            wait = null;
-        } else {
-            loggedClients.remove(wait);
-            wait = client;
-        }
+        wait = null;
+        startGame();
     }
 
     /*
      * 1.4.1.2.2.1h) Caso de Uso: Notificar Cancelamento da Espera
      */
     public synchronized void cancelWait(Client client) throws RemoteException {
+        removeDisconnectedClients();
+
         if (wait == client) {
             wait = null;
             loggedClients.remove(client);
@@ -113,7 +138,8 @@ public class ServerImpl extends UnicastRemoteObject
      * Envia rótulo.
      */
     public synchronized void sendLabel(String label) throws RemoteException {
-        if (game != null && game.addLabel(label)) {  // ocorreu match
+        removeDisconnectedClients();
+        if (isGameRunning() && game.addLabel(label)) {  // ocorreu match
             for (Client c : loggedClients) {
                 try {
                     c.notifyMatch(label, game.getScore());
@@ -140,6 +166,7 @@ public class ServerImpl extends UnicastRemoteObject
 
         c1.startGame(image, Game.duration, c2.getLoginName());
         c2.startGame(image, Game.duration, c1.getLoginName());
+        wait = null;
     }
 
     private void updateScore() throws PersistenceException, RemoteException {
@@ -165,7 +192,7 @@ public class ServerImpl extends UnicastRemoteObject
 
         GameSummary summary = getSummary();
 
-        if (game != null) {
+        if (isGameRunning()) {
             for (Client c : loggedClients) {
                 try {
                     c.endGame(summary);
@@ -173,6 +200,8 @@ public class ServerImpl extends UnicastRemoteObject
                     ex.printStackTrace();
                 }
             }
+            game = null;
+            wait = null;
         }
     }
 
@@ -180,9 +209,16 @@ public class ServerImpl extends UnicastRemoteObject
      * 1.4.2.2.1f) Caso de Uso:  Notificar Desistência
      */
     public synchronized void notifyPenico() throws RemoteException {
+        removeDisconnectedClients();
+        timer.cancel();
         for (Client c : loggedClients) {
             c.notifyPenico();
         }
         game = null;
+        wait = null;
+    }
+
+    private boolean isGameRunning() {
+        return game != null;
     }
 }

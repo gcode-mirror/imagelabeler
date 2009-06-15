@@ -40,7 +40,11 @@ public class TestClient extends RemoteObject implements Client {
     }
 
     public boolean isAlive() throws RemoteException {
-        return isAlive;
+        if(isAlive){
+            return true;
+        } else {
+            throw new RemoteException();
+        }
     }
 
     public void notifyPenico() throws RemoteException {
