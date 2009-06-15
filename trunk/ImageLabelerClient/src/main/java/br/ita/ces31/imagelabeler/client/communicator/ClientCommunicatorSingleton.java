@@ -12,10 +12,10 @@ import java.rmi.Naming;
  */
 public class ClientCommunicatorSingleton {
 
-    private static Communicator communicator;
+    private static ClientCommunicator communicator;
     private static String serverURI = "localhost";
 
-    public synchronized static Communicator getCommunicator()
+    public synchronized static ClientCommunicator getCommunicator()
         throws CommunicationException {
         if (communicator == null) {
             try {

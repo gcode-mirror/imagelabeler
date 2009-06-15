@@ -12,7 +12,7 @@ import br.ita.ces31.imagelabeler.client.ui.screen.InterruptionGameScreen;
 import br.ita.ces31.imagelabeler.client.ui.screen.LoginScreen;
 import br.ita.ces31.imagelabeler.client.ui.screen.PartnerFoundScreen;
 import br.ita.ces31.imagelabeler.client.ui.screen.ServerBusyScreen;
-import br.ita.ces31.imagelabeler.client.ui.screen.SummaryGameScreen;
+import br.ita.ces31.imagelabeler.client.ui.screen.GameSummaryScreen;
 import br.ita.ces31.imagelabeler.client.ui.screen.WaitScreen;
 import javax.swing.JFrame;
 
@@ -55,7 +55,7 @@ public class ClientMain {
        setLoginScreen(new LoginScreen());
        setPartnerFoundScreen(new PartnerFoundScreen());
        setServerBusyScreen(new ServerBusyScreen());
-       setSummaryGameScreen(new SummaryGameScreen());
+       setSummaryGameScreen(new GameSummaryScreen());
        setWaitScreen(new WaitScreen());
     }
 
