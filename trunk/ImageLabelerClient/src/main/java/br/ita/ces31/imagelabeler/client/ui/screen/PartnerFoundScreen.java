@@ -1,14 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Image Labeler - Projeto de CES-31
  */
-
-/*
- * PartnerFoundScreen.java
- *
- * Created on May 31, 2009, 5:04:30 PM
- */
-
 package br.ita.ces31.imagelabeler.client.ui.screen;
 
 import br.ita.ces31.imagelabeler.client.ui.PartnerFoundUI;
@@ -18,10 +10,11 @@ import br.ita.ces31.imagelabeler.client.ui.PartnerFoundUI;
  * @author diego
  */
 public class PartnerFoundScreen extends javax.swing.JFrame {
-    private PartnerFoundUI partnerFoundUI = new PartnerFoundUI(this);
+    private PartnerFoundUI partnerFoundUI;
 
     /** Creates new form PartnerFoundScreen */
     public PartnerFoundScreen() {
+        setPartnerFoundUI(new PartnerFoundUI(this));
         initComponents();
     }
 
@@ -117,17 +110,6 @@ public class PartnerFoundScreen extends javax.swing.JFrame {
     private void btnPenicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPenicoActionPerformed
         penico();
 }//GEN-LAST:event_btnPenicoActionPerformed
-
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PartnerFoundScreen().setVisible(true);
-            }
-        });
-    }
 
     private void penico(){
         getPartnerFoundUI().penico();

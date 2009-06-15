@@ -1,12 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * ConnectionFailedScreen.java
- *
- * Created on May 31, 2009, 5:03:55 PM
+ * Image Labeler - Projeto de CES-31
  */
 package br.ita.ces31.imagelabeler.client.ui.screen;
 
@@ -17,10 +10,11 @@ import br.ita.ces31.imagelabeler.client.ui.ConnectionFailedUI;
  * @author diego
  */
 public class ConnectionFailedScreen extends javax.swing.JFrame {
-    private ConnectionFailedUI connectionFailedUI = new ConnectionFailedUI(this);
+    private ConnectionFailedUI connectionFailedUI;
 
     /** Creates new form ConnectionFailedScreen */
     public ConnectionFailedScreen() {
+        setConnectionFailedUI(new ConnectionFailedUI(this));
         initComponents();
     }
 
@@ -88,18 +82,6 @@ public class ConnectionFailedScreen extends javax.swing.JFrame {
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         ok();
     }//GEN-LAST:event_btnOkActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new ConnectionFailedScreen().setVisible(true);
-            }
-        });
-    }
 
     private void ok() {
         getConnectionFailedUI().ok();

@@ -1,14 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Image Labeler - Projeto de CES-31
  */
-
-/*
- * ServerBusyScreen.java
- *
- * Created on May 31, 2009, 5:04:39 PM
- */
-
 package br.ita.ces31.imagelabeler.client.ui.screen;
 
 import br.ita.ces31.imagelabeler.client.ui.ServerBusyUI;
@@ -18,10 +10,11 @@ import br.ita.ces31.imagelabeler.client.ui.ServerBusyUI;
  * @author diego
  */
 public class ServerBusyScreen extends javax.swing.JFrame {
-    private ServerBusyUI serverBusy = new ServerBusyUI(this);
+    private ServerBusyUI serverBusyUI;
 
     /** Creates new form ServerBusyScreen */
     public ServerBusyScreen() {
+        setServerBusyUI(new ServerBusyUI(this));
         initComponents();
     }
 
@@ -92,17 +85,6 @@ public class ServerBusyScreen extends javax.swing.JFrame {
         ok();
 }//GEN-LAST:event_btnOkActionPerformed
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ServerBusyScreen().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOk;
     private javax.swing.JLabel lblConnectionFailedMessage;
@@ -110,14 +92,14 @@ public class ServerBusyScreen extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void ok(){
-        getServerBusy().ok();
+        getServerBusyUI().ok();
     }
 
-    public ServerBusyUI getServerBusy() {
-        return serverBusy;
+    public ServerBusyUI getServerBusyUI() {
+        return serverBusyUI;
     }
 
-    public void setServerBusy(ServerBusyUI serverBusy) {
-        this.serverBusy = serverBusy;
+    public void setServerBusyUI(ServerBusyUI serverBusyUI) {
+        this.serverBusyUI = serverBusyUI;
     }
 }

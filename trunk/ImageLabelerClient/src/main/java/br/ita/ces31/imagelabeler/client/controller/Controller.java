@@ -154,7 +154,11 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     }
 
     public void playAgain(){
-        //FALTA METODO NO CLIENTCOMMUNICATOR PARA AVISAR AO SERVIDOR QUE IRA INICIAR OUTRA PARTIDA
+        try {
+            getClientCommunicator().notifyWait();
+        } catch (CommunicationException ex) {
+            ex.printStackTrace();
+        }
         setCurrentUI(getWaitUI());
     }
 

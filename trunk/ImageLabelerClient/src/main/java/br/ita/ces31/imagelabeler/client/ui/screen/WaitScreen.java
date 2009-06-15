@@ -1,14 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Image Labeler - Projeto de CES-31
  */
-
-/*
- * WaitScreen.java
- *
- * Created on May 31, 2009, 5:04:52 PM
- */
-
 package br.ita.ces31.imagelabeler.client.ui.screen;
 
 import br.ita.ces31.imagelabeler.client.ui.WaitUI;
@@ -18,10 +10,11 @@ import br.ita.ces31.imagelabeler.client.ui.WaitUI;
  * @author diego
  */
 public class WaitScreen extends javax.swing.JFrame {
-    private WaitUI waitUI = new WaitUI(this);
+    private WaitUI waitUI;
     
     /** Creates new form WaitScreen */
     public WaitScreen() {
+        setWaitUI(new WaitUI(this));
         initComponents();
     }
 
@@ -93,17 +86,6 @@ public class WaitScreen extends javax.swing.JFrame {
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         cancel();
     }//GEN-LAST:event_btnOkActionPerformed
-
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new WaitScreen().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOk;

@@ -1,14 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Image Labeler - Projeto de CES-31
  */
-
-/*
- * GameScreen.java
- *
- * Created on May 31, 2009, 5:07:36 PM
- */
-
 package br.ita.ces31.imagelabeler.client.ui.screen;
 
 import br.ita.ces31.imagelabeler.client.ui.GameUI;
@@ -21,10 +13,11 @@ import javax.swing.JPanel;
  * @author diego
  */
 public class GameScreen extends javax.swing.JFrame {
-    private GameUI gameUI = new GameUI(this);
+    private GameUI gameUI;
 
     /** Creates new form GameScreen */
     public GameScreen() {
+        setGameUI(new GameUI(this));
         initComponents();
     }
 
@@ -239,17 +232,6 @@ public class GameScreen extends javax.swing.JFrame {
         getGameUI().penico();
     }
     
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GameScreen().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPenico;
     private javax.swing.JLabel lblAnd;
