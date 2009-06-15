@@ -73,7 +73,8 @@ public class PlayerPersistenceImpl implements PlayerPersistence {
         return content.subList(0, n);
     }
 
-    private Player _getPlayer(String name) {
+    private Player _getPlayer(String name) throws PersistenceException {
+        deserialize();
         Player result = null;
         for (Player p : content) {
             if (name.equals(p.getName())) {
