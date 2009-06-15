@@ -1,9 +1,9 @@
 /*
  * Image Labeler - Projeto de CES-31
  */
-package br.ita.ces31.imagelabeler.server.time;
+package br.ita.ces31.imagelabeler.server.timer;
 
-import br.ita.ces31.imagelabeler.server.time.TimeoutNotifiable;
+import br.ita.ces31.imagelabeler.server.timer.TimeoutNotifiable;
 import java.util.Timer;
 import java.util.TimerTask;
 
