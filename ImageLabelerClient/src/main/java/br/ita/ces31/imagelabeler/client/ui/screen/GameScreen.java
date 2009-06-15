@@ -99,6 +99,8 @@ public class GameScreen extends javax.swing.JFrame {
 
         lblMatches.setText("Matches");
 
+        lblPointsAmmount.setText("0");
+
         lblRegressiveCounting.setText("60");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -199,8 +201,13 @@ public class GameScreen extends javax.swing.JFrame {
         txtLabel.setText("");
     }
     
-    public void ProcessMatch(String match){
+    public void ProcessMatch(String match, int score){
         addElementOnMatchedLabelsList(match);
+        updateScore(score);
+    }
+
+    public void updateScore(int score){
+        setLblPointsAmmount(score);
     }
     
     /**
@@ -278,5 +285,9 @@ public class GameScreen extends javax.swing.JFrame {
 
     public void setLblRegressiveCounting(String lblRegressiveCounting) {
         this.lblRegressiveCounting.setText(lblRegressiveCounting);
+    }
+
+    public void setLblPointsAmmount(int pointsAmmount) {
+        this.lblPointsAmmount.setText(String.valueOf(pointsAmmount));
     }
 }
