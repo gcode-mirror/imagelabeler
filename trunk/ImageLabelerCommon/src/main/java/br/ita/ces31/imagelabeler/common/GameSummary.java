@@ -3,6 +3,7 @@
  */
 package br.ita.ces31.imagelabeler.common;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,11 +11,11 @@ import java.util.List;
  * 
  * @author Helder Suzuki <helder@aluno.ita.br>
  */
-public class GameSummary {
+public class GameSummary implements Serializable{
 
     private int score;
-    private List<Player> topPlayers;
-    private List<String> matches;
+    private ArrayList<Player> topPlayers;
+    private ArrayList<String> matches;
 
     public GameSummary() {
         this.score = 0;
@@ -28,8 +29,8 @@ public class GameSummary {
      * @param topPlayers
      * @param matches
      */
-    public GameSummary(int score, List<Player> topPlayers,
-            List<String> matches) {
+    public GameSummary(int score, ArrayList<Player> topPlayers,
+            ArrayList<String> matches) {
         this.score = score;
         this.topPlayers = topPlayers;
         this.matches = matches;
