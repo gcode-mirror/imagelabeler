@@ -36,7 +36,6 @@ public class GameUI extends UserInterface {
         this.screen.ProcessMatch(match, score);
     }
 
-
     public void setVisible(boolean visible){
         this.screen.setVisible(visible);
     }
