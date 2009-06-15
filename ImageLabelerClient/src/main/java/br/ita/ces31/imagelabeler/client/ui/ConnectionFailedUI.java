@@ -1,8 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Image Labeler - Projeto de CES-31
  */
-
 package br.ita.ces31.imagelabeler.client.ui;
 
 import br.ita.ces31.imagelabeler.client.ui.screen.ConnectionFailedScreen;

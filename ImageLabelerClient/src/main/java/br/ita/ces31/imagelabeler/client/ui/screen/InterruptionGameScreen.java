@@ -1,14 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Image Labeler - Projeto de CES-31
  */
-
-/*
- * InterruptionGameScreen.java
- *
- * Created on May 31, 2009, 5:07:49 PM
- */
-
 package br.ita.ces31.imagelabeler.client.ui.screen;
 
 import br.ita.ces31.imagelabeler.client.ui.InterruptionGameUI;
@@ -18,10 +10,11 @@ import br.ita.ces31.imagelabeler.client.ui.InterruptionGameUI;
  * @author diego
  */
 public class InterruptionGameScreen extends javax.swing.JFrame {
-    private InterruptionGameUI interruptionGameUI = new InterruptionGameUI(this);
+    private InterruptionGameUI interruptionGameUI;
 
     /** Creates new form InterruptionGameScreen */
     public InterruptionGameScreen() {
+        setInterruptionGameUI(new InterruptionGameUI(this));
         initComponents();
     }
 
@@ -92,17 +85,6 @@ public class InterruptionGameScreen extends javax.swing.JFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         exit();
 }//GEN-LAST:event_btnExitActionPerformed
-
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InterruptionGameScreen().setVisible(true);
-            }
-        });
-    }
 
     private void exit(){
         getInterruptionGameUI().exit();

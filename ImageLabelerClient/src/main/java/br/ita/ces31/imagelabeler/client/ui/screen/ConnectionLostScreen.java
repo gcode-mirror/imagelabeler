@@ -1,14 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Image Labeler - Projeto de CES-31
  */
-
-/*
- * ConnectionLostScreen.java
- *
- * Created on May 31, 2009, 5:04:12 PM
- */
-
 package br.ita.ces31.imagelabeler.client.ui.screen;
 
 import br.ita.ces31.imagelabeler.client.ui.ConnectionLostUI;
@@ -18,10 +10,11 @@ import br.ita.ces31.imagelabeler.client.ui.ConnectionLostUI;
  * @author diego
  */
 public class ConnectionLostScreen extends javax.swing.JFrame {
-    private ConnectionLostUI connectionLostUI = new ConnectionLostUI(this);
+    private ConnectionLostUI connectionLostUI;
     
     /** Creates new form ConnectionLostScreen */
     public ConnectionLostScreen() {
+        setConnectionLostUI(new ConnectionLostUI(this));
         initComponents();
     }
 
@@ -81,17 +74,6 @@ public class ConnectionLostScreen extends javax.swing.JFrame {
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         ok();
 }//GEN-LAST:event_btnOkActionPerformed
-
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ConnectionLostScreen().setVisible(true);
-            }
-        });
-    }
 
     public void ok(){
         getConnectionLostUI().ok();

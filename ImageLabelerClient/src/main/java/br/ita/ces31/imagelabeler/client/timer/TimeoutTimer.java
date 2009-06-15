@@ -5,12 +5,10 @@ package br.ita.ces31.imagelabeler.client.timer;
 
 /**
  *
- * @author diego <helder@aluno.ita.br>
+ * @author diego
  */
 public interface TimeoutTimer {
-
     public void cancelRegressiveCounting();
     public void scheduleStartGameRegressiveCounting(long delay);
     public void scheduleEndGameRegressiveCounting(long delay);
-
 }

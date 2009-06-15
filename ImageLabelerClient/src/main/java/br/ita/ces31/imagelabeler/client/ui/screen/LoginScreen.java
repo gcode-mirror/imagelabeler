@@ -1,12 +1,6 @@
 /*
  * Image Labeler - Projeto de CES-31
  */
-
-/*
- * LoginScreen.java
- *
- * Created on May 10, 2009, 7:03:33 PM
- */
 package br.ita.ces31.imagelabeler.client.ui.screen;
 
 import br.ita.ces31.imagelabeler.client.ui.LoginUI;
@@ -17,7 +11,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 /**
  *
- * @author Helder Suzuki <helder@aluno.ita.br>
+ * @author diego
  */
 public class LoginScreen extends JFrame {
     private LoginUI loginUI;
