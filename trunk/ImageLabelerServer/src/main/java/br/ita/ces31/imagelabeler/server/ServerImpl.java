@@ -36,6 +36,61 @@ public class ServerImpl extends UnicastRemoteObject
         this.state = new FreeState();
     }
 
+    private boolean isConnected(Client c) {
+        boolean test = false;
+
+        try {
+            test = c.isAlive();
+        } catch (RemoteException ex) {
+        }
+
+        return test;
+    }
+
+    /*
+     * Caso de uso 1.4.2.2.1 b) Identificar participante
+     * Realiza identificação do cliente.
+     */
+    public synchronized boolean identify(Client client) throws RemoteException {
+        return state.identify(client);
+    }
+
+    /*
+     * Caso de uso 1.4.2.2.1 e) Aguardar Início de Partida
+     */
+    public synchronized void notifyWait(Client client) throws RemoteException {
+        state.notifyWait(client);
+    }
+
+    /*
+     * 1.4.1.2.2.1h) Caso de Uso: Notificar Cancelamento da Espera
+     */
+    public synchronized void cancelWait(Client client) throws RemoteException {
+        state.cancelWait(client);
+    }
+
+    /*
+     * Caso de uso 1.4.2.2.1 c) Registrar Rótulo
+     * Envia rótulo.
+     */
+    public synchronized void sendLabel(String label) throws RemoteException {
+        state.sendLabel(label);
+    }
+
+    /*
+     * 1.4.2.2.2 a) Caso de Uso: Notificar Término
+     */
+    public synchronized void notifyTimeout() {
+        state.notifyTimeout();
+    }
+
+    /*
+     * 1.4.2.2.1f) Caso de Uso:  Notificar Desistência
+     */
+    public synchronized void notifyPenico() throws RemoteException {
+        state.notifyPenico();
+    }
+
     /* 0 clientes identificados, 0 em espera */
     class FreeState extends ServerState {
 
@@ -115,12 +170,12 @@ public class ServerImpl extends UnicastRemoteObject
 
         @Override
         public boolean identify(Client client) throws RemoteException {
-            if (!testConnection(client1)) {
+            if (!isConnected(client1)) {
                 client1 = client;
                 return true;
             }
 
-            if (!testConnection(client2)) {
+            if (!isConnected(client2)) {
                 client2 = client;
                 return true;
             }
@@ -142,7 +197,7 @@ public class ServerImpl extends UnicastRemoteObject
         @Override
         public void notifyWait(Client client) throws RemoteException {
             if (this.client == client) {
-                if (testConnection(waitingClient)) {
+                if (isConnected(waitingClient)) {
                     Game game = startGame(waitingClient, client);
                     state = new InGameState(game, waitingClient, client);
                 } else {
@@ -160,17 +215,28 @@ public class ServerImpl extends UnicastRemoteObject
 
         @Override
         public boolean identify(Client client) throws RemoteException {
-            if (!testConnection(waitingClient)) {
+            if (!isConnected(waitingClient)) {
                 state = new FullState(this.client, client);
                 return true;
             }
 
-            if (!testConnection(this.client)) {
+            if (!isConnected(this.client)) {
                 this.client = client;
                 return true;
             }
 
             return false;
+        }
+
+        private Game startGame(Client client1, Client client2) throws RemoteException {
+            Game game = GameFactory.createLengthGame(client1, client2);
+            timer.schedule(Game.duration * 1000);
+
+            String image = imageServer.getImage();
+
+            client1.startGame(image, Game.duration, client2.getLoginName());
+            client2.startGame(image, Game.duration, client1.getLoginName());
+            return game;
         }
     }
 
@@ -243,95 +309,29 @@ public class ServerImpl extends UnicastRemoteObject
                 }
             }
         }
-    }
 
-    private GameSummary getGameSummary(Game game) {
-        try {
-            ArrayList<Player> rank;
-            rank = playerPersistence.getBestPlayers(10);
-            return new GameSummary(game.getScore(), rank,
-                                   game.getMatches());
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return new GameSummary();
-        }
-    }
+        private void updateScore(Game game) throws PersistenceException, RemoteException {
+            int score = game.getScore();
+            Player p1 = playerPersistence.getPlayer(game.getClient1().getLoginName());
+            Player p2 = playerPersistence.getPlayer(game.getClient2().getLoginName());
 
-    private boolean testConnection(Client c) {
-        boolean test = false;
-
-        try {
-            test = c.isAlive();
-        } catch (RemoteException ex) {
+            p1.setScore(p1.getScore() + score);
+            p2.setScore(p2.getScore() + score);
+            playerPersistence.update(p1);
+            playerPersistence.update(p2);
         }
 
-        return test;
-    }
-
-    /*
-     * Caso de uso 1.4.2.2.1 b) Identificar participante
-     * Realiza identificação do cliente.
-     */
-    public synchronized boolean identify(Client client) throws RemoteException {
-        return state.identify(client);
-    }
-
-    /*
-     * Caso de uso 1.4.2.2.1 e) Aguardar Início de Partida
-     */
-    public synchronized void notifyWait(Client client) throws RemoteException {
-        state.notifyWait(client);
-    }
-
-    /*
-     * 1.4.1.2.2.1h) Caso de Uso: Notificar Cancelamento da Espera
-     */
-    public synchronized void cancelWait(Client client) throws RemoteException {
-        state.cancelWait(client);
-    }
-
-    /*
-     * Caso de uso 1.4.2.2.1 c) Registrar Rótulo
-     * Envia rótulo.
-     */
-    public synchronized void sendLabel(String label) throws RemoteException {
-        state.sendLabel(label);
-    }
-
-    private void updateScore(Game game) throws PersistenceException, RemoteException {
-        int score = game.getScore();
-        Player p1 = playerPersistence.getPlayer(game.getClient1().getLoginName());
-        Player p2 = playerPersistence.getPlayer(game.getClient2().getLoginName());
-
-        p1.setScore(p1.getScore() + score);
-        p2.setScore(p2.getScore() + score);
-        playerPersistence.update(p1);
-        playerPersistence.update(p2);
-    }
-
-    private Game startGame(Client client1, Client client2) throws RemoteException {
-        Game game = GameFactory.createLengthGame(client1, client2);
-        timer.schedule(Game.duration * 1000);
-
-        String image = imageServer.getImage();
-
-        client1.startGame(image, Game.duration, client2.getLoginName());
-        client2.startGame(image, Game.duration, client1.getLoginName());
-        return game;
-    }
-
-    /*
-     * 1.4.2.2.2 a) Caso de Uso: Notificar Término
-     */
-    public synchronized void notifyTimeout() {
-        state.notifyTimeout();
-    }
-
-    /*
-     * 1.4.2.2.1f) Caso de Uso:  Notificar Desistência
-     */
-    public synchronized void notifyPenico() throws RemoteException {
-        state.notifyPenico();
+        private GameSummary getGameSummary(Game game) {
+            try {
+                ArrayList<Player> rank;
+                rank = playerPersistence.getBestPlayers(10);
+                return new GameSummary(game.getScore(), rank,
+                                       game.getMatches());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                return new GameSummary();
+            }
+        }
     }
 }
 
