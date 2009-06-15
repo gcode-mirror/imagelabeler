@@ -115,7 +115,7 @@ public class ServerImpl extends UnicastRemoteObject
         if (game != null && game.addLabel(label)) {  // ocorreu match
             for (Client c : loggedClients) {
                 try {
-                    c.notifyMatch(label);
+                    c.notifyMatch(label, game.getScore());
                 } catch (RemoteException ex) {
                 }
             }

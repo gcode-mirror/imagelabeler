@@ -225,8 +225,9 @@ public class TestLoginScreen extends JFrame implements CommunicatorObserver {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void notifyMatch(String match) {
+    public void notifyMatch(String match, int score) {
         System.out.println("Match received " + match);
+        System.out.println("Total score " + score);
         matches.add(match);
         matchList.setListData(matches);
     }
