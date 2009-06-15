@@ -56,6 +56,7 @@ public class Game {
      * @return
      */
     public boolean addLabel(String label) {
+        label = label.toLowerCase();
         if (labels.contains(label)) {
             return addMatch(label);
         }
@@ -67,8 +68,8 @@ public class Game {
     /**
      * @return the matches
      */
-    public List<String> getMatches() {
-        return matches;
+    public ArrayList<String> getMatches() {
+        return (ArrayList<String>) matches;
     }
 
     /**

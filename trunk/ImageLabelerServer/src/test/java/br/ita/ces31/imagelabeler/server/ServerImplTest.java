@@ -276,7 +276,6 @@ public class ServerImplTest extends TestCase {
             server.sendLabel("123");
         }
 
-        playerPersistance.updateCalls = new ArrayList<Player>();
         playerPersistance.updateCalls.add(new Player("Jobs", 108));
         playerPersistance.updateCalls.add(new Player("Page", 8));
 

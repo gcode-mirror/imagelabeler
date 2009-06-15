@@ -43,9 +43,9 @@ public class ServerImpl extends UnicastRemoteObject
     private GameSummary getSummary() {
         try {
             ArrayList<Player> rank;
-            rank = (ArrayList<Player>) playerPersistence.getBestPlayers(10);
+            rank = playerPersistence.getBestPlayers(10);
             return new GameSummary(this.game.getScore(), rank,
-                                   (ArrayList<String>) game.getMatches());
+                                   game.getMatches());
         } catch (Exception ex) {
             ex.printStackTrace();
             return new GameSummary();

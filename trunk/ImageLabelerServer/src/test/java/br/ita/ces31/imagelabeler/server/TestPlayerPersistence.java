@@ -7,7 +7,6 @@ import br.ita.ces31.imagelabeler.common.Player;
 import br.ita.ces31.imagelabeler.server.persistence.PersistenceException;
 import br.ita.ces31.imagelabeler.server.persistence.PlayerPersistence;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -15,9 +14,9 @@ import java.util.List;
  */
 public class TestPlayerPersistence implements PlayerPersistence {
 
-    public List<Player> updateCalls;
-    public List<Player> unexpectedUpdateCalls;
-    public List<Player> bestPlayers;
+    public ArrayList<Player> updateCalls;
+    public ArrayList<Player> unexpectedUpdateCalls;
+    public ArrayList<Player> bestPlayers;
 
     public TestPlayerPersistence() {
         unexpectedUpdateCalls = new ArrayList<Player>();
@@ -42,7 +41,7 @@ public class TestPlayerPersistence implements PlayerPersistence {
     public void deleteAll() throws PersistenceException {
     }
 
-    public List<Player> getBestPlayers(int n) throws PersistenceException {
+    public ArrayList<Player> getBestPlayers(int n) throws PersistenceException {
         return bestPlayers;
     }
 }
