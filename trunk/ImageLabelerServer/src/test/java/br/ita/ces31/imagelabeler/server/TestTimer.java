@@ -3,7 +3,7 @@
  */
 package br.ita.ces31.imagelabeler.server;
 
-import br.ita.ces31.imagelabeler.server.time.TimeoutTimer;
+import br.ita.ces31.imagelabeler.server.timer.TimeoutTimer;
 
 /**
  *

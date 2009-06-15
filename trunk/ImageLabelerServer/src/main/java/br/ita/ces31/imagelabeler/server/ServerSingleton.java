@@ -5,7 +5,7 @@ package br.ita.ces31.imagelabeler.server;
 
 import br.ita.ces31.imagelabeler.common.Server;
 import br.ita.ces31.imagelabeler.server.persistence.PlayerPersistenceSingleton;
-import br.ita.ces31.imagelabeler.server.time.TimeoutTimerImpl;
+import br.ita.ces31.imagelabeler.server.timer.TimeoutTimerImpl;
 import java.rmi.RemoteException;
 
 /**

@@ -3,9 +3,9 @@
  */
 package br.ita.ces31.imagelabeler.server;
 
-import br.ita.ces31.imagelabeler.server.time.TimeoutNotifiable;
+import br.ita.ces31.imagelabeler.server.timer.TimeoutNotifiable;
 import br.ita.ces31.imagelabeler.server.persistence.PersistenceException;
-import br.ita.ces31.imagelabeler.server.time.TimeoutTimer;
+import br.ita.ces31.imagelabeler.server.timer.TimeoutTimer;
 import br.ita.ces31.imagelabeler.common.Client;
 import br.ita.ces31.imagelabeler.common.GameSummary;
 import br.ita.ces31.imagelabeler.common.Player;
