@@ -21,6 +21,10 @@ public class TimeoutTimerImpl implements TimeoutTimer {
         setClient(client);
     }
 
+    public void cancelRegressiveCounting(){
+        timer.cancel();
+    }
+    
     public void scheduleStartGameRegressiveCounting(long delay){
         timer.schedule(new TimerTask() {
 
