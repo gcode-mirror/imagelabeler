@@ -42,10 +42,10 @@ public class ServerImpl extends UnicastRemoteObject
 
     private GameSummary getSummary() {
         try {
-            List<Player> rank;
-            rank = playerPersistence.getBestPlayers(10);
+            ArrayList<Player> rank;
+            rank = (ArrayList<Player>) playerPersistence.getBestPlayers(10);
             return new GameSummary(this.game.getScore(), rank,
-                                   game.getMatches());
+                                   (ArrayList<String>) game.getMatches());
         } catch (Exception ex) {
             return new GameSummary();
         }
@@ -117,6 +117,7 @@ public class ServerImpl extends UnicastRemoteObject
                 try {
                     c.notifyMatch(label, game.getScore());
                 } catch (RemoteException ex) {
+                    ex.printStackTrace();
                 }
             }
         }
@@ -168,6 +169,7 @@ public class ServerImpl extends UnicastRemoteObject
                 try {
                     c.endGame(summary);
                 } catch (RemoteException ex) {
+                    ex.printStackTrace();
                 }
             }
         }
