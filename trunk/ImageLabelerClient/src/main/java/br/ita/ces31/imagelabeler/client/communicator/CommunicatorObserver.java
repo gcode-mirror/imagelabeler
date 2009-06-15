@@ -13,7 +13,7 @@ public interface CommunicatorObserver {
 
     public String getLoginName();
 
-    public void engGameByPenico();
+    public void endGameByPenico();
 
     public void notifyMatch(String match, int score);
 

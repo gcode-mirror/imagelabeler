@@ -246,7 +246,7 @@ public class TestLoginScreen extends JFrame implements CommunicatorObserver {
         rankingList.setListData(rank);
     }
 
-    public void engGameByPenico() {
+    public void endGameByPenico() {
         System.out.println("PENICO!!!!");
     }
 }

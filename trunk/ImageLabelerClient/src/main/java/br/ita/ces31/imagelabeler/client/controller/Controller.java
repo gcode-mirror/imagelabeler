@@ -50,13 +50,13 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     }
 
     //From interface CommunicatorObserver
-    public void engGameByPenico(){
+    public void endGameByPenico(){
 
     }
 
     //From interface CommunicatorObserver
-    public void notifyMatch(String match){
-        getGameUI().notifyMatch(match);
+    public void notifyMatch(String match, int score){
+        getGameUI().notifyMatch(match, score);
     }
 
     //From interface CommunicatorObserver
@@ -136,7 +136,11 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     }
 
     public void penico(){
-        //vai para a tela de interrupção de jogo
+        try{
+            getClientCommunicator().askPenico();
+        } catch (CommunicationException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void sendLabel(String label){
