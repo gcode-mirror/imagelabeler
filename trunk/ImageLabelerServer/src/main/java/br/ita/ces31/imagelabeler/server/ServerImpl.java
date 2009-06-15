@@ -3,6 +3,9 @@
  */
 package br.ita.ces31.imagelabeler.server;
 
+import br.ita.ces31.imagelabeler.server.image.ImageServer;
+import br.ita.ces31.imagelabeler.server.game.Game;
+import br.ita.ces31.imagelabeler.server.game.GameBuilder;
 import br.ita.ces31.imagelabeler.server.timer.TimeoutNotifiable;
 import br.ita.ces31.imagelabeler.server.persistence.PersistenceException;
 import br.ita.ces31.imagelabeler.server.timer.TimeoutTimer;
@@ -26,13 +29,16 @@ public class ServerImpl extends UnicastRemoteObject
     private ImageServer imageServer;
     private TimeoutTimer timer;
     private ServerState state;
+    private GameBuilder gameBuilder;
 
     public ServerImpl(PlayerPersistence playerPersistence,
                       ImageServer imageServer,
-                      TimeoutTimer timer) throws RemoteException {
+                      TimeoutTimer timer,
+                      GameBuilder gameBuilder) throws RemoteException {
         this.playerPersistence = playerPersistence;
         this.imageServer = imageServer;
         this.timer = timer;
+        this.gameBuilder = gameBuilder;
         this.state = new FreeState();
     }
 
@@ -229,7 +235,7 @@ public class ServerImpl extends UnicastRemoteObject
         }
 
         private Game startGame(Client client1, Client client2) throws RemoteException {
-            Game game = GameFactory.createLengthGame(client1, client2);
+            Game game = gameBuilder.buildGame(client1, client2);
             timer.schedule(Game.duration * 1000);
 
             String image = imageServer.getImage();

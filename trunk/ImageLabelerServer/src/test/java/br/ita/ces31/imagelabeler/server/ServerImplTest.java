@@ -1,5 +1,9 @@
 package br.ita.ces31.imagelabeler.server;
 
+import br.ita.ces31.imagelabeler.server.image.ImageServerImpl;
+import br.ita.ces31.imagelabeler.server.game.LengthGameBuilder;
+import br.ita.ces31.imagelabeler.server.game.Game;
+import br.ita.ces31.imagelabeler.server.game.GameBuilder;
 import br.ita.ces31.imagelabeler.common.Player;
 import java.rmi.RemoteException;
 import java.util.List;
@@ -19,6 +23,7 @@ public class ServerImplTest extends TestCase {
     private TestPlayerPersistence playerPersistance;
     TestTimer timer;
     private ImageServerImpl imageServer;
+    private GameBuilder gameBuilder;
 
     @Override
     public void setUp() throws RemoteException {
@@ -30,8 +35,10 @@ public class ServerImplTest extends TestCase {
         playerPersistance = new TestPlayerPersistence();
         imageServer = new ImageServerImpl();
         timer = new TestTimer();
+        gameBuilder = new LengthGameBuilder();
 
-        server = new ServerImpl(playerPersistance, imageServer, timer);
+        server = new ServerImpl(playerPersistance, imageServer, timer,
+                                gameBuilder);
 
     }
 
