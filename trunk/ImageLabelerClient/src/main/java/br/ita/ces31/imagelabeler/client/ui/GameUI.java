@@ -61,13 +61,13 @@ public class GameUI extends UserInterface {
 
         ImageIcon imageIcon = null;
         if (imgURL != null) {
-            imageIcon = new ImageIcon(image);
+            imageIcon = new ImageIcon(imgURL);
 
             int h = this.screen.getPnlImage().getHeight();
             int w = this.screen.getPnlImage().getWidth();
             this.screen.getLblImage().setIcon(new ImageIcon(getScaledImage(imageIcon.getImage(), w, h)));
         } else {
-            //TODO
+            System.out.println(imgURL.toString());
         }
     }
 
