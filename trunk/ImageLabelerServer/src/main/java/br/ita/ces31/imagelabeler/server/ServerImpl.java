@@ -362,6 +362,16 @@ public class ServerImpl extends UnicastRemoteObject
                 return new GameSummary();
             }
         }
+
+        @Override
+        public String toString() {
+            return "InGameState";
+        }
+    }
+
+    @Override
+    public String toString() {
+        return state.toString();
     }
 }
 
