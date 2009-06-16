@@ -10,7 +10,6 @@ import br.ita.ces31.imagelabeler.server.game.GameBuilder;
 import br.ita.ces31.imagelabeler.common.Server;
 import br.ita.ces31.imagelabeler.server.persistence.PlayerPersistence;
 import br.ita.ces31.imagelabeler.server.persistence.PlayerPersistenceSingleton;
-import br.ita.ces31.imagelabeler.server.scorer.ScoreCalculator;
 import br.ita.ces31.imagelabeler.server.timer.TimeoutTimerImpl;
 import java.rmi.RemoteException;
 

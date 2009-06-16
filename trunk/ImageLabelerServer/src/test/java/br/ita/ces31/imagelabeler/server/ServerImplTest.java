@@ -57,8 +57,8 @@ public class ServerImplTest extends TestCase {
         server.identify(client2);
         server.notifyWait(client2);
 
-        assertEquals(Game.duration, client1.duration);
-        assertEquals(Game.duration, client2.duration);
+        assertTrue(client1.startGameCalled);
+        assertTrue(client2.startGameCalled);
     }
 
     public void testStartGame2() throws RemoteException {
