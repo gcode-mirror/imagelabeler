@@ -56,8 +56,8 @@ public class GameUI extends UserInterface {
     
     public void setImage(String image){
 
-        String imagePath = "picture" + File.pathSeparator + image;
-        URL imgURL = getClass().getResource(imagePath);
+        String imagePath = "pictures" + File.separator + image;
+        URL imgURL = ClassLoader.getSystemResource(imagePath);
 
         ImageIcon imageIcon = null;
         if (imgURL != null) {
@@ -67,7 +67,7 @@ public class GameUI extends UserInterface {
             int w = this.screen.getPnlImage().getWidth();
             this.screen.getLblImage().setIcon(new ImageIcon(getScaledImage(imageIcon.getImage(), w, h)));
         } else {
-            System.out.println(imgURL.toString());
+            System.out.println(imagePath);
         }
     }
 
