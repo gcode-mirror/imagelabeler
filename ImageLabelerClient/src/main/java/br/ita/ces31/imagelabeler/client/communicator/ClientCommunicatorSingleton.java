@@ -14,19 +14,23 @@ public class ClientCommunicatorSingleton {
 
     private static ClientCommunicator communicator;
 //    private static String serverURI = "192.168.2.12";
-    private static String serverURI = "localhost";
+    private static String serverHost = "localhost";
+
+    private static String getServerURL() {
+        String url = ("//" + serverHost + ":" +
+                      Server.serverPort + "/" + Server.referenceName);
+        return url;
+    }
+
+    public static void setServerHost(String host) {
+        serverHost = host;
+    }
 
     public synchronized static ClientCommunicator getCommunicator()
         throws CommunicationException {
         if (communicator == null) {
             try {
-                String name = ("//" + serverURI + ":" +
-                               Server.serverPort + "/" + Server.referenceName);
-
-                /*
-                 * Caso de uso 1.4.2.2.1 a) Conectar
-                 */
-                Server server = (Server) Naming.lookup(name);
+                Server server = (Server) Naming.lookup(getServerURL());
                 communicator = new ClientCommunicator(server);
             } catch (Exception ex) {
                 ex.printStackTrace();

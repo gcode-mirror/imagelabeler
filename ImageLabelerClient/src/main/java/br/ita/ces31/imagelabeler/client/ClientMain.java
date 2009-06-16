@@ -3,6 +3,7 @@
  */
 package br.ita.ces31.imagelabeler.client;
 
+import br.ita.ces31.imagelabeler.client.communicator.ClientCommunicatorSingleton;
 import br.ita.ces31.imagelabeler.client.controller.Controller;
 import br.ita.ces31.imagelabeler.client.ui.UserInterface;
 import br.ita.ces31.imagelabeler.client.ui.screen.ConnectionFailedScreen;
@@ -21,6 +22,7 @@ import javax.swing.JFrame;
  * @author diego
  */
 public class ClientMain {
+
     private static JFrame connectionFailedScreen;
     private static JFrame connectionLostScreen;
     private static JFrame gameScreen;
@@ -31,12 +33,17 @@ public class ClientMain {
     private static JFrame summaryGameScreen;
     private static JFrame waitScreen;
 
-    public static void main(String args[]) {
+    public static void main(final String args[]) {
 
         initializeUI();
 
         java.awt.EventQueue.invokeLater(new Runnable() {
-           public void run() {
+
+            public void run() {
+                if (args.length == 1) {
+                    ClientCommunicatorSingleton.setServerHost(args[0]);
+                }
+
                 try {
                     UserInterface.getController().connect();
                 } catch (Exception ex) {
@@ -46,17 +53,17 @@ public class ClientMain {
         });
     }
 
-    private static void initializeUI(){
-       UserInterface.setController(new Controller());
-       setConnectionFailedScreen(new ConnectionFailedScreen());
-       setConnectionLostScreen(new ConnectionLostScreen());
-       setGameScreen(new GameScreen());
-       setInterruptionGameScreen(new InterruptionGameScreen());
-       setLoginScreen(new LoginScreen());
-       setPartnerFoundScreen(new PartnerFoundScreen());
-       setServerBusyScreen(new ServerBusyScreen());
-       setSummaryGameScreen(new GameSummaryScreen());
-       setWaitScreen(new WaitScreen());
+    private static void initializeUI() {
+        UserInterface.setController(new Controller());
+        setConnectionFailedScreen(new ConnectionFailedScreen());
+        setConnectionLostScreen(new ConnectionLostScreen());
+        setGameScreen(new GameScreen());
+        setInterruptionGameScreen(new InterruptionGameScreen());
+        setLoginScreen(new LoginScreen());
+        setPartnerFoundScreen(new PartnerFoundScreen());
+        setServerBusyScreen(new ServerBusyScreen());
+        setSummaryGameScreen(new GameSummaryScreen());
+        setWaitScreen(new WaitScreen());
     }
 
     public static JFrame getConnectionFailedScreen() {
