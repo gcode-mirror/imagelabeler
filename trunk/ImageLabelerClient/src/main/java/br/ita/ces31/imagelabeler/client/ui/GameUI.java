@@ -8,6 +8,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.URL;
 import javax.swing.ImageIcon;
 
 /**
@@ -53,11 +55,20 @@ public class GameUI extends UserInterface {
     }
     
     public void setImage(String image){
-        //ImageIcon imageIcon = new ImageIcon(image);
-        ImageIcon imageIcon = new ImageIcon("D:\\pictures\\Fotos\\humberto.jpg");
-        int h = this.screen.getPnlImage().getHeight();
-        int w = this.screen.getPnlImage().getWidth();
-        this.screen.getLblImage().setIcon(new ImageIcon(getScaledImage(imageIcon.getImage(), w, h)));
+
+        String imagePath = "picture" + File.pathSeparator + image;
+        URL imgURL = getClass().getResource(imagePath);
+
+        ImageIcon imageIcon = null;
+        if (imgURL != null) {
+            imageIcon = new ImageIcon(image);
+
+            int h = this.screen.getPnlImage().getHeight();
+            int w = this.screen.getPnlImage().getWidth();
+            this.screen.getLblImage().setIcon(new ImageIcon(getScaledImage(imageIcon.getImage(), w, h)));
+        } else {
+            //TODO
+        }
     }
 
      /**
