@@ -16,6 +16,7 @@ public class TestClient extends RemoteObject implements Client {
 
     public String match;
     public int duration = -1;
+    public boolean startGameCalled = false;
     public GameSummary summary;
     public String loginName = "John";
     public boolean isAlive = true;
@@ -33,6 +34,7 @@ public class TestClient extends RemoteObject implements Client {
     public void startGame(String image, int seconds, String partner) throws RemoteException {
         this.duration = seconds;
         this.image = image;
+        this.startGameCalled = true;
     }
 
     public void endGame(GameSummary summary) throws RemoteException {
@@ -40,7 +42,7 @@ public class TestClient extends RemoteObject implements Client {
     }
 
     public boolean isAlive() throws RemoteException {
-        if(isAlive){
+        if (isAlive) {
             return true;
         } else {
             throw new RemoteException();

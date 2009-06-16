@@ -105,6 +105,11 @@ public class ServerImpl extends UnicastRemoteObject
             state = new OneIdentifiedState(client);
             return true;
         }
+
+        @Override
+        public String toString() {
+            return "FreeState";
+        }
     }
 
     /* 1 cliente identificado, 0 em espera */
@@ -126,9 +131,14 @@ public class ServerImpl extends UnicastRemoteObject
 
         @Override
         public void notifyWait(Client client) throws RemoteException {
-            if (this.client == client) {
+            if (this.client.equals(client)) {
                 state = new OneIdentifiedWaitingState(client);
             }
+        }
+
+        @Override
+        public String toString() {
+            return "OneIdentifiedState";
         }
     }
 
@@ -149,9 +159,14 @@ public class ServerImpl extends UnicastRemoteObject
 
         @Override
         public void cancelWait(Client client) throws RemoteException {
-            if (waitingClient == client) {
+            if (waitingClient.equals(client)) {
                 state = new FreeState();
             }
+        }
+
+        @Override
+        public String toString() {
+            return "OneIdentifiedWaitingState";
         }
     }
 
@@ -167,9 +182,9 @@ public class ServerImpl extends UnicastRemoteObject
 
         @Override
         public void notifyWait(Client client) throws RemoteException {
-            if (client == client1) {
+            if (client.equals(client1)) {
                 state = new FullWaitingState(client, client2);
-            } else if (client == client2) {
+            } else if (client.equals(client2)) {
                 state = new FullWaitingState(client, client1);
             }
         }
@@ -188,6 +203,11 @@ public class ServerImpl extends UnicastRemoteObject
 
             return false;
         }
+
+        @Override
+        public String toString() {
+            return "FullState";
+        }
     }
 
     /* 2 clientes identificados, 1 em espera */
@@ -202,7 +222,7 @@ public class ServerImpl extends UnicastRemoteObject
 
         @Override
         public void notifyWait(Client client) throws RemoteException {
-            if (this.client == client) {
+            if (this.client.equals(client)) {
                 if (isConnected(waitingClient)) {
                     Game game = startGame(waitingClient, client);
                     state = new InGameState(game, waitingClient, client);
@@ -214,7 +234,7 @@ public class ServerImpl extends UnicastRemoteObject
 
         @Override
         public void cancelWait(Client client) throws RemoteException {
-            if (client == waitingClient) {
+            if (client.equals(waitingClient)) {
                 state = new OneIdentifiedState(this.client);
             }
         }
@@ -239,10 +259,14 @@ public class ServerImpl extends UnicastRemoteObject
             timer.schedule(Game.duration * 1000);
 
             String image = imageServer.getImage();
-
             client1.startGame(image, Game.duration, client2.getLoginName());
             client2.startGame(image, Game.duration, client1.getLoginName());
             return game;
+        }
+
+        @Override
+        public String toString() {
+            return "FullWaitingState";
         }
     }
 

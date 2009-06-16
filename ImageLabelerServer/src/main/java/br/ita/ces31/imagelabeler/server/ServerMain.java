@@ -18,7 +18,6 @@ public class ServerMain {
      * @param args
      */
     public static void main(String args[]) {
-        System.out.println(" Codebase: " + System.getProperty("java.rmi.server.codebase"));
         try {
             Server server = ServerSingleton.getServer();
             java.rmi.registry.LocateRegistry.createRegistry(Server.serverPort);
