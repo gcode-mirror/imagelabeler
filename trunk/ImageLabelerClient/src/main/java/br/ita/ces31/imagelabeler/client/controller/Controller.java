@@ -102,6 +102,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         getGameSummaryUI().setListMatchedLabels(summary.getMatches());
         getGameSummaryUI().setFinalPontuation(summary.getScore());
         getGameSummaryUI().setPlayerName(getLoginName());
+        getGameSummaryUI().setRank(summary.getTopPlayers());
         setCurrentUI(getGameSummaryUI());
     }
 
