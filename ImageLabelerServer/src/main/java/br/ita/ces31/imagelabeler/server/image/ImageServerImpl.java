@@ -19,18 +19,25 @@ public class ImageServerImpl implements ImageServer {
     public ImageServerImpl() {
         images = new Vector<String>();
 
-        images.add("figura1.jpg");
-        images.add("figura2.jpg");
-        images.add("figura3.jpg");
-        images.add("figura4.jpg");
+        images.add("pic01.jpg");
+        images.add("pic02.jpg");
+        images.add("pic03.jpg");
+        images.add("pic04.jpg");
+        images.add("pic05.jpg");
+        images.add("pic06.jpg");
+        images.add("pic07.jpg");
+        images.add("pic08.jpg");
+        images.add("pic09.jpg");
+        images.add("pic10.jpg");
+
         imagePick = images.iterator();
     }
 
     public String getImage() {
         String ret;
-        try{
+        try {
             ret = imagePick.next();
-        } catch (NoSuchElementException ex){
+        } catch (NoSuchElementException ex) {
             imagePick = images.iterator();
             ret = imagePick.next();
         }

@@ -13,6 +13,7 @@ import java.rmi.Naming;
 public class ClientCommunicatorSingleton {
 
     private static ClientCommunicator communicator;
+//    private static String serverURI = "192.168.2.12";
     private static String serverURI = "localhost";
 
     public synchronized static ClientCommunicator getCommunicator()

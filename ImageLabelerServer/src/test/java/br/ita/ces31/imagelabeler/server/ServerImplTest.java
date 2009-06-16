@@ -43,7 +43,7 @@ public class ServerImplTest extends TestCase {
     }
 
     // Exercita caso em que só podem existir 2 identificados.
-    public void testIdentify() throws RemoteException {
+    public void testIdentifyThirdClient() throws RemoteException {
         assertTrue(server.identify(client1));
         assertTrue(server.identify(client2));
         assertFalse(server.identify(client3));
@@ -151,8 +151,19 @@ public class ServerImplTest extends TestCase {
         assertFalse(server.identify(client3));
     }
 
+    public void testThirdPlayerWithDropDuringGame2() throws RemoteException {
+        startGame();
+        client1.isAlive = false;
+        client2.isAlive = false;
+
+        assertEquals(Game.duration, client1.duration);
+        assertEquals(Game.duration, client2.duration);
+
+        assertFalse(server.identify(client3));
+    }
+
     // exercita casos em que client1 cancela e client3 entra depois.
-    public void testStartGameCancelWait() throws RemoteException {
+    public void testStartGameWithCancelWait() throws RemoteException {
         server.identify(client1);
         server.identify(client2);
         server.notifyWait(client1);
@@ -169,7 +180,7 @@ public class ServerImplTest extends TestCase {
         assertEquals(Game.duration, client3.duration);
     }
 
-    public void testStartGameCancelWait2() throws RemoteException {
+    public void testStartGameWithCancelWait2() throws RemoteException {
         server.identify(client1);
         server.notifyWait(client1);
 
@@ -186,7 +197,7 @@ public class ServerImplTest extends TestCase {
         assertEquals(Game.duration, client3.duration);
     }
 
-    public void testStartGameCancelWait3() throws RemoteException {
+    public void testStartGameWithCancelWait3() throws RemoteException {
         server.identify(client1);
         server.notifyWait(client1);
         server.cancelWait(client1);
@@ -227,7 +238,7 @@ public class ServerImplTest extends TestCase {
         assertEquals(label, client2.match);
     }
 
-    public void testNotifyMatchRepeat() throws RemoteException {
+    public void testNotifyMatchWithReaptedMatches() throws RemoteException {
         String label = "teste";
         startGame();
 
@@ -258,7 +269,7 @@ public class ServerImplTest extends TestCase {
         assertEquals(true, client2.penicoNotified);
     }
 
-    public void testPenicoWithDropPlayerAndRematch() throws RemoteException {
+    public void testPenicoWithDropPlayerAndReplay() throws RemoteException {
         startGame();
         server.notifyPenico();
         client1.isAlive = false;
@@ -270,7 +281,7 @@ public class ServerImplTest extends TestCase {
         assertEquals(Game.duration, client3.duration);
     }
 
-    public void testPenicoWithDropPlayerAndRematch2() throws RemoteException {
+    public void testPenicoWithDropPlayerAndReplay2() throws RemoteException {
         startGame();
         server.notifyPenico();
         client1.isAlive = false;
@@ -282,7 +293,7 @@ public class ServerImplTest extends TestCase {
         assertEquals(Game.duration, client3.duration);
     }
 
-    public void testPenicoWithDropPlayerAndRematch3() throws RemoteException {
+    public void testPenicoWithDropPlayerAndReplay3() throws RemoteException {
         startGame();
         server.notifyPenico();
         client1.isAlive = false;
@@ -368,7 +379,7 @@ public class ServerImplTest extends TestCase {
         assertEquals(Game.duration * 1000, timer.delay);
     }
 
-    public void testNotifyTimeout() throws RemoteException {
+    public void testEndGame() throws RemoteException {
         startGame();
 
         server.notifyTimeout();
@@ -376,6 +387,29 @@ public class ServerImplTest extends TestCase {
         assertNotNull(client1.summary);
         assertNotNull(client2.summary);
         assertEquals(client1.summary, client2.summary);
+    }
+
+    public void testNotifyTimeoutDropedPlayer() throws RemoteException {
+        startGame();
+        client1.isAlive = false;
+
+        server.notifyTimeout();
+
+        assertNotNull(client1.summary);
+    }
+
+    public void testEndGameAndReplay() throws RemoteException {
+        startGame();
+
+        server.notifyTimeout();
+        assertNotNull(client1.summary);
+        assertNotNull(client2.summary);
+        assertEquals(client1.summary, client2.summary);
+
+        server.notifyWait(client1);
+        server.notifyWait(client2);
+        assertEquals(true, client1.startGameCalled);
+        assertEquals(true, client2.startGameCalled);
     }
 
     public void assertEmpty(List list) {
@@ -388,7 +422,7 @@ public class ServerImplTest extends TestCase {
         }
     }
 
-    public void testUpdateRank() throws Exception {
+    public void testUpdateRankAfterEndGame() throws Exception {
         client1.loginName = "Jobs";
         client2.loginName = "Page";
 
