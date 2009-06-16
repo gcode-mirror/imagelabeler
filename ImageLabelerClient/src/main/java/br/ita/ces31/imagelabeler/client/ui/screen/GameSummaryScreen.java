@@ -4,6 +4,7 @@
 package br.ita.ces31.imagelabeler.client.ui.screen;
 
 import br.ita.ces31.imagelabeler.client.ui.GameSummaryUI;
+import br.ita.ces31.imagelabeler.common.Player;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
@@ -14,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class GameSummaryScreen extends javax.swing.JFrame {
     private GameSummaryUI gameSummaryUI;
-
+    
     /** Creates new form GameSummaryScreen */
     public GameSummaryScreen() {
         setGameSummaryUI(new GameSummaryUI(this));
@@ -43,6 +44,8 @@ public class GameSummaryScreen extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
         pnlRank = new javax.swing.JScrollPane();
         rankElements = new DefaultTableModel();
+        rankElements.addColumn("Player");
+        rankElements.addColumn("Score");
         tblRank = new javax.swing.JTable(rankElements);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,40 +78,8 @@ public class GameSummaryScreen extends javax.swing.JFrame {
             }
         });
 
-        pnlRank.setBorder(null);
-
-        tblRank.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Player", "Score"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        tblRank.setModel(rankElements
+        );
         tblRank.getTableHeader().setReorderingAllowed(false);
         pnlRank.setViewportView(tblRank);
         tblRank.getColumnModel().getColumn(0).setResizable(false);
@@ -204,6 +175,17 @@ public class GameSummaryScreen extends javax.swing.JFrame {
         //precisa verificar se matchedLabels é nulo?????
         for(String s: matchedLabels){
             addElementOnMatchedLabelsList(s);
+        }
+    }
+
+    public void addPlayerOnRank(Player player){
+        rankElements.addRow(new Object[]{player.getName(), player.getScore()});
+    }
+    
+    public void setRank(List<Player> topPlayers){
+        //precisa verificar se topPlayers é nulo?????
+        for(Player p: topPlayers){
+            addPlayerOnRank(p);
         }
     }
 

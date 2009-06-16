@@ -4,6 +4,7 @@
 package br.ita.ces31.imagelabeler.client.ui;
 
 import br.ita.ces31.imagelabeler.client.ui.screen.GameSummaryScreen;
+import br.ita.ces31.imagelabeler.common.Player;
 import java.util.List;
 
 /**
@@ -24,6 +25,10 @@ public class GameSummaryUI extends UserInterface {
 
     public void exit() {
         GameSummaryUI.controller.exit();
+    }
+
+    public void setRank(List<Player> topPlayers){
+        this.screen.setRank(topPlayers);
     }
 
     public void setListMatchedLabels(List<String> matchedLabels){
