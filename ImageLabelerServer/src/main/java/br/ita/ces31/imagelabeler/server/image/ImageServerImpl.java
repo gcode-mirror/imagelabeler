@@ -19,16 +19,16 @@ public class ImageServerImpl implements ImageServer {
     public ImageServerImpl() {
         images = new Vector<String>();
 
-        images.add("pic01.jpg");
-        images.add("pic02.jpg");
-        images.add("pic03.jpg");
-        images.add("pic04.jpg");
-        images.add("pic05.jpg");
-        images.add("pic06.jpg");
-        images.add("pic07.jpg");
-        images.add("pic08.jpg");
-        images.add("pic09.jpg");
-        images.add("pic10.jpg");
+        images.add("pic001.jpg");
+        images.add("pic002.jpg");
+        images.add("pic003.jpg");
+        images.add("pic004.jpg");
+        images.add("pic005.jpg");
+        images.add("pic006.jpg");
+        images.add("pic007.jpg");
+        images.add("pic008.jpg");
+        images.add("pic009.jpg");
+        images.add("pic010.jpg");
 
         imagePick = images.iterator();
     }
