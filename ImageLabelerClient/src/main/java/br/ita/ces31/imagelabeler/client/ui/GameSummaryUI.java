@@ -16,35 +16,41 @@ public class GameSummaryUI extends UserInterface {
 
     public GameSummaryUI(GameSummaryScreen screen) {
         setScreen(screen);
-        controller.setGameSummaryUI(this);
+        UserInterface.getController().setGameSummaryUI(this);
     }
 
+    //Button "Play again" Action
     public void playAgain() {
-        GameSummaryUI.controller.playAgain();
+        UserInterface.getController().playAgain();
     }
 
+    //Button Exit Action
     public void exit() {
-        GameSummaryUI.controller.exit();
+        UserInterface.getController().exit();
     }
 
     public void setRank(List<Player> topPlayers){
-        this.screen.setRank(topPlayers);
+        getScreen().setRank(topPlayers);
     }
 
     public void setListMatchedLabels(List<String> matchedLabels){
-        this.screen.setListMatchedLabels(matchedLabels);
+        getScreen().setListMatchedLabels(matchedLabels);
     }
 
     public void setFinalPontuation(int finalScore){
-        this.screen.setFinalPontuation(finalScore);
+        getScreen().setFinalPontuation(finalScore);
     }
 
     public void setPlayerName(String playerName){
-        this.screen.setPlayerName(playerName);
+        getScreen().setPlayerName(playerName);
     }
 
-    public void setVisible(boolean visible){
-        this.screen.setVisible(visible);
+    public void setActive(boolean active){
+        getScreen().setVisible(active);
+    }
+
+    public GameSummaryScreen getScreen(){
+        return screen;
     }
 
     public void setScreen(GameSummaryScreen screen){

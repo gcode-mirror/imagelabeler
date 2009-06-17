@@ -14,32 +14,37 @@ public class PartnerFoundUI extends UserInterface{
 
     public PartnerFoundUI(PartnerFoundScreen screen) {
         setScreen(screen);
-        controller.setPartnerFoundUI(this);
-    }
-    
-    public void penico() {
-        PartnerFoundUI.controller.penico();
+        UserInterface.getController().setPartnerFoundUI(this);
     }
 
-    public void setVisible(boolean visible){
-        this.screen.setVisible(visible);
+    //Button Penico Action
+    public void penico() {
+        UserInterface.getController().penico();
+    }
+
+    public int getRegressiveCounting(){
+        return getScreen().getLblRegressiveCounting();
+    }
+
+    public void updateRegressiveCounting(){
+        int pastCounting = getScreen().getLblRegressiveCounting();
+        int currentCounting = pastCounting - 1;
+        getScreen().setLblRegressiveCounting(currentCounting);
+    }
+
+    public void setPartnerName(String partnerName){
+        getScreen().setPartnerName(partnerName);
+    }
+
+    public void setActive(boolean active){
+        getScreen().setVisible(active);
+    }
+
+    public PartnerFoundScreen getScreen(){
+        return screen;
     }
 
     public void setScreen(PartnerFoundScreen screen) {
         this.screen = screen;
-    }
-
-    public void setPartnerName(String partnerName){
-        this.screen.setPartnerName(partnerName);
-    }
-
-    public int getRegressiveCounting(){
-        return this.screen.getLblRegressiveCounting();
-    }
-
-    public void updateRegressiveCounting(){
-        int pastCounting = this.screen.getLblRegressiveCounting();
-        int currentCounting = pastCounting - 1;
-        this.screen.setLblRegressiveCounting(currentCounting);
     }
 }

@@ -21,27 +21,21 @@ public class GameUI extends UserInterface {
 
     public GameUI(GameScreen screen) {
         setScreen(screen);
-        controller.setGameUI(this);
+        UserInterface.getController().setGameUI(this);
     }
 
+    //Send label Action
     public void sendLabel(String label) {
-        GameUI.controller.sendLabel(label);
+        UserInterface.getController().sendLabel(label);
     }
 
+    //Button Penico Action
     public void penico() {
-        GameUI.controller.penico();
+        UserInterface.getController().penico();
     }
 
     public void notifyMatch(String match, int score){
-        this.screen.ProcessMatch(match, score);
-    }
-
-    public void setVisible(boolean visible){
-        this.screen.setVisible(visible);
-    }
-
-    public void setScreen(GameScreen screen){
-        this.screen = screen;
+        getScreen().ProcessMatch(match, score);
     }
 
     public int getRegressiveCounting(){
@@ -53,7 +47,7 @@ public class GameUI extends UserInterface {
         int currentCounting = pastCounting - 1;
         this.screen.setLblRegressiveCounting(String.valueOf(currentCounting));
     }
-    
+
     public void setImage(String image){
 
         String imagePath = "pictures" + File.separator + image;
@@ -93,5 +87,17 @@ public class GameUI extends UserInterface {
 
     public void setPlayer2Name(String player2Name){
         this.screen.setLblPlayer2(player2Name);
+    }
+
+    public void setActive(boolean active){
+        getScreen().setVisible(active);
+    }
+
+    public GameScreen getScreen(){
+        return screen;
+    }
+
+    public void setScreen(GameScreen screen){
+        this.screen = screen;
     }
 }

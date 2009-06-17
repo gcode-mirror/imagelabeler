@@ -25,32 +25,32 @@ public class TimeoutTimerImpl implements TimeoutTimer {
         timer.cancel();
     }
     
-    public void scheduleStartGameRegressiveCounting(long delay){
+    public void scheduleRegressiveCountingToStartPlaying(long delay){
         timer.schedule(new TimerTask() {
 
             @Override
             public void run() {
-                notifySecondPassedOnStartGameRegressiveCounting();
+                notifySecondPassedOnRegressiveCountingToStartPlaying();
             }
         }, delay);
     }
     
-    public void scheduleEndGameRegressiveCounting(long delay){
+    public void scheduleRegressiveCountingToEndPlaying(long delay){
         timer.schedule(new TimerTask() {
 
             @Override
             public void run() {
-                notifySecondPassedOnEndGameRegressiveCounting();
+                notifySecondPassedOnRegressiveCountingToEndPlaying();
             }
         }, delay);
     }
     
-    private void notifySecondPassedOnStartGameRegressiveCounting(){
-        client.notifySecondPassedOnStartGameRegressiveCounting();
+    private void notifySecondPassedOnRegressiveCountingToStartPlaying(){
+        client.notifySecondPassedOnRegressiveCountingToStartPlaying();
     }
     
-    private void notifySecondPassedOnEndGameRegressiveCounting(){
-        client.notifySecondPassedOnEndGameRegressiveCounting();
+    private void notifySecondPassedOnRegressiveCountingToEndPlaying(){
+        client.notifySecondPassedOnRegressiveCountingToEndPlaying();
     }
 
     public void setClient(TimeoutNotifiable client) {
