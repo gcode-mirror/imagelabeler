@@ -40,9 +40,10 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     private ServerBusyUI serverBusyUI;
     private GameSummaryUI gameSummaryUI;
     private WaitUI waitUI;
+    private static final int ONE_SECOND = 1000;
 
     public Controller(){
-        this.timer =  new TimeoutTimerImpl(this);
+        setTimer(new TimeoutTimerImpl(this));
     }
 
     //From interface CommunicatorObserver
@@ -52,7 +53,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
     //From interface CommunicatorObserver
     public void endGameByPenico(){
-        timer.cancelRegressiveCounting();
+        getTimer().cancelRegressiveCounting();
         setCurrentUI(getInterruptionGameUI());
     }
 
@@ -66,7 +67,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         getPartnerFoundUI().setPartnerName(partner);
         setCurrentUI(getPartnerFoundUI());
         setGameUIInitialParameters(image, seconds, partner);
-        timer.scheduleStartGameRegressiveCounting(1000);
+        getTimer().scheduleRegressiveCountingToStartPlaying(ONE_SECOND);
     }
 
     public void setGameUIInitialParameters(String image, int seconds, String partner){
@@ -76,24 +77,24 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         //verificar aonde setar esse seconds
     }
 
-    public void notifySecondPassedOnStartGameRegressiveCounting(){
+    public void notifySecondPassedOnRegressiveCountingToStartPlaying(){
         int counting = getPartnerFoundUI().getRegressiveCounting();
 
-        if(counting != 1){
+        if(counting != 0){
             getPartnerFoundUI().updateRegressiveCounting();
-            timer.scheduleStartGameRegressiveCounting(1000);
+            getTimer().scheduleRegressiveCountingToStartPlaying(ONE_SECOND);
         } else {
             setCurrentUI(getGameUI());
-            timer.scheduleEndGameRegressiveCounting(1000);
+            getTimer().scheduleRegressiveCountingToEndPlaying(ONE_SECOND);
         }
     }
 
-    public void notifySecondPassedOnEndGameRegressiveCounting(){
+    public void notifySecondPassedOnRegressiveCountingToEndPlaying(){
         int counting = getGameUI().getRegressiveCounting();
 
-        if(counting != 1){
+        if(counting != 0){
             getGameUI().updateRegressiveCounting();
-            timer.scheduleEndGameRegressiveCounting(1000);
+            getTimer().scheduleRegressiveCountingToEndPlaying(ONE_SECOND);
         }
     }
 
@@ -106,6 +107,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         setCurrentUI(getGameSummaryUI());
     }
 
+    //Connect Action
     public void connect(){
         try {
             setClientCommunicator(ClientCommunicatorSingleton.getCommunicator());
@@ -117,6 +119,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         }
     }
 
+    //Button Identify Action
     public void identify(String loginName){
         setCurrentUI(getWaitUI());
        
@@ -130,22 +133,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         }
     }
 
-    public void exit(){
-        System.exit(0);
-    }
-
-    public void cancel(){
-        System.exit(0);
-    }
-
-    public void penico(){
-        try{
-            getClientCommunicator().askPenico();
-        } catch (CommunicationException ex) {
-            ex.printStackTrace();
-        }
-    }
-
+        //Send label Action
     public void sendLabel(String label){
         try {
             getClientCommunicator().sendLabel(label);
@@ -154,6 +142,16 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         }
     }
 
+    //Button Penico Action
+    public void penico(){
+        try{
+            getClientCommunicator().askPenico();
+        } catch (CommunicationException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    //Button "Play again" Action
     public void playAgain(){
         try {
             getClientCommunicator().notifyWait();
@@ -163,7 +161,18 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         setCurrentUI(getWaitUI());
     }
 
+    //Button Ok Action
     public void ok(){
+        System.exit(0);
+    }
+
+    //Button Cancel Action
+    public void cancel(){
+        System.exit(0);
+    }
+
+    //Button Exit Action
+    public void exit(){
         System.exit(0);
     }
 
@@ -173,6 +182,28 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
     public void setClientCommunicator(ClientCommunicator clientCommunicator) {
         this.clientCommunicator = clientCommunicator;
+    }
+
+    public TimeoutTimer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(TimeoutTimer timer) {
+        this.timer = timer;
+    }
+
+    public UserInterface getCurrentUI() {
+        return currentUI;
+    }
+
+    public void setCurrentUI(UserInterface currentUI) {
+        if (getCurrentUI() != currentUI){
+            if (getCurrentUI() != null) {
+                getCurrentUI().setActive(false);
+            }
+            this.currentUI = currentUI;
+            getCurrentUI().setActive(true);
+        }
     }
 
     public ConnectionFailedUI getConnectionFailedUI() {
@@ -239,33 +270,11 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         this.gameSummaryUI = gameSummaryUI;
     }
 
-    public TimeoutTimer getTimer() {
-        return timer;
-    }
-
-    public void setTimer(TimeoutTimer timer) {
-        this.timer = timer;
-    }
-
     public WaitUI getWaitUI() {
         return waitUI;
     }
 
     public void setWaitUI(WaitUI waitUI) {
         this.waitUI = waitUI;
-    }
-
-    public UserInterface getCurrentUI() {
-        return currentUI;
-    }
-
-    public void setCurrentUI(UserInterface currentUI) {
-        if (this.currentUI != currentUI){
-            if (this.currentUI != null) {
-                this.currentUI.setVisible(false);
-            }
-            this.currentUI = currentUI;
-            this.currentUI.setVisible(true);
-        }
     }
 }

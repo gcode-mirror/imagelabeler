@@ -14,15 +14,20 @@ public class ServerBusyUI extends UserInterface {
 
     public ServerBusyUI(ServerBusyScreen screen) {
         setScreen(screen);
-        controller.setServerBusyUI(this);
-    }
-    
-    public void ok() {
-        ServerBusyUI.controller.ok();
+        UserInterface.getController().setServerBusyUI(this);
     }
 
-    public void setVisible(boolean visible){
-        this.screen.setVisible(visible);
+    //Button Ok Action
+    public void ok() {
+        UserInterface.getController().ok();
+    }
+
+    public void setActive(boolean active){
+        getScreen().setVisible(active);
+    }
+
+    public ServerBusyScreen getScreen(){
+        return screen;
     }
 
     public void setScreen(ServerBusyScreen screen) {

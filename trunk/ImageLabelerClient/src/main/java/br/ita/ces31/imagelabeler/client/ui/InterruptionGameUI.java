@@ -14,19 +14,25 @@ public class InterruptionGameUI extends UserInterface {
 
     public InterruptionGameUI(InterruptionGameScreen screen) {
         setScreen(screen);
-        controller.setInterruptionGameUI(this);
+        UserInterface.getController().setInterruptionGameUI(this);
     }
 
+    //Button "Play again" Action
     public void playAgain() {
-        InterruptionGameUI.controller.playAgain();
+        UserInterface.getController().playAgain();
     }
 
+    //Button Exit Action
     public void exit() {
-        InterruptionGameUI.controller.exit();
+        UserInterface.getController().exit();
     }
 
-    public void setVisible(boolean visible){
-        this.screen.setVisible(visible);
+    public void setActive(boolean active){
+        getScreen().setVisible(active);
+    }
+
+    public InterruptionGameScreen getScreen(){
+        return screen;
     }
 
     public void setScreen(InterruptionGameScreen screen){

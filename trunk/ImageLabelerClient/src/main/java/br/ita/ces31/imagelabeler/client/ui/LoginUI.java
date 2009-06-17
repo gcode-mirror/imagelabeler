@@ -14,21 +14,27 @@ public class LoginUI extends UserInterface {
 
     public LoginUI(LoginScreen screen) {
         setScreen(screen);
-        controller.setLoginUI(this);
+        UserInterface.getController().setLoginUI(this);
     }
 
+    //Button Identify Action
     public void identify(String loginName) {
-        LoginUI.controller.identify(loginName);
+        UserInterface.getController().identify(loginName);
     }
 
+    //Button Exit Action
     public void exit() {
-        LoginUI.controller.exit();
+        UserInterface.getController().exit();
     }
 
-    public void setVisible(boolean visible){
-        this.screen.setVisible(visible);
+    public void setActive(boolean active){
+        getScreen().setVisible(active);
     }
 
+    public LoginScreen getScreen(){
+        return screen;
+    }
+    
     public void setScreen(LoginScreen screen){
         this.screen = screen;
     }

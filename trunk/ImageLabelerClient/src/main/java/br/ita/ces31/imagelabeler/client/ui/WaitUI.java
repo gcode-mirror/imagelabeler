@@ -14,15 +14,20 @@ public class WaitUI extends UserInterface {
 
     public WaitUI(WaitScreen screen) {
         setScreen(screen);
-        controller.setWaitUI(this);
+        UserInterface.getController().setWaitUI(this);
     }
 
+    //Button Cancel Action
     public void cancel(){
-        WaitUI.controller.cancel();
+        UserInterface.getController().cancel();
     }
 
-    public void setVisible(boolean visible){
-        this.screen.setVisible(visible);
+    public void setActive(boolean active){
+        getScreen().setVisible(active);
+    }
+
+    public WaitScreen getScreen(){
+        return screen;
     }
 
     public void setScreen(WaitScreen screen) {

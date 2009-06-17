@@ -66,42 +66,6 @@ public class ClientMain {
         setWaitScreen(new WaitScreen());
     }
 
-    public static JFrame getConnectionFailedScreen() {
-        return connectionFailedScreen;
-    }
-
-    public static JFrame getConnectionLostScreen() {
-        return connectionLostScreen;
-    }
-
-    public static JFrame getGameScreen() {
-        return gameScreen;
-    }
-
-    public static JFrame getInterruptionGameScreen() {
-        return interruptionGameScreen;
-    }
-
-    public static JFrame getLoginScreen() {
-        return loginScreen;
-    }
-
-    public static JFrame getPartnerFoundScreen() {
-        return partnerFoundScreen;
-    }
-
-    public static JFrame getServerBusyScreen() {
-        return serverBusyScreen;
-    }
-
-    public static JFrame getSummaryGameScreen() {
-        return summaryGameScreen;
-    }
-
-    public static JFrame getWaitScreen() {
-        return waitScreen;
-    }
-
     public static void setConnectionFailedScreen(JFrame connectionFailedScreen) {
         ClientMain.connectionFailedScreen = connectionFailedScreen;
     }
