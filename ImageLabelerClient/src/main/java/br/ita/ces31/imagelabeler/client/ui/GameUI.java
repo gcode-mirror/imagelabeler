@@ -39,17 +39,15 @@ public class GameUI extends UserInterface {
     }
 
     public int getRegressiveCounting(){
-        return Integer.parseInt(this.screen.getLblRegressiveCounting());
+        return getScreen().getRegressiveCounting();
     }
 
-    public void updateRegressiveCounting(){
-        int pastCounting = Integer.parseInt(this.screen.getLblRegressiveCounting());
-        int currentCounting = pastCounting - 1;
-        this.screen.setLblRegressiveCounting(String.valueOf(currentCounting));
+    public void updateRegressiveCounting(int miliseconds){
+        int currentCounting = getRegressiveCounting() - miliseconds/1000;
+        getScreen().updateRegressiveCounting(currentCounting);
     }
 
-    public void setImage(String image){
-
+    public void setGameImage(String image){
         String imagePath = "pictures" + File.separator + image;
         URL imgURL = ClassLoader.getSystemResource(imagePath);
 
@@ -57,11 +55,12 @@ public class GameUI extends UserInterface {
         if (imgURL != null) {
             imageIcon = new ImageIcon(imgURL);
 
-            int h = this.screen.getPnlImage().getHeight();
-            int w = this.screen.getPnlImage().getWidth();
-            this.screen.getLblImage().setIcon(new ImageIcon(getScaledImage(imageIcon.getImage(), w, h)));
+            int h = getScreen().getImagePanelHeight();
+            int w = getScreen().getImagePanelWidth();
+
+            getScreen().setGameImage(new ImageIcon(getScaledImage(imageIcon.getImage(), w, h)));
         } else {
-            System.out.println(imagePath);
+            //LANÇAR EXCEÇÃO AQUI
         }
     }
 
@@ -82,15 +81,15 @@ public class GameUI extends UserInterface {
     }
 
     public void setPlayer1Name(String player1Name){
-        this.screen.setLblPlayer1(player1Name);
+        getScreen().setPlayer1Name(player1Name);
     }
 
     public void setPlayer2Name(String player2Name){
-        this.screen.setLblPlayer2(player2Name);
+        getScreen().setPlayer2Name(player2Name);
     }
 
     public void setActive(boolean active){
-        getScreen().setVisible(active);
+        getScreen().setActive(active);
     }
 
     public GameScreen getScreen(){

@@ -23,7 +23,7 @@ public class ConnectionLostUI extends UserInterface {
     }
 
     public void setActive(boolean active){
-        getScreen().setVisible(active);
+        getScreen().setActive(active);
     }
 
     public ConnectionLostScreen getScreen(){
