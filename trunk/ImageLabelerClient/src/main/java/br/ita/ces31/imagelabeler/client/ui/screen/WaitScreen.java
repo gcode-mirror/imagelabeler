@@ -87,6 +87,14 @@ public class WaitScreen extends javax.swing.JFrame {
         cancel();
     }//GEN-LAST:event_btnOkActionPerformed
 
+    public void setActive(boolean active){
+        if (active){
+
+        }
+
+        setVisible(active);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOk;
     private javax.swing.JLabel lblConnectionFailedMessage;

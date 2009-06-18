@@ -28,7 +28,7 @@ public class InterruptionGameUI extends UserInterface {
     }
 
     public void setActive(boolean active){
-        getScreen().setVisible(active);
+        getScreen().setActive(active);
     }
 
     public InterruptionGameScreen getScreen(){

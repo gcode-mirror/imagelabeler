@@ -12,7 +12,6 @@ import br.ita.ces31.imagelabeler.client.ui.ConnectionLostUI;
 public class ConnectionLostScreen extends javax.swing.JFrame {
     private ConnectionLostUI connectionLostUI;
     
-    /** Creates new form ConnectionLostScreen */
     public ConnectionLostScreen() {
         setConnectionLostUI(new ConnectionLostUI(this));
         initComponents();
@@ -72,11 +71,15 @@ public class ConnectionLostScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        ok();
+        getConnectionLostUI().ok();
 }//GEN-LAST:event_btnOkActionPerformed
 
-    public void ok(){
-        getConnectionLostUI().ok();
+    public void setActive(boolean active){
+        if (active){
+
+        }
+
+        setVisible(active);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

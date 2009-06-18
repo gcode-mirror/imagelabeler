@@ -127,6 +127,14 @@ public class PartnerFoundScreen extends javax.swing.JFrame {
         this.lblRegressiveCounting.setText(String.valueOf(lblRegressiveCounting));
     }
 
+    public void setActive(boolean active){
+        if (active){
+
+        }
+
+        setVisible(active);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPenico;
     private javax.swing.JLabel lblCountingMessage1;

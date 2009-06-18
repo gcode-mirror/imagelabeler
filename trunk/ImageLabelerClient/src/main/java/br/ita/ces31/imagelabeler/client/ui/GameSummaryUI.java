@@ -46,7 +46,7 @@ public class GameSummaryUI extends UserInterface {
     }
 
     public void setActive(boolean active){
-        getScreen().setVisible(active);
+        getScreen().setActive(active);
     }
 
     public GameSummaryScreen getScreen(){

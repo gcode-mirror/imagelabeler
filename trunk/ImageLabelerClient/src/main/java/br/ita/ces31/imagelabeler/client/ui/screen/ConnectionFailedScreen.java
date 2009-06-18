@@ -12,7 +12,6 @@ import br.ita.ces31.imagelabeler.client.ui.ConnectionFailedUI;
 public class ConnectionFailedScreen extends javax.swing.JFrame {
     private ConnectionFailedUI connectionFailedUI;
 
-    /** Creates new form ConnectionFailedScreen */
     public ConnectionFailedScreen() {
         setConnectionFailedUI(new ConnectionFailedUI(this));
         initComponents();
@@ -80,11 +79,15 @@ public class ConnectionFailedScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        ok();
+        getConnectionFailedUI().ok();
     }//GEN-LAST:event_btnOkActionPerformed
 
-    private void ok() {
-        getConnectionFailedUI().ok();
+    public void setActive(boolean active){
+        if (active){
+
+        }
+        
+        setVisible(active);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -189,6 +189,14 @@ public class GameSummaryScreen extends javax.swing.JFrame {
         }
     }
 
+    public void setActive(boolean active){
+        if (active){
+
+        }
+
+        setVisible(active);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnPlayAgain;

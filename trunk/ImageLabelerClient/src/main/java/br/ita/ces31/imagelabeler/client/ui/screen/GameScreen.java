@@ -5,8 +5,10 @@ package br.ita.ces31.imagelabeler.client.ui.screen;
 
 import br.ita.ces31.imagelabeler.client.ui.GameUI;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -15,7 +17,6 @@ import javax.swing.JPanel;
 public class GameScreen extends javax.swing.JFrame {
     private GameUI gameUI;
 
-    /** Creates new form GameScreen */
     public GameScreen() {
         setGameUI(new GameUI(this));
         initComponents();
@@ -194,44 +195,76 @@ public class GameScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLabelActionPerformed
-        sendLabel(txtLabel.getText());
-        addElementOnTypedLabelsList(txtLabel.getText());
+        sendLabel(getTxtLabel().getText());
+        addElementOnTypedLabelsList(getTxtLabel().getText());
         clearTextField();
     }//GEN-LAST:event_txtLabelActionPerformed
 
     private void btnPenicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPenicoActionPerformed
-        penico();
+        getGameUI().penico();
     }//GEN-LAST:event_btnPenicoActionPerformed
 
     private void sendLabel(String label){
         getGameUI().sendLabel(label);
     }
 
-    public void addElementOnTypedLabelsList(String label){
-        typedLabelsElements.addElement(label);
+    private void addElementOnTypedLabelsList(String label){
+        getTypedLabelsElements().addElement(label);
+    }
+
+    private void clearTextField(){
+        getTxtLabel().setText("");
     }
 
     public void addElementOnMatchedLabelsList(String label){
-        matchedLabelsElements.addElement(label);
+        getMatchedLabelsElements().addElement(label);
     }
 
-    public void clearTextField(){
-        txtLabel.setText("");
-    }
-    
     public void ProcessMatch(String match, int score){
         addElementOnMatchedLabelsList(match);
         updateScore(score);
     }
 
-    public void updateScore(int score){
+    private void updateScore(int score){
         setLblPointsAmmount(score);
     }
 
-    public void penico() {
-        getGameUI().penico();
+    public int getRegressiveCounting(){
+        return Integer.parseInt(getLblRegressiveCounting());
     }
-    
+
+    public void updateRegressiveCounting(int currentCounting){
+        setLblRegressiveCounting(String.valueOf(currentCounting));
+    }
+
+    public int getImagePanelHeight(){
+        return getPnlImage().getHeight();
+    }
+
+    public int getImagePanelWidth(){
+        return getPnlImage().getWidth();
+    }
+
+    public void setGameImage(ImageIcon image){
+        getLblImage().setIcon(image);
+    }
+
+    public void setPlayer1Name(String player1Name){
+        setLblPlayer1(player1Name);
+    }
+
+    public void setPlayer2Name(String player2Name){
+        setLblPlayer2(player2Name);
+    }
+
+    public void setActive(boolean active){
+        if (active){
+
+        }
+
+        setVisible(active);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPenico;
     private javax.swing.JLabel lblAnd;
@@ -272,16 +305,8 @@ public class GameScreen extends javax.swing.JFrame {
         this.lblImage = lblImage;
     }
 
-    public String getLblPlayer1() {
-        return lblPlayer1.getText();
-    }
-
     public void setLblPlayer1(String lblPlayer1) {
         this.lblPlayer1.setText(lblPlayer1);
-    }
-
-    public String getLblPlayer2() {
-        return lblPlayer2.getText();
     }
 
     public void setLblPlayer2(String lblPlayer2) {
@@ -302,5 +327,29 @@ public class GameScreen extends javax.swing.JFrame {
 
     public void setLblPointsAmmount(int pointsAmmount) {
         this.lblPointsAmmount.setText(String.valueOf(pointsAmmount));
+    }
+
+    public DefaultListModel getMatchedLabelsElements() {
+        return matchedLabelsElements;
+    }
+
+    public void setMatchedLabelsElements(DefaultListModel matchedLabelsElements) {
+        this.matchedLabelsElements = matchedLabelsElements;
+    }
+
+    public DefaultListModel getTypedLabelsElements() {
+        return typedLabelsElements;
+    }
+
+    public void setTypedLabelsElements(DefaultListModel typedLabelsElements) {
+        this.typedLabelsElements = typedLabelsElements;
+    }
+
+    public JTextField getTxtLabel() {
+        return txtLabel;
+    }
+
+    public void setTxtLabel(JTextField txtLabel) {
+        this.txtLabel = txtLabel;
     }
 }

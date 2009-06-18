@@ -71,7 +71,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     }
 
     public void setGameUIInitialParameters(String image, int seconds, String partner){
-        getGameUI().setImage(image);
+        getGameUI().setGameImage(image);
         getGameUI().setPlayer1Name(getLoginName());
         getGameUI().setPlayer2Name(partner);
         //verificar aonde setar esse seconds
@@ -93,7 +93,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         int counting = getGameUI().getRegressiveCounting();
 
         if(counting != 0){
-            getGameUI().updateRegressiveCounting();
+            getGameUI().updateRegressiveCounting(ONE_SECOND);
             getTimer().scheduleRegressiveCountingToEndPlaying(ONE_SECOND);
         }
     }
