@@ -58,8 +58,8 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     }
 
     //From interface CommunicatorObserver
-    public void notifyMatch(String match, int score){
-        getGameUI().notifyMatch(match, score);
+    public void notifyLabelMatch(String match, int score){
+        getGameUI().notifyLabelMatch(match, score);
     }
 
     //From interface CommunicatorObserver

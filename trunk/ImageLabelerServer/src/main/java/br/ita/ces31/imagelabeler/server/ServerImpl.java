@@ -327,13 +327,13 @@ public class ServerImpl extends UnicastRemoteObject
         public void sendLabel(String label) throws RemoteException {
             if (game.addLabel(label)) {  // ocorreu match
                 try {
-                    client1.notifyMatch(label, game.getScore());
+                    client1.notifyLabelMatch(label, game.getScore());
                 } catch (RemoteException ex) {
                     ex.printStackTrace();
                 }
 
                 try {
-                    client2.notifyMatch(label, game.getScore());
+                    client2.notifyLabelMatch(label, game.getScore());
                 } catch (RemoteException ex) {
                     ex.printStackTrace();
                 }

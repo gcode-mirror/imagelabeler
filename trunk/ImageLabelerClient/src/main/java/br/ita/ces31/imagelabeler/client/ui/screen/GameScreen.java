@@ -85,8 +85,10 @@ public class GameScreen extends javax.swing.JFrame {
             }
         });
 
+        listTypedLabels.setEnabled(false);
         pnlTypedLabels.setViewportView(listTypedLabels);
 
+        listMatchedLabels.setEnabled(false);
         pnlMatchedLabels.setViewportView(listMatchedLabels);
 
         lblPoints.setText("Points:");
@@ -195,14 +197,33 @@ public class GameScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLabelActionPerformed
-        sendLabel(getTxtLabel().getText());
-        addElementOnTypedLabelsList(getTxtLabel().getText());
+        if ( typedLabelValidation(getTxtLabel().getText())){
+            sendLabel(getTxtLabel().getText());
+            addElementOnTypedLabelsList(getTxtLabel().getText());
+        }
+
         clearTextField();
     }//GEN-LAST:event_txtLabelActionPerformed
 
     private void btnPenicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPenicoActionPerformed
         getGameUI().penico();
     }//GEN-LAST:event_btnPenicoActionPerformed
+
+    private boolean typedLabelValidation(String typedLabel){
+        if(isLabelAlreadyTypedByPlayer(typedLabel)){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private boolean isLabelAlreadyTypedByPlayer(String typedLabel){
+        if (getTypedLabelsElements().contains(typedLabel)){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     private void sendLabel(String label){
         getGameUI().sendLabel(label);
@@ -216,13 +237,13 @@ public class GameScreen extends javax.swing.JFrame {
         getTxtLabel().setText("");
     }
 
-    public void addElementOnMatchedLabelsList(String label){
-        getMatchedLabelsElements().addElement(label);
-    }
-
-    public void ProcessMatch(String match, int score){
+    public void ProcessLabelMatch(String match, int score){
         addElementOnMatchedLabelsList(match);
         updateScore(score);
+    }
+
+    private void addElementOnMatchedLabelsList(String label){
+        getMatchedLabelsElements().addElement(label);
     }
 
     private void updateScore(int score){
@@ -301,10 +322,6 @@ public class GameScreen extends javax.swing.JFrame {
         return lblImage;
     }
 
-    public void setLblImage(JLabel lblImage) {
-        this.lblImage = lblImage;
-    }
-
     public void setLblPlayer1(String lblPlayer1) {
         this.lblPlayer1.setText(lblPlayer1);
     }
@@ -333,23 +350,11 @@ public class GameScreen extends javax.swing.JFrame {
         return matchedLabelsElements;
     }
 
-    public void setMatchedLabelsElements(DefaultListModel matchedLabelsElements) {
-        this.matchedLabelsElements = matchedLabelsElements;
-    }
-
     public DefaultListModel getTypedLabelsElements() {
         return typedLabelsElements;
     }
 
-    public void setTypedLabelsElements(DefaultListModel typedLabelsElements) {
-        this.typedLabelsElements = typedLabelsElements;
-    }
-
     public JTextField getTxtLabel() {
         return txtLabel;
-    }
-
-    public void setTxtLabel(JTextField txtLabel) {
-        this.txtLabel = txtLabel;
     }
 }

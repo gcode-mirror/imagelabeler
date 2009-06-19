@@ -27,7 +27,7 @@ public class TestClient extends RemoteObject implements Client {
         return loginName;
     }
 
-    public void notifyMatch(String match, int score) throws RemoteException {
+    public void notifyLabelMatch(String match, int score) throws RemoteException {
         this.match = match;
     }
 

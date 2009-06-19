@@ -17,7 +17,7 @@ public class Game {
     /**
      * Duração da partida em segundos.
      */
-    public static int duration = 70;
+    public static int duration = 72;
     private List<String> labels;
     private List<String> matches;
     private int score;
