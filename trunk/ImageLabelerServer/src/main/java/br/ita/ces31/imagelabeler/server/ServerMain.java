@@ -27,6 +27,6 @@ public class ServerMain {
         } catch (RemoteException e) {
             System.out.println("Communication error " + e.toString());
         }
-        System.out.println("Teste");
+        System.out.println("Server started");
     }
 }

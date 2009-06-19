@@ -9,6 +9,6 @@ package br.ita.ces31.imagelabeler.client.timer;
  */
 public interface TimeoutTimer {
     public void cancelRegressiveCounting();
-    public void scheduleRegressiveCountingToStartPlaying(long delay);
-    public void scheduleRegressiveCountingToEndPlaying(long delay);
+    public void scheduleASecondOnRegressiveCountingToStartPlaying();
+    public void scheduleASecondOnRegressiveCountingToEndPlaying();
 }

@@ -259,8 +259,8 @@ public class ServerImpl extends UnicastRemoteObject
             timer.schedule(Game.duration * 1000);
 
             String image = imageServer.getImage();
-            client1.startGame(image, Game.duration, client2.getLoginName());
-            client2.startGame(image, Game.duration, client1.getLoginName());
+            client1.startGame(image, client2.getLoginName());
+            client2.startGame(image, client1.getLoginName());
             return game;
         }
 
