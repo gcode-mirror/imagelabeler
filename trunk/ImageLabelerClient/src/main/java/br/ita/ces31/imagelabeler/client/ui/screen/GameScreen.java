@@ -321,8 +321,8 @@ public class GameScreen extends javax.swing.JFrame {
         return lblRegressiveCounting.getText();
     }
 
-    public void setLblRegressiveCounting(String lblRegressiveCounting) {
-        this.lblRegressiveCounting.setText(lblRegressiveCounting);
+    public void setLblRegressiveCounting(String regressiveCounting) {
+        this.lblRegressiveCounting.setText(regressiveCounting);
     }
 
     public void setLblPointsAmmount(int pointsAmmount) {

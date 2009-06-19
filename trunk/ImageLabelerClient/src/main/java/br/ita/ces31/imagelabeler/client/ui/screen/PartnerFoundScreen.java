@@ -4,6 +4,7 @@
 package br.ita.ces31.imagelabeler.client.ui.screen;
 
 import br.ita.ces31.imagelabeler.client.ui.PartnerFoundUI;
+import javax.swing.JLabel;
 
 /**
  *
@@ -12,7 +13,6 @@ import br.ita.ces31.imagelabeler.client.ui.PartnerFoundUI;
 public class PartnerFoundScreen extends javax.swing.JFrame {
     private PartnerFoundUI partnerFoundUI;
 
-    /** Creates new form PartnerFoundScreen */
     public PartnerFoundScreen() {
         setPartnerFoundUI(new PartnerFoundUI(this));
         initComponents();
@@ -108,23 +108,19 @@ public class PartnerFoundScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPenicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPenicoActionPerformed
-        penico();
+        getPartnerFoundUI().penico();
 }//GEN-LAST:event_btnPenicoActionPerformed
 
-    private void penico(){
-        getPartnerFoundUI().penico();
-    }
-
     public void setPartnerName(String partnerName) {
-        this.lblPartnerName.setText(partnerName);
+        getLblPartnerName().setText(partnerName);
     }
 
-    public int getLblRegressiveCounting() {
-        return Integer.parseInt(lblRegressiveCounting.getText());
+    public int getRegressiveCounting() {
+        return Integer.parseInt(getLblRegressiveCounting());
     }
 
-    public void setLblRegressiveCounting(int lblRegressiveCounting) {
-        this.lblRegressiveCounting.setText(String.valueOf(lblRegressiveCounting));
+    public void updateRegressiveCounting(int currentCounting){
+        setLblRegressiveCounting(String.valueOf(currentCounting));
     }
 
     public void setActive(boolean active){
@@ -150,5 +146,17 @@ public class PartnerFoundScreen extends javax.swing.JFrame {
 
     public void setPartnerFoundUI(PartnerFoundUI partnerFoundUI) {
         this.partnerFoundUI = partnerFoundUI;
+    }
+
+    public JLabel getLblPartnerName() {
+        return lblPartnerName;
+    }
+
+    public String getLblRegressiveCounting() {
+        return lblRegressiveCounting.getText();
+    }
+
+    public void setLblRegressiveCounting(String regressiveCounting) {
+        this.lblRegressiveCounting.setText(regressiveCounting);
     }
 }

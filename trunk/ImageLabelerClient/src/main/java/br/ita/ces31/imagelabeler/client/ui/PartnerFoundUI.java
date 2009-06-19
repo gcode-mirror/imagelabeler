@@ -23,13 +23,12 @@ public class PartnerFoundUI extends UserInterface{
     }
 
     public int getRegressiveCounting(){
-        return getScreen().getLblRegressiveCounting();
+       return getScreen().getRegressiveCounting();
     }
 
-    public void updateRegressiveCounting(){
-        int pastCounting = getScreen().getLblRegressiveCounting();
-        int currentCounting = pastCounting - 1;
-        getScreen().setLblRegressiveCounting(currentCounting);
+    public void updateRegressiveCounting(int miliseconds){
+        int currentCounting = getRegressiveCounting() - miliseconds/1000;
+        getScreen().updateRegressiveCounting(currentCounting);
     }
 
     public void setPartnerName(String partnerName){

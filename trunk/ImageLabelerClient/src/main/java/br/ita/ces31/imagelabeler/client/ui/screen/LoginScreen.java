@@ -16,7 +16,6 @@ import javax.swing.JFrame;
 public class LoginScreen extends JFrame {
     private LoginUI loginUI;
 
-    /** Creates new form LoginScreen */
     public LoginScreen() {
         setLoginUI(new LoginUI(this));
         initComponents();
@@ -91,20 +90,12 @@ public class LoginScreen extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIdentifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIdentifyActionPerformed
-        identify();
+        getLoginUI().identify(txtUserName.getText());
 }//GEN-LAST:event_btnIdentifyActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        exit();
-    }//GEN-LAST:event_btnExitActionPerformed
-
-    private void identify() {
-        getLoginUI().identify(txtUserName.getText());
-    }
-
-    private void exit(){
         getLoginUI().exit();
-    }
+    }//GEN-LAST:event_btnExitActionPerformed
 
     public void setActive(boolean active){
         if (active){

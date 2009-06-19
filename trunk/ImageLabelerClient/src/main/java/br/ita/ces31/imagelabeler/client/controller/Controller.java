@@ -81,7 +81,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         int counting = getPartnerFoundUI().getRegressiveCounting();
 
         if(counting != 0){
-            getPartnerFoundUI().updateRegressiveCounting();
+            getPartnerFoundUI().updateRegressiveCounting(ONE_SECOND);
             getTimer().scheduleRegressiveCountingToStartPlaying(ONE_SECOND);
         } else {
             setCurrentUI(getGameUI());
@@ -100,7 +100,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
     //From interface CommunicatorObserver
     public void endGame(GameSummary summary){
-        getGameSummaryUI().setListMatchedLabels(summary.getMatches());
+        getGameSummaryUI().setMatchedLabelsList(summary.getMatches());
         getGameSummaryUI().setFinalPontuation(summary.getScore());
         getGameSummaryUI().setPlayerName(getLoginName());
         getGameSummaryUI().setRank(summary.getTopPlayers());

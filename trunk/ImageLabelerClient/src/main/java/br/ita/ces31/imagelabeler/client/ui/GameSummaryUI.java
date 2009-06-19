@@ -33,8 +33,8 @@ public class GameSummaryUI extends UserInterface {
         getScreen().setRank(topPlayers);
     }
 
-    public void setListMatchedLabels(List<String> matchedLabels){
-        getScreen().setListMatchedLabels(matchedLabels);
+    public void setMatchedLabelsList(List<String> matchedLabels){
+        getScreen().setMatchedLabelsList(matchedLabels);
     }
 
     public void setFinalPontuation(int finalScore){
