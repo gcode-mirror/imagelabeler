@@ -28,11 +28,11 @@ public class PartnerFoundScreen extends javax.swing.JFrame {
     private void initComponents() {
 
         btnPenico = new javax.swing.JButton();
-        lblCountingMessage1 = new javax.swing.JLabel();
+        lblGameStartAnnouncement = new javax.swing.JLabel();
         lblPartnerFound = new javax.swing.JLabel();
         lblPartnerName = new javax.swing.JLabel();
         lblRegressiveCounting = new javax.swing.JLabel();
-        lblCountingMessage2 = new javax.swing.JLabel();
+        lblSeconds = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Image Labeler");
@@ -45,13 +45,13 @@ public class PartnerFoundScreen extends javax.swing.JFrame {
             }
         });
 
-        lblCountingMessage1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCountingMessage1.setText("The game will start in");
-        lblCountingMessage1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        lblCountingMessage1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        lblCountingMessage1.setMaximumSize(new java.awt.Dimension(300, 14));
-        lblCountingMessage1.setPreferredSize(new java.awt.Dimension(300, 16));
-        lblCountingMessage1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        lblGameStartAnnouncement.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblGameStartAnnouncement.setText("The game will start in");
+        lblGameStartAnnouncement.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lblGameStartAnnouncement.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblGameStartAnnouncement.setMaximumSize(new java.awt.Dimension(300, 14));
+        lblGameStartAnnouncement.setPreferredSize(new java.awt.Dimension(300, 16));
+        lblGameStartAnnouncement.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         lblPartnerFound.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPartnerFound.setText("Partner Found:");
@@ -62,7 +62,7 @@ public class PartnerFoundScreen extends javax.swing.JFrame {
         lblRegressiveCounting.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRegressiveCounting.setText("10");
 
-        lblCountingMessage2.setText("seconds!");
+        lblSeconds.setText("seconds!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,11 +81,11 @@ public class PartnerFoundScreen extends javax.swing.JFrame {
                         .addGap(107, 107, 107)
                         .addComponent(lblPartnerName, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblCountingMessage1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblGameStartAnnouncement, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblRegressiveCounting)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblCountingMessage2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblSeconds, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(34, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -96,9 +96,9 @@ public class PartnerFoundScreen extends javax.swing.JFrame {
                 .addComponent(lblPartnerName, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCountingMessage2)
+                    .addComponent(lblSeconds)
                     .addComponent(lblRegressiveCounting)
-                    .addComponent(lblCountingMessage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblGameStartAnnouncement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addComponent(btnPenico)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -133,11 +133,11 @@ public class PartnerFoundScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPenico;
-    private javax.swing.JLabel lblCountingMessage1;
-    private javax.swing.JLabel lblCountingMessage2;
+    private javax.swing.JLabel lblGameStartAnnouncement;
     private javax.swing.JLabel lblPartnerFound;
     private javax.swing.JLabel lblPartnerName;
     private javax.swing.JLabel lblRegressiveCounting;
+    private javax.swing.JLabel lblSeconds;
     // End of variables declaration//GEN-END:variables
 
     public PartnerFoundUI getPartnerFoundUI() {

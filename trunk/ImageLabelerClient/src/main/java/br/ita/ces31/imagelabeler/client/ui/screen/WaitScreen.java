@@ -26,24 +26,20 @@ public class WaitScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblConnectionFailedMessage = new javax.swing.JLabel();
-        lblVerifyConnectionMessage = new javax.swing.JLabel();
+        lblFindingParter = new javax.swing.JLabel();
         btnOk = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Image Labeler");
         setResizable(false);
 
-        lblConnectionFailedMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblConnectionFailedMessage.setName(""); // NOI18N
-
-        lblVerifyConnectionMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblVerifyConnectionMessage.setText("Finding a partner, please wait...");
-        lblVerifyConnectionMessage.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        lblVerifyConnectionMessage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        lblVerifyConnectionMessage.setMaximumSize(new java.awt.Dimension(300, 14));
-        lblVerifyConnectionMessage.setPreferredSize(new java.awt.Dimension(300, 14));
-        lblVerifyConnectionMessage.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        lblFindingParter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFindingParter.setText("Finding a partner, please wait...");
+        lblFindingParter.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lblFindingParter.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblFindingParter.setMaximumSize(new java.awt.Dimension(300, 14));
+        lblFindingParter.setPreferredSize(new java.awt.Dimension(300, 14));
+        lblFindingParter.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         btnOk.setText("cancel");
         btnOk.addActionListener(new java.awt.event.ActionListener() {
@@ -56,10 +52,7 @@ public class WaitScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
-            .addGap(0, 310, Short.MAX_VALUE)
-            .addComponent(lblConnectionFailedMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-            .addComponent(lblVerifyConnectionMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+            .addComponent(lblFindingParter, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(121, Short.MAX_VALUE)
                 .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -67,13 +60,9 @@ public class WaitScreen extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 97, Short.MAX_VALUE)
-            .addGap(0, 97, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblConnectionFailedMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblVerifyConnectionMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
+                .addComponent(lblFindingParter, javax.swing.GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnOk)
                 .addContainerGap())
@@ -96,8 +85,7 @@ public class WaitScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOk;
-    private javax.swing.JLabel lblConnectionFailedMessage;
-    private javax.swing.JLabel lblVerifyConnectionMessage;
+    private javax.swing.JLabel lblFindingParter;
     // End of variables declaration//GEN-END:variables
 
     public WaitUI getWaitUI() {
