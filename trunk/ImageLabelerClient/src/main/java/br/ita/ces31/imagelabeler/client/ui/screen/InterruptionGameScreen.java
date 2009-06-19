@@ -86,10 +86,6 @@ public class InterruptionGameScreen extends javax.swing.JFrame {
 }//GEN-LAST:event_btnExitActionPerformed
 
     public void setActive(boolean active){
-        if (active){
-
-        }
-
         setVisible(active);
     }
 
