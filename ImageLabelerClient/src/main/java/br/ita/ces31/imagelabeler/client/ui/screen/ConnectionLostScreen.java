@@ -26,19 +26,19 @@ public class ConnectionLostScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblVerifyConnectionMessage = new javax.swing.JLabel();
+        lblConnectionLost = new javax.swing.JLabel();
         btnOk = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Image Labeler");
 
-        lblVerifyConnectionMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblVerifyConnectionMessage.setText("Connection Lost!");
-        lblVerifyConnectionMessage.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        lblVerifyConnectionMessage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        lblVerifyConnectionMessage.setMaximumSize(new java.awt.Dimension(300, 14));
-        lblVerifyConnectionMessage.setPreferredSize(new java.awt.Dimension(300, 14));
-        lblVerifyConnectionMessage.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        lblConnectionLost.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblConnectionLost.setText("Connection Lost!");
+        lblConnectionLost.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lblConnectionLost.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblConnectionLost.setMaximumSize(new java.awt.Dimension(300, 14));
+        lblConnectionLost.setPreferredSize(new java.awt.Dimension(300, 14));
+        lblConnectionLost.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         btnOk.setText("ok");
         btnOk.addActionListener(new java.awt.event.ActionListener() {
@@ -51,7 +51,7 @@ public class ConnectionLostScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblVerifyConnectionMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+            .addComponent(lblConnectionLost, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(119, Short.MAX_VALUE)
                 .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -61,7 +61,7 @@ public class ConnectionLostScreen extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(lblVerifyConnectionMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
+                .addComponent(lblConnectionLost, javax.swing.GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnOk)
                 .addContainerGap())
@@ -84,7 +84,7 @@ public class ConnectionLostScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOk;
-    private javax.swing.JLabel lblVerifyConnectionMessage;
+    private javax.swing.JLabel lblConnectionLost;
     // End of variables declaration//GEN-END:variables
 
     public ConnectionLostUI getConnectionLostUI() {

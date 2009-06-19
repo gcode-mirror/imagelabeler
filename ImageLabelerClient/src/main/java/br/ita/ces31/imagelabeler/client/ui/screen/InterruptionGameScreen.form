@@ -30,7 +30,7 @@
                       <EmptySpace pref="216" max="32767" attributes="0"/>
                       <Component id="btnExit" min="-2" pref="73" max="-2" attributes="1"/>
                   </Group>
-                  <Component id="lblGameOver" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblGameOverByPenico" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -40,7 +40,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-              <Component id="lblGameOver" min="-2" max="-2" attributes="0"/>
+              <Component id="lblGameOverByPenico" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="233" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnExit" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -52,7 +52,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lblGameOver">
+    <Component class="javax.swing.JLabel" name="lblGameOverByPenico">
       <Properties>
         <Property name="text" type="java.lang.String" value="Game over by penico!"/>
       </Properties>

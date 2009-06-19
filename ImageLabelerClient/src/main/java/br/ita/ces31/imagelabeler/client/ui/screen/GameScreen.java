@@ -31,7 +31,7 @@ public class GameScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblPlayers = new javax.swing.JLabel();
+        lblPlayersInThisGame = new javax.swing.JLabel();
         lblPlayer1 = new javax.swing.JLabel();
         lblAnd = new javax.swing.JLabel();
         lblPlayer2 = new javax.swing.JLabel();
@@ -48,7 +48,7 @@ public class GameScreen extends javax.swing.JFrame {
         lblPoints = new javax.swing.JLabel();
         lblTimeRemaining = new javax.swing.JLabel();
         lblMatches = new javax.swing.JLabel();
-        lblPointsAmmount = new javax.swing.JLabel();
+        lblScore = new javax.swing.JLabel();
         lblRegressiveCounting = new javax.swing.JLabel();
         lblSeconds = new javax.swing.JLabel();
         btnPenico = new javax.swing.JButton();
@@ -56,7 +56,7 @@ public class GameScreen extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Image Labeler");
 
-        lblPlayers.setText("Players in this game:");
+        lblPlayersInThisGame.setText("Players in this game:");
 
         lblPlayer1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
@@ -95,7 +95,7 @@ public class GameScreen extends javax.swing.JFrame {
 
         lblMatches.setText("Matches");
 
-        lblPointsAmmount.setText("0");
+        lblScore.setText("0");
 
         lblRegressiveCounting.setText("60");
 
@@ -124,7 +124,7 @@ public class GameScreen extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblPoints)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblPointsAmmount))
+                                .addComponent(lblScore))
                             .addComponent(lblLetsLabel)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblTimeRemaining)
@@ -134,7 +134,7 @@ public class GameScreen extends javax.swing.JFrame {
                                 .addComponent(lblSeconds))
                             .addComponent(txtLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblPlayers)
+                        .addComponent(lblPlayersInThisGame)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblPlayer1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -155,7 +155,7 @@ public class GameScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPlayers)
+                            .addComponent(lblPlayersInThisGame)
                             .addComponent(lblPlayer1)
                             .addComponent(lblAnd)
                             .addComponent(lblPlayer2))
@@ -187,7 +187,7 @@ public class GameScreen extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPoints)
-                            .addComponent(lblPointsAmmount))
+                            .addComponent(lblScore))
                         .addGap(31, 31, 31))))
         );
 
@@ -273,10 +273,10 @@ public class GameScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblMatches;
     private javax.swing.JLabel lblPlayer1;
     private javax.swing.JLabel lblPlayer2;
-    private javax.swing.JLabel lblPlayers;
+    private javax.swing.JLabel lblPlayersInThisGame;
     private javax.swing.JLabel lblPoints;
-    private javax.swing.JLabel lblPointsAmmount;
     private javax.swing.JLabel lblRegressiveCounting;
+    private javax.swing.JLabel lblScore;
     private javax.swing.JLabel lblSeconds;
     private javax.swing.JLabel lblTimeRemaining;
     private DefaultListModel matchedLabelsElements;
@@ -326,7 +326,7 @@ public class GameScreen extends javax.swing.JFrame {
     }
 
     public void setLblPointsAmmount(int pointsAmmount) {
-        this.lblPointsAmmount.setText(String.valueOf(pointsAmmount));
+        this.lblScore.setText(String.valueOf(pointsAmmount));
     }
 
     public DefaultListModel getMatchedLabelsElements() {

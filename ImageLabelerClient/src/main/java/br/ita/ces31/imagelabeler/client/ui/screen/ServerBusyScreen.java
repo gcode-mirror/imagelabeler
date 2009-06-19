@@ -26,24 +26,24 @@ public class ServerBusyScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblConnectionFailedMessage = new javax.swing.JLabel();
-        lblVerifyConnectionMessage = new javax.swing.JLabel();
+        lblServerIsBusy = new javax.swing.JLabel();
+        lblTryAgainLater = new javax.swing.JLabel();
         btnOk = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Image Labeler");
 
-        lblConnectionFailedMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblConnectionFailedMessage.setText("The server is busy.");
-        lblConnectionFailedMessage.setName(""); // NOI18N
+        lblServerIsBusy.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblServerIsBusy.setText("The server is busy.");
+        lblServerIsBusy.setName(""); // NOI18N
 
-        lblVerifyConnectionMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblVerifyConnectionMessage.setText("Try again later!");
-        lblVerifyConnectionMessage.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        lblVerifyConnectionMessage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        lblVerifyConnectionMessage.setMaximumSize(new java.awt.Dimension(300, 14));
-        lblVerifyConnectionMessage.setPreferredSize(new java.awt.Dimension(300, 14));
-        lblVerifyConnectionMessage.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        lblTryAgainLater.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTryAgainLater.setText("Try again later!");
+        lblTryAgainLater.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lblTryAgainLater.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblTryAgainLater.setMaximumSize(new java.awt.Dimension(300, 14));
+        lblTryAgainLater.setPreferredSize(new java.awt.Dimension(300, 14));
+        lblTryAgainLater.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         btnOk.setText("ok");
         btnOk.addActionListener(new java.awt.event.ActionListener() {
@@ -56,9 +56,8 @@ public class ServerBusyScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
-            .addComponent(lblConnectionFailedMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-            .addComponent(lblVerifyConnectionMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+            .addComponent(lblServerIsBusy, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+            .addComponent(lblTryAgainLater, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(121, Short.MAX_VALUE)
                 .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -66,12 +65,11 @@ public class ServerBusyScreen extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 97, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblConnectionFailedMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblServerIsBusy, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblVerifyConnectionMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
+                .addComponent(lblTryAgainLater, javax.swing.GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnOk)
                 .addContainerGap())
@@ -94,8 +92,8 @@ public class ServerBusyScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOk;
-    private javax.swing.JLabel lblConnectionFailedMessage;
-    private javax.swing.JLabel lblVerifyConnectionMessage;
+    private javax.swing.JLabel lblServerIsBusy;
+    private javax.swing.JLabel lblTryAgainLater;
     // End of variables declaration//GEN-END:variables
 
     public ServerBusyUI getServerBusyUI() {

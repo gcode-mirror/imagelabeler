@@ -40,11 +40,11 @@
                       <Component id="lblPartnerName" min="-2" pref="68" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblCountingMessage1" min="-2" pref="157" max="-2" attributes="0"/>
+                      <Component id="lblGameStartAnnouncement" min="-2" pref="157" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblRegressiveCounting" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lblCountingMessage2" min="-2" pref="81" max="-2" attributes="0"/>
+                      <Component id="lblSeconds" min="-2" pref="81" max="-2" attributes="0"/>
                       <EmptySpace pref="34" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -59,9 +59,9 @@
               <Component id="lblPartnerName" min="-2" pref="13" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblCountingMessage2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblSeconds" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblRegressiveCounting" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblCountingMessage1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblGameStartAnnouncement" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
               <Component id="btnPenico" min="-2" max="-2" attributes="0"/>
@@ -79,7 +79,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPenicoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblCountingMessage1">
+    <Component class="javax.swing.JLabel" name="lblGameStartAnnouncement">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="The game will start in"/>
@@ -112,7 +112,7 @@
         <Property name="text" type="java.lang.String" value="10"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblCountingMessage2">
+    <Component class="javax.swing.JLabel" name="lblSeconds">
       <Properties>
         <Property name="text" type="java.lang.String" value="seconds!"/>
       </Properties>

@@ -23,8 +23,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="lblConnectionFailedMessage" alignment="0" pref="310" max="32767" attributes="0"/>
-          <Component id="lblVerifyConnectionMessage" alignment="0" pref="310" max="32767" attributes="0"/>
+          <Component id="lblServerIsBusy" alignment="0" pref="310" max="32767" attributes="0"/>
+          <Component id="lblTryAgainLater" alignment="0" pref="310" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="121" max="32767" attributes="0"/>
               <Component id="btnOk" min="-2" pref="79" max="-2" attributes="0"/>
@@ -36,9 +36,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblConnectionFailedMessage" min="-2" pref="14" max="-2" attributes="0"/>
+              <Component id="lblServerIsBusy" min="-2" pref="14" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblVerifyConnectionMessage" pref="14" max="32767" attributes="0"/>
+              <Component id="lblTryAgainLater" pref="14" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="btnOk" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -47,14 +47,14 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lblConnectionFailedMessage">
+    <Component class="javax.swing.JLabel" name="lblServerIsBusy">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="The server is busy."/>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblVerifyConnectionMessage">
+    <Component class="javax.swing.JLabel" name="lblTryAgainLater">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Try again later!"/>

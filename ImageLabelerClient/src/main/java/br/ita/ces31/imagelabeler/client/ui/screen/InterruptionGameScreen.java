@@ -26,13 +26,13 @@ public class InterruptionGameScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblGameOver = new javax.swing.JLabel();
+        lblGameOverByPenico = new javax.swing.JLabel();
         btnPlayAgain = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblGameOver.setText("Game over by penico!");
+        lblGameOverByPenico.setText("Game over by penico!");
 
         btnPlayAgain.setText("Play again");
         btnPlayAgain.addActionListener(new java.awt.event.ActionListener() {
@@ -59,14 +59,14 @@ public class InterruptionGameScreen extends javax.swing.JFrame {
                         .addComponent(btnPlayAgain)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
                         .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblGameOver))
+                    .addComponent(lblGameOverByPenico))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(lblGameOver)
+                .addComponent(lblGameOverByPenico)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExit)
@@ -96,7 +96,7 @@ public class InterruptionGameScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnPlayAgain;
-    private javax.swing.JLabel lblGameOver;
+    private javax.swing.JLabel lblGameOverByPenico;
     // End of variables declaration//GEN-END:variables
 
     public InterruptionGameUI getInterruptionGameUI() {

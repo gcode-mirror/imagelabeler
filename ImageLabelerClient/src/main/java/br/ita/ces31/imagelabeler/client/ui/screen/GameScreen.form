@@ -34,7 +34,7 @@
                           <Group type="102" attributes="0">
                               <Component id="lblPoints" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblPointsAmmount" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblScore" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="lblLetsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
@@ -48,7 +48,7 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblPlayers" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPlayersInThisGame" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblPlayer1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -74,7 +74,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblPlayers" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPlayersInThisGame" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblPlayer1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblAnd" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblPlayer2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -117,7 +117,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblPoints" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblPointsAmmount" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblScore" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
@@ -127,7 +127,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lblPlayers">
+    <Component class="javax.swing.JLabel" name="lblPlayersInThisGame">
       <Properties>
         <Property name="text" type="java.lang.String" value="Players in this game:"/>
       </Properties>
@@ -240,7 +240,7 @@
         <Property name="text" type="java.lang.String" value="Matches"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblPointsAmmount">
+    <Component class="javax.swing.JLabel" name="lblScore">
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
