@@ -28,7 +28,7 @@ class LogClient implements CommunicatorObserver{
         System.out.println("----------------------------------");
     }
 
-    public void startGame(String image, String partner) {
+    public void startGame(String image, int seconds, String partner) {
         System.out.println("----------------------------------");
         System.out.println("startGame");
         System.out.println("----------------------------------");
