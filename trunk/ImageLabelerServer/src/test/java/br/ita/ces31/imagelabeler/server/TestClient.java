@@ -15,7 +15,6 @@ import java.rmi.server.RemoteObject;
 public class TestClient extends RemoteObject implements Client {
 
     public String match;
-    public int duration = -1;
     public boolean startGameCalled = false;
     public GameSummary summary;
     public String loginName = "John";
