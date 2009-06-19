@@ -20,6 +20,4 @@ public interface Communicator {
     public void askPenico() throws CommunicationException;
 
     public void addObserver(CommunicatorObserver observer);
-
-    public void removeObserver(CommunicatorObserver observer);
 }
