@@ -11,13 +11,11 @@ import br.ita.ces31.imagelabeler.common.GameSummary;
  */
 public interface CommunicatorObserver {
 
-    public String getLoginName();
-
     public void endGameByPenico();
 
     public void notifyLabelMatch(String match, int score);
 
-    public void startGame(String image, int seconds, String partner);
+    public void startGame(String image, String partner);
 
     public void endGame(GameSummary summary);
 }

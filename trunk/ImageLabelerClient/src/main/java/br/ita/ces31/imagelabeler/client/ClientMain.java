@@ -4,6 +4,7 @@
 package br.ita.ces31.imagelabeler.client;
 
 import br.ita.ces31.imagelabeler.client.communicator.ClientCommunicatorSingleton;
+import br.ita.ces31.imagelabeler.client.communicator.CommunicationException;
 import br.ita.ces31.imagelabeler.client.controller.Controller;
 import br.ita.ces31.imagelabeler.client.ui.UserInterface;
 import br.ita.ces31.imagelabeler.client.ui.screen.ConnectionFailedScreen;
@@ -42,6 +43,12 @@ public class ClientMain {
             public void run() {
                 if (args.length == 1) {
                     ClientCommunicatorSingleton.setServerHost(args[0]);
+                }
+
+                try {
+                    ClientCommunicatorSingleton.getCommunicator().addObserver(new LogClient());
+                } catch (CommunicationException ex) {
+                    ex.printStackTrace();
                 }
 
                 try {
