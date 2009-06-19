@@ -83,10 +83,6 @@ public class ConnectionFailedScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOkActionPerformed
 
     public void setActive(boolean active){
-        if (active){
-
-        }
-        
         setVisible(active);
     }
     

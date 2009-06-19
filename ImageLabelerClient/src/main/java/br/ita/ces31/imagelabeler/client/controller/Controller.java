@@ -66,15 +66,15 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     public void startGame(String image, int seconds, String partner){
         getPartnerFoundUI().setPartnerName(partner);
         setCurrentUI(getPartnerFoundUI());
-        setGameUIInitialParameters(image, seconds, partner);
+
+        setGameUIParameters(image, partner);
         getTimer().scheduleRegressiveCountingToStartPlaying(ONE_SECOND);
     }
 
-    public void setGameUIInitialParameters(String image, int seconds, String partner){
+    private void setGameUIParameters(String image, String partner){
         getGameUI().setGameImage(image);
         getGameUI().setPlayer1Name(getLoginName());
         getGameUI().setPlayer2Name(partner);
-        //verificar aonde setar esse seconds
     }
 
     public void notifySecondPassedOnRegressiveCountingToStartPlaying(){
@@ -100,9 +100,9 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
     //From interface CommunicatorObserver
     public void endGame(GameSummary summary){
+        getGameSummaryUI().setPlayerName(getLoginName());
         getGameSummaryUI().setMatchedLabelsList(summary.getMatches());
         getGameSummaryUI().setFinalPontuation(summary.getScore());
-        getGameSummaryUI().setPlayerName(getLoginName());
         getGameSummaryUI().setRank(summary.getTopPlayers());
         setCurrentUI(getGameSummaryUI());
     }

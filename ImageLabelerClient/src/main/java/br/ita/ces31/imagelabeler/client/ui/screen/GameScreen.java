@@ -99,7 +99,7 @@ public class GameScreen extends javax.swing.JFrame {
 
         lblScore.setText("0");
 
-        lblRegressiveCounting.setText("60");
+        lblRegressiveCounting.setText("0");
 
         lblSeconds.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblSeconds.setText("s");
@@ -280,10 +280,22 @@ public class GameScreen extends javax.swing.JFrame {
 
     public void setActive(boolean active){
         if (active){
-
+            clearTextField();
+            clearTypedLabelsList();
+            clearMatchedLabelsList();
+            updateScore(0);
+            updateRegressiveCounting(60);
         }
 
         setVisible(active);
+    }
+
+    private void clearTypedLabelsList(){
+        getTypedLabelsElements().clear();
+    }
+
+    private void clearMatchedLabelsList(){
+        getMatchedLabelsElements().clear();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

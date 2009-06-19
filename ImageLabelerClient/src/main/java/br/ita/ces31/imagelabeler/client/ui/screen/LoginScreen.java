@@ -5,6 +5,7 @@ package br.ita.ces31.imagelabeler.client.ui.screen;
 
 import br.ita.ces31.imagelabeler.client.ui.LoginUI;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 /**
  *
  * @author diego
@@ -86,7 +87,7 @@ public class LoginScreen extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIdentifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIdentifyActionPerformed
-        getLoginUI().identify(txtUserName.getText());
+        getLoginUI().identify(getTxtUserName().getText());
 }//GEN-LAST:event_btnIdentifyActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -94,10 +95,6 @@ public class LoginScreen extends JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     public void setActive(boolean active){
-        if (active){
-
-        }
-
         setVisible(active);
     }
 
@@ -114,5 +111,9 @@ public class LoginScreen extends JFrame {
 
     public void setLoginUI(LoginUI loginUI) {
         this.loginUI = loginUI;
+    }
+
+    public JTextField getTxtUserName() {
+        return txtUserName;
     }
 }

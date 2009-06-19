@@ -60,7 +60,7 @@ public class PartnerFoundScreen extends javax.swing.JFrame {
         lblPartnerName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblRegressiveCounting.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRegressiveCounting.setText("10");
+        lblRegressiveCounting.setText("0");
 
         lblSeconds.setText("seconds!");
 
@@ -86,7 +86,7 @@ public class PartnerFoundScreen extends javax.swing.JFrame {
                         .addComponent(lblRegressiveCounting)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblSeconds, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(34, Short.MAX_VALUE))))
+                        .addContainerGap(40, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +125,7 @@ public class PartnerFoundScreen extends javax.swing.JFrame {
 
     public void setActive(boolean active){
         if (active){
-
+            updateRegressiveCounting(10);
         }
 
         setVisible(active);

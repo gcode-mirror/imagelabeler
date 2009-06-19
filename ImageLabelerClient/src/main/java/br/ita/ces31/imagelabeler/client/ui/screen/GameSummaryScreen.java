@@ -161,6 +161,8 @@ public class GameSummaryScreen extends javax.swing.JFrame {
     }
 
     public void setMatchedLabelsList(List<String> matchedLabels){
+        getMatchedLabelsElements().clear();
+        
         if(matchedLabels != null){
             for(String s: matchedLabels){
                 addElementOnMatchedLabelsList(s);
@@ -173,6 +175,8 @@ public class GameSummaryScreen extends javax.swing.JFrame {
     }
 
     public void setRank(List<Player> topPlayers){
+        getRankElements().getDataVector().clear();
+        
         if(topPlayers != null){
             for(Player p: topPlayers){
                 addPlayerOnRank(p);
