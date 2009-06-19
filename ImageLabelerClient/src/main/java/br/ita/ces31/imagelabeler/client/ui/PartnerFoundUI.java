@@ -22,6 +22,10 @@ public class PartnerFoundUI extends UserInterface{
         UserInterface.getController().penico();
     }
 
+    public void setPartnerName(String partnerName){
+        getScreen().setPartnerName(partnerName);
+    }
+
     public int getRegressiveCounting(){
        return getScreen().getRegressiveCounting();
     }
@@ -29,10 +33,6 @@ public class PartnerFoundUI extends UserInterface{
     public void updateRegressiveCounting(int miliseconds){
         int currentCounting = getRegressiveCounting() - miliseconds/1000;
         getScreen().updateRegressiveCounting(currentCounting);
-    }
-
-    public void setPartnerName(String partnerName){
-        getScreen().setPartnerName(partnerName);
     }
 
     public void setActive(boolean active){

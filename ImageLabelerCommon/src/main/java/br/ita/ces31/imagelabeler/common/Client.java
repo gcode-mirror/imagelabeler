@@ -25,7 +25,7 @@ public interface Client extends Remote {
      * @param score
      * @throws java.rmi.RemoteException
      */
-    public void notifyMatch(String match, int score) throws RemoteException;
+    public void notifyLabelMatch(String match, int score) throws RemoteException;
 
     /**
      * Notifica cliente de que foi solicitado penico.

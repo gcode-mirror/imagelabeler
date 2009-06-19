@@ -61,6 +61,7 @@ public class GameSummaryScreen extends javax.swing.JFrame {
 
         lblTopPlayers.setText("TopPlayers");
 
+        listMatchedLabels.setEnabled(false);
         pnlMatchedLabels.setViewportView(listMatchedLabels);
 
         btnPlayAgain.setText("Play again");
@@ -79,6 +80,7 @@ public class GameSummaryScreen extends javax.swing.JFrame {
 
         tblRank.setModel(rankElements
         );
+        tblRank.setEnabled(false);
         tblRank.getTableHeader().setReorderingAllowed(false);
         pnlRank.setViewportView(tblRank);
         tblRank.getColumnModel().getColumn(0).setResizable(false);

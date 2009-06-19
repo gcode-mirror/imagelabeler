@@ -221,7 +221,7 @@ public class ServerImplTest extends TestCase {
         server.notifyWait(client2);
     }
 
-    public void testNotifyMatch() throws RemoteException {
+    public void testNotifyLabelMatch() throws RemoteException {
         String label = "teste";
         startGame();
 
@@ -238,7 +238,7 @@ public class ServerImplTest extends TestCase {
         assertEquals(label, client2.match);
     }
 
-    public void testNotifyMatchWithReaptedMatches() throws RemoteException {
+    public void testNotifyLabelMatchWithReaptedMatches() throws RemoteException {
         String label = "teste";
         startGame();
 

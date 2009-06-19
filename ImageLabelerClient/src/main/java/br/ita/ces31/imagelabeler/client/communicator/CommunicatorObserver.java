@@ -15,7 +15,7 @@ public interface CommunicatorObserver {
 
     public void endGameByPenico();
 
-    public void notifyMatch(String match, int score);
+    public void notifyLabelMatch(String match, int score);
 
     public void startGame(String image, int seconds, String partner);
 

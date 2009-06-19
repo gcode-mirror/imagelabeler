@@ -34,8 +34,16 @@ public class GameUI extends UserInterface {
         UserInterface.getController().penico();
     }
 
-    public void notifyMatch(String match, int score){
-        getScreen().ProcessMatch(match, score);
+    public void notifyLabelMatch(String match, int score){
+        getScreen().ProcessLabelMatch(match, score);
+    }
+
+    public void setPlayer1Name(String player1Name){
+        getScreen().setPlayer1Name(player1Name);
+    }
+
+    public void setPlayer2Name(String player2Name){
+        getScreen().setPlayer2Name(player2Name);
     }
 
     public int getRegressiveCounting(){
@@ -78,14 +86,6 @@ public class GameUI extends UserInterface {
         g2.drawImage(srcImg, 0, 0, w, h, null);
         g2.dispose();
         return resizedImg;
-    }
-
-    public void setPlayer1Name(String player1Name){
-        getScreen().setPlayer1Name(player1Name);
-    }
-
-    public void setPlayer2Name(String player2Name){
-        getScreen().setPlayer2Name(player2Name);
     }
 
     public void setActive(boolean active){
