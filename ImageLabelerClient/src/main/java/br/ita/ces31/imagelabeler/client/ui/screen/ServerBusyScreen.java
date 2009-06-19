@@ -12,7 +12,6 @@ import br.ita.ces31.imagelabeler.client.ui.ServerBusyUI;
 public class ServerBusyScreen extends javax.swing.JFrame {
     private ServerBusyUI serverBusyUI;
 
-    /** Creates new form ServerBusyScreen */
     public ServerBusyScreen() {
         setServerBusyUI(new ServerBusyUI(this));
         initComponents();
@@ -82,7 +81,7 @@ public class ServerBusyScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        ok();
+        getServerBusyUI().ok();
 }//GEN-LAST:event_btnOkActionPerformed
 
     public void setActive(boolean active){
@@ -98,10 +97,6 @@ public class ServerBusyScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblConnectionFailedMessage;
     private javax.swing.JLabel lblVerifyConnectionMessage;
     // End of variables declaration//GEN-END:variables
-
-    public void ok(){
-        getServerBusyUI().ok();
-    }
 
     public ServerBusyUI getServerBusyUI() {
         return serverBusyUI;

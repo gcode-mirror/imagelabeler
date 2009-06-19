@@ -12,7 +12,6 @@ import br.ita.ces31.imagelabeler.client.ui.WaitUI;
 public class WaitScreen extends javax.swing.JFrame {
     private WaitUI waitUI;
     
-    /** Creates new form WaitScreen */
     public WaitScreen() {
         setWaitUI(new WaitUI(this));
         initComponents();
@@ -84,7 +83,7 @@ public class WaitScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        cancel();
+        getWaitUI().cancel();
     }//GEN-LAST:event_btnOkActionPerformed
 
     public void setActive(boolean active){
@@ -100,10 +99,6 @@ public class WaitScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblConnectionFailedMessage;
     private javax.swing.JLabel lblVerifyConnectionMessage;
     // End of variables declaration//GEN-END:variables
-
-    public void cancel(){
-        getWaitUI().cancel();
-    }
 
     public WaitUI getWaitUI() {
         return waitUI;

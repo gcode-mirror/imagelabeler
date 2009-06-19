@@ -12,7 +12,6 @@ import br.ita.ces31.imagelabeler.client.ui.InterruptionGameUI;
 public class InterruptionGameScreen extends javax.swing.JFrame {
     private InterruptionGameUI interruptionGameUI;
 
-    /** Creates new form InterruptionGameScreen */
     public InterruptionGameScreen() {
         setInterruptionGameUI(new InterruptionGameUI(this));
         initComponents();
@@ -79,20 +78,12 @@ public class InterruptionGameScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPlayAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayAgainActionPerformed
-        playAgain();
+        getInterruptionGameUI().playAgain();
 }//GEN-LAST:event_btnPlayAgainActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        exit();
-}//GEN-LAST:event_btnExitActionPerformed
-
-    private void exit(){
         getInterruptionGameUI().exit();
-    }
-
-    private void playAgain(){
-        getInterruptionGameUI().playAgain();
-    }
+}//GEN-LAST:event_btnExitActionPerformed
 
     public void setActive(boolean active){
         if (active){

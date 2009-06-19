@@ -16,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
 public class GameSummaryScreen extends javax.swing.JFrame {
     private GameSummaryUI gameSummaryUI;
     
-    /** Creates new form GameSummaryScreen */
     public GameSummaryScreen() {
         setGameSummaryUI(new GameSummaryUI(this));
         initComponents();
@@ -144,20 +143,12 @@ public class GameSummaryScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        exit();
+        getGameSummaryUI().exit();
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnPlayAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlayAgainActionPerformed
-        playAgain();
-    }//GEN-LAST:event_btnPlayAgainActionPerformed
-
-    private void exit(){
-        getGameSummaryUI().exit();
-    }
-
-    private void playAgain(){
         getGameSummaryUI().playAgain();
-    }
+    }//GEN-LAST:event_btnPlayAgainActionPerformed
 
     public void setFinalPontuation(int finalScore){
         setLblFinalScore(finalScore);
@@ -167,26 +158,28 @@ public class GameSummaryScreen extends javax.swing.JFrame {
         setLblPlayerName(playerName);
     }
 
-    public void addElementOnMatchedLabelsList(String label){
-        matchedLabelsElements.addElement(label);
-    }
-
-    public void setListMatchedLabels(List<String> matchedLabels){
-        //precisa verificar se matchedLabels é nulo?????
-        for(String s: matchedLabels){
-            addElementOnMatchedLabelsList(s);
+    public void setMatchedLabelsList(List<String> matchedLabels){
+        if(matchedLabels != null){
+            for(String s: matchedLabels){
+                addElementOnMatchedLabelsList(s);
+            }
         }
     }
 
-    public void addPlayerOnRank(Player player){
-        rankElements.addRow(new Object[]{player.getName(), player.getScore()});
+    private void addElementOnMatchedLabelsList(String label){
+        getMatchedLabelsElements().addElement(label);
     }
-    
+
     public void setRank(List<Player> topPlayers){
-        //precisa verificar se topPlayers é nulo?????
-        for(Player p: topPlayers){
-            addPlayerOnRank(p);
+        if(topPlayers != null){
+            for(Player p: topPlayers){
+                addPlayerOnRank(p);
+            }
         }
+    }
+
+    private void addPlayerOnRank(Player player){
+        getRankElements().addRow(new Object[]{player.getName(), player.getScore()});
     }
 
     public void setActive(boolean active){
@@ -228,5 +221,13 @@ public class GameSummaryScreen extends javax.swing.JFrame {
 
     public void setLblFinalScore(int finalScore) {
         this.lblFinalScore.setText(String.valueOf(finalScore));
+    }
+
+    public DefaultListModel getMatchedLabelsElements() {
+        return matchedLabelsElements;
+    }
+
+    public DefaultTableModel getRankElements() {
+        return rankElements;
     }
 }
