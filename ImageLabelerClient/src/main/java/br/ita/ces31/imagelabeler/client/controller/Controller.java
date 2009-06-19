@@ -6,6 +6,7 @@ package br.ita.ces31.imagelabeler.client.controller;
 import br.ita.ces31.imagelabeler.client.communicator.ClientCommunicator;
 import br.ita.ces31.imagelabeler.client.communicator.ClientCommunicatorSingleton;
 import br.ita.ces31.imagelabeler.client.communicator.CommunicationException;
+import br.ita.ces31.imagelabeler.client.communicator.Communicator;
 import br.ita.ces31.imagelabeler.client.communicator.CommunicatorObserver;
 import br.ita.ces31.imagelabeler.client.timer.TimeoutNotifiable;
 import br.ita.ces31.imagelabeler.client.timer.TimeoutTimer;
@@ -28,7 +29,7 @@ import br.ita.ces31.imagelabeler.common.GameSummary;
  */
 public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
-    private ClientCommunicator clientCommunicator;
+    private Communicator clientCommunicator;
     private TimeoutTimer timer;
     private UserInterface currentUI;
     private ConnectionFailedUI connectionFailedUI;
@@ -48,7 +49,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
     //From interface CommunicatorObserver
     public String getLoginName(){
-        return getClientCommunicator().getLoginName();
+        return ((ClientCommunicator) getClientCommunicator()).getLoginName();
     }
 
     //From interface CommunicatorObserver
@@ -63,12 +64,12 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     }
 
     //From interface CommunicatorObserver
-    public void startGame(String image, int seconds, String partner){
+    public void startGame(String image, String partner){
         getPartnerFoundUI().setPartnerName(partner);
         setCurrentUI(getPartnerFoundUI());
 
         setGameUIParameters(image, partner);
-        getTimer().scheduleRegressiveCountingToStartPlaying(ONE_SECOND);
+        getTimer().scheduleASecondOnRegressiveCountingToStartPlaying();
     }
 
     private void setGameUIParameters(String image, String partner){
@@ -82,10 +83,10 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
         if(counting != 0){
             getPartnerFoundUI().updateRegressiveCounting(ONE_SECOND);
-            getTimer().scheduleRegressiveCountingToStartPlaying(ONE_SECOND);
+            getTimer().scheduleASecondOnRegressiveCountingToStartPlaying();
         } else {
             setCurrentUI(getGameUI());
-            getTimer().scheduleRegressiveCountingToEndPlaying(ONE_SECOND);
+            getTimer().scheduleASecondOnRegressiveCountingToEndPlaying();
         }
     }
 
@@ -94,7 +95,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
         if(counting != 0){
             getGameUI().updateRegressiveCounting(ONE_SECOND);
-            getTimer().scheduleRegressiveCountingToEndPlaying(ONE_SECOND);
+            getTimer().scheduleASecondOnRegressiveCountingToEndPlaying();
         }
     }
 
@@ -153,12 +154,14 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
     //Button "Play again" Action
     public void playAgain(){
+        setCurrentUI(getWaitUI());
+        
         try {
             getClientCommunicator().notifyWait();
         } catch (CommunicationException ex) {
             ex.printStackTrace();
         }
-        setCurrentUI(getWaitUI());
+
     }
 
     //Button Ok Action
@@ -176,11 +179,11 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         System.exit(0);
     }
 
-    public ClientCommunicator getClientCommunicator() {
+    public Communicator getClientCommunicator() {
         return clientCommunicator;
     }
 
-    public void setClientCommunicator(ClientCommunicator clientCommunicator) {
+    public void setClientCommunicator(Communicator clientCommunicator) {
         this.clientCommunicator = clientCommunicator;
     }
 

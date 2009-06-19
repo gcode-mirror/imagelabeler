@@ -40,7 +40,7 @@ public interface Client extends Remote {
      * @param partner 
      * @throws java.rmi.RemoteException
      */
-    public void startGame(String image, int seconds, String partner) throws RemoteException;
+    public void startGame(String image, String partner) throws RemoteException;
 
     /**
      * Encerra a partida.

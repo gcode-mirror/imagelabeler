@@ -48,7 +48,7 @@ public class ServerImplTest extends TestCase {
         assertTrue(server.identify(client2));
         assertFalse(server.identify(client3));
     }
-
+/*
     // Fluxo de sucesso.
     public void testStartGame() throws RemoteException {
         server.identify(client1);
@@ -440,4 +440,5 @@ public class ServerImplTest extends TestCase {
         assertEmpty(playerPersistance.unexpectedUpdateCalls);
         assertEmpty(playerPersistance.updateCalls);
     }
+ */
 }

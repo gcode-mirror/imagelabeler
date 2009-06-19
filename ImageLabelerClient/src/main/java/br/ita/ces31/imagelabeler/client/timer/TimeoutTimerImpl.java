@@ -12,9 +12,9 @@ import java.util.TimerTask;
  * @author diego
  */
 public class TimeoutTimerImpl implements TimeoutTimer {
-
     private Timer timer;
     private TimeoutNotifiable client;
+    private static final int ONE_SECOND = 1000;
 
     public TimeoutTimerImpl(TimeoutNotifiable client) {
         timer = new Timer();
@@ -26,24 +26,24 @@ public class TimeoutTimerImpl implements TimeoutTimer {
         timer = new Timer();
     }
 
-    public void scheduleRegressiveCountingToStartPlaying(long delay) {
+    public void scheduleASecondOnRegressiveCountingToStartPlaying() {
         timer.schedule(new TimerTask() {
 
             @Override
             public void run() {
                 notifySecondPassedOnRegressiveCountingToStartPlaying();
             }
-        }, delay);
+        }, ONE_SECOND);
     }
 
-    public void scheduleRegressiveCountingToEndPlaying(long delay) {
+    public void scheduleASecondOnRegressiveCountingToEndPlaying() {
         timer.schedule(new TimerTask() {
 
             @Override
             public void run() {
                 notifySecondPassedOnRegressiveCountingToEndPlaying();
             }
-        }, delay);
+        }, ONE_SECOND);
     }
 
     private void notifySecondPassedOnRegressiveCountingToStartPlaying() {
