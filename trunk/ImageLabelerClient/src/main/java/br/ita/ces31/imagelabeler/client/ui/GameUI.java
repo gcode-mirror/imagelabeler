@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
  * @author diego
  */
 public class GameUI extends UserInterface {
+
     private GameScreen screen;
 
     public GameUI(GameScreen screen) {
@@ -34,30 +35,36 @@ public class GameUI extends UserInterface {
         UserInterface.getController().penico();
     }
 
-    public void notifyLabelMatch(String match, int score){
+    public void notifyLabelMatch(String match, int score) {
         getScreen().ProcessLabelMatch(match, score);
     }
 
-    public void setPlayer1Name(String player1Name){
+    public void setPlayer1Name(String player1Name) {
         getScreen().setPlayer1Name(player1Name);
     }
 
-    public void setPlayer2Name(String player2Name){
+    public void setPlayer2Name(String player2Name) {
         getScreen().setPlayer2Name(player2Name);
     }
 
-    public int getRegressiveCounting(){
+    public int getRegressiveCounting() {
         return getScreen().getRegressiveCounting();
     }
 
-    public void updateRegressiveCounting(int miliseconds){
-        int currentCounting = getRegressiveCounting() - miliseconds/1000;
+    public void updateRegressiveCounting(int miliseconds) {
+        int currentCounting = getRegressiveCounting() - miliseconds / 1000;
         getScreen().updateRegressiveCounting(currentCounting);
     }
 
-    public void setGameImage(String image){
+    public void setGameImage(String image) {
+        ClassLoader loader = getClass().getClassLoader();
         String imagePath = "pictures" + File.separator + image;
-        URL imgURL = ClassLoader.getSystemResource(imagePath);
+        String imagePath2 = "/pictures/" + image;
+
+        URL imgURL = loader.getResource(imagePath);
+        if (imgURL == null) {
+            imgURL = this.getClass().getResource(imagePath2);
+        }
 
         ImageIcon imageIcon = null;
         if (imgURL != null) {
@@ -68,18 +75,18 @@ public class GameUI extends UserInterface {
 
             getScreen().setGameImage(new ImageIcon(getScaledImage(imageIcon.getImage(), w, h)));
         } else {
-            //LANÇAR EXCEÇÃO AQUI
+        //LANÇAR EXCEÇÃO AQUI
         }
     }
 
-     /**
+    /**
      * Resizes an image using a Graphics2D object backed by a BufferedImage.
      * @param srcImg - source image to scale
      * @param w - desired width
      * @param h - desired height
      * @return - the new resized image
      */
-    private Image getScaledImage(Image srcImg, int w, int h){
+    private Image getScaledImage(Image srcImg, int w, int h) {
         BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         Graphics2D g2 = resizedImg.createGraphics();
         g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
@@ -88,15 +95,15 @@ public class GameUI extends UserInterface {
         return resizedImg;
     }
 
-    public void setActive(boolean active){
+    public void setActive(boolean active) {
         getScreen().setActive(active);
     }
 
-    public GameScreen getScreen(){
+    public GameScreen getScreen() {
         return screen;
     }
 
-    public void setScreen(GameScreen screen){
+    public void setScreen(GameScreen screen) {
         this.screen = screen;
     }
 }
