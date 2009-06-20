@@ -35,6 +35,7 @@ public class PartnerFoundUI extends UserInterface{
         getScreen().updateRegressiveCounting(currentCounting);
     }
 
+    @Override
     public void setActive(boolean active){
         getScreen().setActive(active);
     }

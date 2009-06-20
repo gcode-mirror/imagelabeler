@@ -45,6 +45,7 @@ public class GameSummaryUI extends UserInterface {
         getScreen().setPlayerName(playerName);
     }
 
+    @Override
     public void setActive(boolean active){
         getScreen().setActive(active);
     }

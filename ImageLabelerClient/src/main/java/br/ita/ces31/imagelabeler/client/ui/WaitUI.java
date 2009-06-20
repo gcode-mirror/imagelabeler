@@ -22,6 +22,7 @@ public class WaitUI extends UserInterface {
         UserInterface.getController().cancel();
     }
 
+    @Override
     public void setActive(boolean active){
         getScreen().setActive(active);
     }
