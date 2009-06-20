@@ -27,6 +27,7 @@ public class LoginUI extends UserInterface {
         UserInterface.getController().exit();
     }
 
+    @Override
     public void setActive(boolean active){
         getScreen().setActive(active);
     }

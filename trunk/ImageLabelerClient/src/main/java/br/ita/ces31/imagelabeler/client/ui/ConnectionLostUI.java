@@ -22,6 +22,7 @@ public class ConnectionLostUI extends UserInterface {
         UserInterface.getController().ok();
     }
 
+    @Override
     public void setActive(boolean active){
         getScreen().setActive(active);
     }

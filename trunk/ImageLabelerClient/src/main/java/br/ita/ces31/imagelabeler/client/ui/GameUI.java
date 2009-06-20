@@ -95,6 +95,7 @@ public class GameUI extends UserInterface {
         return resizedImg;
     }
 
+    @Override
     public void setActive(boolean active) {
         getScreen().setActive(active);
     }
