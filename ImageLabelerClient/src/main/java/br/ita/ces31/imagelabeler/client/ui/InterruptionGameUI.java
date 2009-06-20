@@ -14,7 +14,7 @@ public class InterruptionGameUI extends UserInterface {
 
     public InterruptionGameUI(InterruptionGameScreen screen) {
         setScreen(screen);
-        UserInterface.getController().setInterruptionGameUI(this);
+        getScreen().setInterruptionGameUI(this);
     }
 
     //Button "Play again" Action

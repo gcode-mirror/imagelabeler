@@ -14,7 +14,7 @@ public class ServerBusyUI extends UserInterface {
 
     public ServerBusyUI(ServerBusyScreen screen) {
         setScreen(screen);
-        UserInterface.getController().setServerBusyUI(this);
+        getScreen().setServerBusyUI(this);
     }
 
     //Button Ok Action

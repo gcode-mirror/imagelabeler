@@ -14,7 +14,7 @@ public class ConnectionLostUI extends UserInterface {
 
     public ConnectionLostUI(ConnectionLostScreen screen) {
         setScreen(screen);
-        UserInterface.getController().setConnectionLostUI(this);
+        getScreen().setConnectionLostUI(this);
     }
 
     //Button Ok Action
