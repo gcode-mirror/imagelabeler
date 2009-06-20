@@ -14,7 +14,7 @@ public class ConnectionFailedUI extends UserInterface {
 
     public ConnectionFailedUI(ConnectionFailedScreen screen) {
         setScreen(screen);
-        UserInterface.getController().setConnectionFailedUI(this);
+        getScreen().setConnectionFailedUI(this);
     }
 
     //Button Ok Action

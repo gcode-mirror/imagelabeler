@@ -14,7 +14,7 @@ public class WaitUI extends UserInterface {
 
     public WaitUI(WaitScreen screen) {
         setScreen(screen);
-        UserInterface.getController().setWaitUI(this);
+        getScreen().setWaitUI(this);
     }
 
     //Button Cancel Action

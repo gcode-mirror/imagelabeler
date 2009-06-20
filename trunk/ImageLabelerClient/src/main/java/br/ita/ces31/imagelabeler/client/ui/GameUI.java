@@ -22,7 +22,7 @@ public class GameUI extends UserInterface {
 
     public GameUI(GameScreen screen) {
         setScreen(screen);
-        UserInterface.getController().setGameUI(this);
+        getScreen().setGameUI(this);
     }
 
     //Send label Action

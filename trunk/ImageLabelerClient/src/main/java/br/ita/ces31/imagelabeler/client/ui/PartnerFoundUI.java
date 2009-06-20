@@ -14,7 +14,7 @@ public class PartnerFoundUI extends UserInterface{
 
     public PartnerFoundUI(PartnerFoundScreen screen) {
         setScreen(screen);
-        UserInterface.getController().setPartnerFoundUI(this);
+        getScreen().setPartnerFoundUI(this);
     }
 
     //Button Penico Action

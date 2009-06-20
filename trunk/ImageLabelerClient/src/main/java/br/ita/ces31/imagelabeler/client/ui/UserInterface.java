@@ -11,7 +11,6 @@ import br.ita.ces31.imagelabeler.client.controller.Controller;
  */
 public abstract class UserInterface {
     protected static Controller controller;
-
     public abstract void setActive(boolean active);
     
     public static void setController(Controller controller) {

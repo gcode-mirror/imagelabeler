@@ -14,7 +14,7 @@ public class LoginUI extends UserInterface {
 
     public LoginUI(LoginScreen screen) {
         setScreen(screen);
-        UserInterface.getController().setLoginUI(this);
+        getScreen().setLoginUI(this);
     }
 
     //Button Identify Action

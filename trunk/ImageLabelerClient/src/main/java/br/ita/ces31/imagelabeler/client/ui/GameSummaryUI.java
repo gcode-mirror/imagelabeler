@@ -16,7 +16,7 @@ public class GameSummaryUI extends UserInterface {
 
     public GameSummaryUI(GameSummaryScreen screen) {
         setScreen(screen);
-        UserInterface.getController().setGameSummaryUI(this);
+        getScreen().setGameSummaryUI(this);
     }
 
     //Button "Play again" Action
