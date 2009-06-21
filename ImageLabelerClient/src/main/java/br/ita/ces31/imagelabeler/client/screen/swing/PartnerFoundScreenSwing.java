@@ -14,8 +14,7 @@ import javax.swing.JLabel;
 public class PartnerFoundScreenSwing extends javax.swing.JFrame implements PartnerFoundScreen {
     private Controller controller;
 
-    public PartnerFoundScreenSwing(Controller controller) {
-        setController(controller);
+    public PartnerFoundScreenSwing(){
         initComponents();
     }
 

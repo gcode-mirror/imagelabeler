@@ -24,8 +24,7 @@ import javax.swing.JTextField;
 public class GameScreenSwing extends javax.swing.JFrame implements GameScreen {
     private Controller controller;
 
-    public GameScreenSwing(Controller controller) {
-        setController(controller);
+    public GameScreenSwing() {
         initComponents();
     }
 

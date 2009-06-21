@@ -13,8 +13,7 @@ import br.ita.ces31.imagelabeler.client.screen.*;
 public class ServerBusyScreenSwing extends javax.swing.JFrame implements ServerBusyScreen {
     private Controller controller;
 
-    public ServerBusyScreenSwing(Controller controller) {
-        setController(controller);
+    public ServerBusyScreenSwing(){
         initComponents();
     }
 

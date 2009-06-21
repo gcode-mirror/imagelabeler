@@ -17,8 +17,7 @@ import javax.swing.table.DefaultTableModel;
 public class GameSummaryScreenSwing extends javax.swing.JFrame implements GameSummaryScreen {
     private Controller controller;
     
-    public GameSummaryScreenSwing(Controller controller) {
-        setController(controller);
+    public GameSummaryScreenSwing() {
         initComponents();
     }
 

@@ -108,16 +108,12 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         setCurrentScreen(getGameSummaryScreen());
     }
 
-    //Connect Action
-    public void connect(){
-        try {
-            setClientCommunicator(ClientCommunicatorSingleton.getCommunicator());
-            getClientCommunicator().addObserver(this);
-            setCurrentScreen(getLoginScreen());
-        } catch (CommunicationException ex) {
-            setCurrentScreen(getConnectionFailedScreen());
-            ex.printStackTrace();
-        }
+    public void startClient(){
+        setCurrentScreen(getLoginScreen());
+    }
+
+    public void notifyConnectionFailed(){
+        setCurrentScreen(getConnectionFailedScreen());
     }
 
     //Button Identify Action
@@ -134,7 +130,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         }
     }
 
-        //Send label Action
+    //Send label Action
     public void sendLabel(String label){
         try {
             getClientCommunicator().sendLabel(label);
@@ -214,6 +210,9 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     }
 
     public void setConnectionFailedScreen(ConnectionFailedScreen connectionFailedScreen) {
+        if(connectionFailedScreen != null){
+            connectionFailedScreen.setController(this);
+        }
         this.connectionFailedScreen = connectionFailedScreen;
     }
 
@@ -222,6 +221,9 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     }
 
     public void setConnectionLostScreen(ConnectionLostScreen connectionLostScreen) {
+        if(connectionLostScreen != null){
+            connectionLostScreen.setController(this);
+        }
         this.connectionLostScreen = connectionLostScreen;
     }
 
@@ -230,14 +232,31 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     }
 
     public void setGameScreen(GameScreen gameScreen) {
+        if(gameScreen != null){
+            gameScreen.setController(this);
+        }
         this.gameScreen = gameScreen;
     }
 
+    public GameSummaryScreen getGameSummaryScreen() {
+        return gameSummaryScreen;
+    }
+
+    public void setGameSummaryScreen(GameSummaryScreen gameSummaryScreen) {
+        if(gameSummaryScreen != null){
+            gameSummaryScreen.setController(this);
+        }
+        this.gameSummaryScreen = gameSummaryScreen;
+    }
+    
     public InterruptionGameScreen getInterruptionGameScreen() {
         return interruptionGameScreen;
     }
 
     public void setInterruptionGameScreen(InterruptionGameScreen interruptionGameScreen) {
+        if(interruptionGameScreen != null){
+            interruptionGameScreen.setController(this);
+        }
         this.interruptionGameScreen = interruptionGameScreen;
     }
 
@@ -246,6 +265,9 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     }
 
     public void setLoginScreen(LoginScreen loginScreen) {
+        if(loginScreen != null){
+            loginScreen.setController(this);
+        }
         this.loginScreen = loginScreen;
     }
 
@@ -254,6 +276,9 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     }
 
     public void setPartnerFoundScreen(PartnerFoundScreen partnerFoundScreen) {
+        if(partnerFoundScreen != null){
+            partnerFoundScreen.setController(this);
+        }
         this.partnerFoundScreen = partnerFoundScreen;
     }
 
@@ -262,15 +287,10 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     }
 
     public void setServerBusyScreen(ServerBusyScreen serverBusyScreen) {
+        if(serverBusyScreen != null){
+            serverBusyScreen.setController(this);
+        }
         this.serverBusyScreen = serverBusyScreen;
-    }
-
-    public GameSummaryScreen getGameSummaryScreen() {
-        return gameSummaryScreen;
-    }
-
-    public void setGameSummaryScreen(GameSummaryScreen gameSummaryScreen) {
-        this.gameSummaryScreen = gameSummaryScreen;
     }
 
     public WaitScreen getWaitScreen() {
@@ -278,6 +298,9 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     }
 
     public void setWaitScreen(WaitScreen waitScreen) {
+        if(waitScreen != null){
+            waitScreen.setController(this);
+        }
         this.waitScreen = waitScreen;
     }
 }
