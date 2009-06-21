@@ -13,8 +13,7 @@ import br.ita.ces31.imagelabeler.client.screen.*;
 public class ConnectionLostScreenSwing extends javax.swing.JFrame implements ConnectionLostScreen {
     private Controller controller;
     
-    public ConnectionLostScreenSwing(Controller controller) {
-        setController(controller);
+    public ConnectionLostScreenSwing() {
         initComponents();
     }
 

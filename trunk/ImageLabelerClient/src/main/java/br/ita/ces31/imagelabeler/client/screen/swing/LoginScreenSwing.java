@@ -14,8 +14,7 @@ import javax.swing.JTextField;
 public class LoginScreenSwing extends JFrame implements LoginScreen {
     private Controller controller;
 
-    public LoginScreenSwing(Controller controller) {
-        setController(controller);
+    public LoginScreenSwing(){
         initComponents();
     }
 

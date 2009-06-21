@@ -13,8 +13,7 @@ import br.ita.ces31.imagelabeler.client.screen.*;
 public class InterruptionGameScreenSwing extends javax.swing.JFrame implements InterruptionGameScreen {
     private Controller controller;
 
-    public InterruptionGameScreenSwing(Controller controller) {
-        setController(controller);
+    public InterruptionGameScreenSwing() {
         initComponents();
     }
 

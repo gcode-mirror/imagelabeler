@@ -13,8 +13,7 @@ import br.ita.ces31.imagelabeler.client.screen.*;
 public class WaitScreenSwing extends javax.swing.JFrame implements WaitScreen {
     private Controller controller;
     
-    public WaitScreenSwing(Controller controller) {
-        setController(controller);
+    public WaitScreenSwing(){
         initComponents();
     }
 

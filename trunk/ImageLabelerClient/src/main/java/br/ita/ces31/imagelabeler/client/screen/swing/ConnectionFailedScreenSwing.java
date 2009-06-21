@@ -13,8 +13,7 @@ import br.ita.ces31.imagelabeler.client.screen.*;
 public class ConnectionFailedScreenSwing extends javax.swing.JFrame implements ConnectionFailedScreen {
     private Controller controller;
 
-    public ConnectionFailedScreenSwing(Controller controller) {
-        setController(controller);
+    public ConnectionFailedScreenSwing() {
         initComponents();
     }
 
