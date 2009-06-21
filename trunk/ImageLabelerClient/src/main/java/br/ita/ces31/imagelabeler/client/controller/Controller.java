@@ -11,16 +11,16 @@ import br.ita.ces31.imagelabeler.client.communicator.CommunicatorObserver;
 import br.ita.ces31.imagelabeler.client.timer.TimeoutNotifiable;
 import br.ita.ces31.imagelabeler.client.timer.TimeoutTimer;
 import br.ita.ces31.imagelabeler.client.timer.TimeoutTimerImpl;
-import br.ita.ces31.imagelabeler.client.ui.ConnectionFailedUI;
-import br.ita.ces31.imagelabeler.client.ui.ConnectionLostUI;
-import br.ita.ces31.imagelabeler.client.ui.GameUI;
-import br.ita.ces31.imagelabeler.client.ui.InterruptionGameUI;
-import br.ita.ces31.imagelabeler.client.ui.LoginUI;
-import br.ita.ces31.imagelabeler.client.ui.PartnerFoundUI;
-import br.ita.ces31.imagelabeler.client.ui.ServerBusyUI;
-import br.ita.ces31.imagelabeler.client.ui.GameSummaryUI;
-import br.ita.ces31.imagelabeler.client.ui.UserInterface;
-import br.ita.ces31.imagelabeler.client.ui.WaitUI;
+import br.ita.ces31.imagelabeler.client.screen.ConnectionFailedScreen;
+import br.ita.ces31.imagelabeler.client.screen.ConnectionLostScreen;
+import br.ita.ces31.imagelabeler.client.screen.GameScreen;
+import br.ita.ces31.imagelabeler.client.screen.GameSummaryScreen;
+import br.ita.ces31.imagelabeler.client.screen.InterruptionGameScreen;
+import br.ita.ces31.imagelabeler.client.screen.LoginScreen;
+import br.ita.ces31.imagelabeler.client.screen.PartnerFoundScreen;
+import br.ita.ces31.imagelabeler.client.screen.Screen;
+import br.ita.ces31.imagelabeler.client.screen.ServerBusyScreen;
+import br.ita.ces31.imagelabeler.client.screen.WaitScreen;
 import br.ita.ces31.imagelabeler.common.GameSummary;
 
 /**
@@ -31,16 +31,16 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
     private Communicator clientCommunicator;
     private TimeoutTimer timer;
-    private UserInterface currentUI;
-    private ConnectionFailedUI connectionFailedUI;
-    private ConnectionLostUI connectionLostUI;
-    private GameUI gameUI;
-    private InterruptionGameUI interruptionGameUI;
-    private LoginUI loginUI;
-    private PartnerFoundUI partnerFoundUI;
-    private ServerBusyUI serverBusyUI;
-    private GameSummaryUI gameSummaryUI;
-    private WaitUI waitUI;
+    private Screen currentScreen;
+    private ConnectionFailedScreen connectionFailedScreen;
+    private ConnectionLostScreen connectionLostScreen;
+    private GameScreen gameScreen;
+    private InterruptionGameScreen interruptionGameScreen;
+    private LoginScreen loginScreen;
+    private PartnerFoundScreen partnerFoundScreen;
+    private ServerBusyScreen serverBusyScreen;
+    private GameSummaryScreen gameSummaryScreen;
+    private WaitScreen waitScreen;
     private static final int ONE_SECOND = 1000;
 
     public Controller(){
@@ -55,57 +55,57 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     //From interface CommunicatorObserver
     public void endGameByPenico(){
         getTimer().cancelRegressiveCounting();
-        setCurrentUI(getInterruptionGameUI());
+        setCurrentScreen(getInterruptionGameScreen());
     }
 
     //From interface CommunicatorObserver
     public void notifyLabelMatch(String match, int score){
-        getGameUI().notifyLabelMatch(match, score);
+        getGameScreen().ProcessLabelMatch(match, score);
     }
 
     //From interface CommunicatorObserver
     public void startGame(String image, String partner){
-        getPartnerFoundUI().setPartnerName(partner);
-        setCurrentUI(getPartnerFoundUI());
+        getPartnerFoundScreen().setPartnerName(partner);
+        setCurrentScreen(getPartnerFoundScreen());
 
-        setGameUIParameters(image, partner);
+        setGameScreenParameters(image, partner);
         getTimer().scheduleASecondOnRegressiveCountingToStartPlaying();
     }
 
-    private void setGameUIParameters(String image, String partner){
-        getGameUI().setGameImage(image);
-        getGameUI().setPlayer1Name(getLoginName());
-        getGameUI().setPlayer2Name(partner);
+    private void setGameScreenParameters(String image, String partner){
+        getGameScreen().setGameImage(image);
+        getGameScreen().setPlayer1Name(getLoginName());
+        getGameScreen().setPlayer2Name(partner);
     }
 
     public void notifySecondPassedOnRegressiveCountingToStartPlaying(){
-        int counting = getPartnerFoundUI().getRegressiveCounting();
+        int counting = getPartnerFoundScreen().getRegressiveCounting();
 
         if(counting != 0){
-            getPartnerFoundUI().updateRegressiveCounting(ONE_SECOND);
+            getPartnerFoundScreen().updateRegressiveCounting(ONE_SECOND);
             getTimer().scheduleASecondOnRegressiveCountingToStartPlaying();
         } else {
-            setCurrentUI(getGameUI());
+            setCurrentScreen(getGameScreen());
             getTimer().scheduleASecondOnRegressiveCountingToEndPlaying();
         }
     }
 
     public void notifySecondPassedOnRegressiveCountingToEndPlaying(){
-        int counting = getGameUI().getRegressiveCounting();
+        int counting = getGameScreen().getRegressiveCounting();
 
         if(counting != 0){
-            getGameUI().updateRegressiveCounting(ONE_SECOND);
+            getGameScreen().updateRegressiveCounting(ONE_SECOND);
             getTimer().scheduleASecondOnRegressiveCountingToEndPlaying();
         }
     }
 
     //From interface CommunicatorObserver
     public void endGame(GameSummary summary){
-        getGameSummaryUI().setPlayerName(getLoginName());
-        getGameSummaryUI().setMatchedLabelsList(summary.getMatches());
-        getGameSummaryUI().setFinalPontuation(summary.getScore());
-        getGameSummaryUI().setRank(summary.getTopPlayers());
-        setCurrentUI(getGameSummaryUI());
+        getGameSummaryScreen().setPlayerName(getLoginName());
+        getGameSummaryScreen().setMatchedLabelsList(summary.getMatches());
+        getGameSummaryScreen().setFinalPontuation(summary.getScore());
+        getGameSummaryScreen().setRank(summary.getTopPlayers());
+        setCurrentScreen(getGameSummaryScreen());
     }
 
     //Connect Action
@@ -113,24 +113,24 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         try {
             setClientCommunicator(ClientCommunicatorSingleton.getCommunicator());
             getClientCommunicator().addObserver(this);
-            setCurrentUI(getLoginUI());
+            setCurrentScreen(getLoginScreen());
         } catch (CommunicationException ex) {
-            setCurrentUI(getConnectionFailedUI());
+            setCurrentScreen(getConnectionFailedScreen());
             ex.printStackTrace();
         }
     }
 
     //Button Identify Action
     public void identify(String loginName){
-        setCurrentUI(getWaitUI());
+        setCurrentScreen(getWaitScreen());
        
         try {
             if( !getClientCommunicator().identify(loginName) ){
-                setCurrentUI(getServerBusyUI());
+                setCurrentScreen(getServerBusyScreen());
             }
         } catch (CommunicationException ex) {
             ex.printStackTrace();
-            setCurrentUI(getConnectionLostUI());
+            setCurrentScreen(getConnectionLostScreen());
         }
     }
 
@@ -154,7 +154,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
     //Button "Play again" Action
     public void playAgain(){
-        setCurrentUI(getWaitUI());
+        setCurrentScreen(getWaitScreen());
         
         try {
             getClientCommunicator().notifyWait();
@@ -195,89 +195,89 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         this.timer = timer;
     }
 
-    public UserInterface getCurrentUI() {
-        return currentUI;
+    public Screen getCurrentScreen() {
+        return currentScreen;
     }
 
-    public void setCurrentUI(UserInterface currentUI) {
-        if (getCurrentUI() != currentUI){
-            if (getCurrentUI() != null) {
-                getCurrentUI().setActive(false);
+    public void setCurrentScreen(Screen currentScreen) {
+        if (getCurrentScreen() != currentScreen){
+            if (getCurrentScreen() != null) {
+                getCurrentScreen().setActive(false);
             }
-            this.currentUI = currentUI;
-            getCurrentUI().setActive(true);
+            this.currentScreen = currentScreen;
+            getCurrentScreen().setActive(true);
         }
     }
 
-    public ConnectionFailedUI getConnectionFailedUI() {
-        return connectionFailedUI;
+    public ConnectionFailedScreen getConnectionFailedScreen() {
+        return connectionFailedScreen;
     }
 
-    public void setConnectionFailedUI(ConnectionFailedUI connectionFailedUI) {
-        this.connectionFailedUI = connectionFailedUI;
+    public void setConnectionFailedScreen(ConnectionFailedScreen connectionFailedScreen) {
+        this.connectionFailedScreen = connectionFailedScreen;
     }
 
-    public ConnectionLostUI getConnectionLostUI() {
-        return connectionLostUI;
+    public ConnectionLostScreen getConnectionLostScreen() {
+        return connectionLostScreen;
     }
 
-    public void setConnectionLostUI(ConnectionLostUI connectionLostUI) {
-        this.connectionLostUI = connectionLostUI;
+    public void setConnectionLostScreen(ConnectionLostScreen connectionLostScreen) {
+        this.connectionLostScreen = connectionLostScreen;
     }
 
-    public GameUI getGameUI() {
-        return gameUI;
+    public GameScreen getGameScreen() {
+        return gameScreen;
     }
 
-    public void setGameUI(GameUI gameUI) {
-        this.gameUI = gameUI;
+    public void setGameScreen(GameScreen gameScreen) {
+        this.gameScreen = gameScreen;
     }
 
-    public InterruptionGameUI getInterruptionGameUI() {
-        return interruptionGameUI;
+    public InterruptionGameScreen getInterruptionGameScreen() {
+        return interruptionGameScreen;
     }
 
-    public void setInterruptionGameUI(InterruptionGameUI interruptionGameUI) {
-        this.interruptionGameUI = interruptionGameUI;
+    public void setInterruptionGameScreen(InterruptionGameScreen interruptionGameScreen) {
+        this.interruptionGameScreen = interruptionGameScreen;
     }
 
-    public LoginUI getLoginUI() {
-        return loginUI;
+    public LoginScreen getLoginScreen() {
+        return loginScreen;
     }
 
-    public void setLoginUI(LoginUI loginUI) {
-        this.loginUI = loginUI;
+    public void setLoginScreen(LoginScreen loginScreen) {
+        this.loginScreen = loginScreen;
     }
 
-    public PartnerFoundUI getPartnerFoundUI() {
-        return partnerFoundUI;
+    public PartnerFoundScreen getPartnerFoundScreen() {
+        return partnerFoundScreen;
     }
 
-    public void setPartnerFoundUI(PartnerFoundUI partnerFoundUI) {
-        this.partnerFoundUI = partnerFoundUI;
+    public void setPartnerFoundScreen(PartnerFoundScreen partnerFoundScreen) {
+        this.partnerFoundScreen = partnerFoundScreen;
     }
 
-    public ServerBusyUI getServerBusyUI() {
-        return serverBusyUI;
+    public ServerBusyScreen getServerBusyScreen() {
+        return serverBusyScreen;
     }
 
-    public void setServerBusyUI(ServerBusyUI serverBusyUI) {
-        this.serverBusyUI = serverBusyUI;
+    public void setServerBusyScreen(ServerBusyScreen serverBusyScreen) {
+        this.serverBusyScreen = serverBusyScreen;
     }
 
-    public GameSummaryUI getGameSummaryUI() {
-        return gameSummaryUI;
+    public GameSummaryScreen getGameSummaryScreen() {
+        return gameSummaryScreen;
     }
 
-    public void setGameSummaryUI(GameSummaryUI gameSummaryUI) {
-        this.gameSummaryUI = gameSummaryUI;
+    public void setGameSummaryScreen(GameSummaryScreen gameSummaryScreen) {
+        this.gameSummaryScreen = gameSummaryScreen;
     }
 
-    public WaitUI getWaitUI() {
-        return waitUI;
+    public WaitScreen getWaitScreen() {
+        return waitScreen;
     }
 
-    public void setWaitUI(WaitUI waitUI) {
-        this.waitUI = waitUI;
+    public void setWaitScreen(WaitScreen waitScreen) {
+        this.waitScreen = waitScreen;
     }
 }
