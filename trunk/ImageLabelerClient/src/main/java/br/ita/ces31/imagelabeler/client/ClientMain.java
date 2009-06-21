@@ -27,7 +27,8 @@ public class ClientMain {
                     ex.printStackTrace();
                 }
 
-                Controller controller = (new ControllerSwingUIBuilder()).buildController();
+                ControllerBuilder builder = new ControllerSwingUIBuilder();
+                Controller controller = builder.buildController();
 
                 try {
                     ClientCommunicatorSingleton.getCommunicator().addObserver(controller);
