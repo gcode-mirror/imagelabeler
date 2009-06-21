@@ -5,7 +5,6 @@ package br.ita.ces31.imagelabeler.client;
 
 import br.ita.ces31.imagelabeler.client.communicator.ClientCommunicatorSingleton;
 import br.ita.ces31.imagelabeler.client.communicator.CommunicationException;
-import br.ita.ces31.imagelabeler.client.ui.UserInterface;
 
 /**
  *
@@ -29,7 +28,7 @@ public class ClientMain {
                 }
 
                 try {
-                    UserInterface.getController().connect();
+                    ClientUIFactory.getController().connect();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
