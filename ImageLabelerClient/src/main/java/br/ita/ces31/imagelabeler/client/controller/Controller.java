@@ -23,13 +23,14 @@ import br.ita.ces31.imagelabeler.client.screen.WaitScreen;
 import br.ita.ces31.imagelabeler.common.GameSummary;
 import br.ita.ces31.imagelabeler.common.Player;
 import java.util.List;
+import java.util.MissingResourceException;
 
 /**
  *
  * @author diego
  */
 public class Controller implements CommunicatorObserver, TimeoutNotifiable {
-    private TimeoutTimer timer;
+    private TimeoutTimer timeoutTimer;
     private Screen currentScreen;
     private ConnectionFailedScreen connectionFailedScreen;
     private ConnectionLostScreen connectionLostScreen;
@@ -44,7 +45,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
     //Constructor
     public Controller(){
-        setTimer(new TimeoutTimerImpl(this));
+        setTimeoutTimer(new TimeoutTimerImpl(this));
     }
 
     //From interface CommunicatorObserver
@@ -54,7 +55,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         setCurrentScreen(getPartnerFoundScreen());
 
         setGameScreenParameters(imagePath, partnerName);
-        getTimer().scheduleRegressiveCountingToStartPlaying();
+        getTimeoutTimer().scheduleRegressiveCountingToStartPlaying();
     }
 
     private void setPartnerFoundScreenParameters(String partnerName){
@@ -62,7 +63,12 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     }
     
     private void setGameScreenParameters(String imagePath, String partnerName){
-        getGameScreen().setGameImage(imagePath);
+        try {
+            getGameScreen().setGameImage(imagePath);
+        } catch (MissingResourceException ex) {
+            ex.printStackTrace();
+        }
+        
         getGameScreen().setPlayer1Name(getLoginName());
         getGameScreen().setPlayer2Name(partnerName);
     }
@@ -76,7 +82,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     //From interface CommunicatorObserver
     @Override
     public void endGameByPenico(){
-        getTimer().cancelRegressiveCounting();
+        getTimeoutTimer().cancelRegressiveCounting();
         setCurrentScreen(getInterruptionGameScreen());
     }
 
@@ -101,10 +107,10 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
         if(counting != 0){
             getPartnerFoundScreen().updateRegressiveCounting(ONE_SECOND);
-            getTimer().continueRegressiveCountingToStartPlaying();
+            getTimeoutTimer().continueRegressiveCountingToStartPlaying();
         } else {
             setCurrentScreen(getGameScreen());
-            getTimer().scheduleRegressiveCountingToEndPlaying();
+            getTimeoutTimer().scheduleRegressiveCountingToEndPlaying();
         }
     }
 
@@ -115,13 +121,13 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
         if(counting != 0){
             getGameScreen().updateRegressiveCounting(ONE_SECOND);
-            getTimer().continueRegressiveCountingToEndPlaying();
+            getTimeoutTimer().continueRegressiveCountingToEndPlaying();
         }
     }
 
     private String getLoginName(){
         String loginName = "";
-        try{
+        try {
             ClientCommunicator communicator = (ClientCommunicator) ClientCommunicatorSingleton.getCommunicator();
             loginName = communicator.getLoginName();
         } catch (CommunicationException ex){
@@ -138,6 +144,10 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         setCurrentScreen(getConnectionFailedScreen());
     }
 
+    private void notifyConnectionLost(){
+        setCurrentScreen(getConnectionLostScreen());
+    }
+
     //Button Identify Action
     public void identify(String loginName){
         setCurrentScreen(getWaitScreen());
@@ -148,7 +158,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
             }
         } catch (CommunicationException ex) {
             ex.printStackTrace();
-            setCurrentScreen(getConnectionLostScreen());
+            notifyConnectionLost();
         }
     }
 
@@ -158,6 +168,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
             ClientCommunicatorSingleton.getCommunicator().sendLabel(label);
         } catch (CommunicationException ex) {
             ex.printStackTrace();
+            notifyConnectionLost();
         }
     }
 
@@ -167,6 +178,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
             ClientCommunicatorSingleton.getCommunicator().askPenico();
         } catch (CommunicationException ex) {
             ex.printStackTrace();
+            notifyConnectionLost();
         }
     }
 
@@ -178,6 +190,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
             ClientCommunicatorSingleton.getCommunicator().notifyWait();
         } catch (CommunicationException ex) {
             ex.printStackTrace();
+            notifyConnectionLost();
         }
 
     }
@@ -197,12 +210,12 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         System.exit(0);
     }
 
-    public TimeoutTimer getTimer() {
-        return timer;
+    public TimeoutTimer getTimeoutTimer() {
+        return timeoutTimer;
     }
 
-    public void setTimer(TimeoutTimer timer) {
-        this.timer = timer;
+    public void setTimeoutTimer(TimeoutTimer timeoutTimer) {
+        this.timeoutTimer = timeoutTimer;
     }
 
     public Screen getCurrentScreen() {
