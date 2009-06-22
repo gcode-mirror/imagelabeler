@@ -12,7 +12,10 @@ import java.util.List;
  */
 public interface GameSummaryScreen extends Screen{
     public void setRank(List<Player> topPlayers);
+
     public void setMatchedLabelsList(List<String> matchedLabels);
+
     public void setFinalPontuation(int finalScore);
+
     public void setPlayerName(String playerName);
 }

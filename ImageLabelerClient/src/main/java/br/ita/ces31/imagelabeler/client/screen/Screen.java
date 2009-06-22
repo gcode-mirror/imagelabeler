@@ -13,5 +13,6 @@ import br.ita.ces31.imagelabeler.client.controller.Controller;
  */
 public interface Screen {
     public void setActive(boolean active);
+    
     public void setController(Controller controller);
 }

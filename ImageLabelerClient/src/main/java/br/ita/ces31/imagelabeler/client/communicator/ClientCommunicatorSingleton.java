@@ -11,9 +11,7 @@ import java.rmi.Naming;
  * @author Helder Suzuki <helder@aluno.ita.br>
  */
 public class ClientCommunicatorSingleton {
-
     private static ClientCommunicator communicator;
-//    private static String serverURI = "192.168.2.12";
     private static String serverHost = "localhost";
 
     private static String getServerURL() {

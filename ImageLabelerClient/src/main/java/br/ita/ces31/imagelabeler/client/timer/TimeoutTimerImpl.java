@@ -21,12 +21,23 @@ public class TimeoutTimerImpl implements TimeoutTimer {
         setClient(client);
     }
 
+    @Override
     public void cancelRegressiveCounting() {
         timer.cancel();
         timer = new Timer();
     }
 
-    public void scheduleASecondOnRegressiveCountingToStartPlaying() {
+    @Override
+    public void scheduleRegressiveCountingToStartPlaying(){
+        scheduleASecondOnRegressiveCountingToStartPlaying();
+    }
+
+    @Override
+    public void continueRegressiveCountingToStartPlaying(){
+        scheduleASecondOnRegressiveCountingToStartPlaying();
+    }
+
+    private void scheduleASecondOnRegressiveCountingToStartPlaying() {
         timer.schedule(new TimerTask() {
 
             @Override
@@ -36,7 +47,21 @@ public class TimeoutTimerImpl implements TimeoutTimer {
         }, ONE_SECOND);
     }
 
-    public void scheduleASecondOnRegressiveCountingToEndPlaying() {
+    private void notifySecondPassedOnRegressiveCountingToStartPlaying() {
+        client.notifySecondPassedOnRegressiveCountingToStartPlaying();
+    }
+
+    @Override
+    public void scheduleRegressiveCountingToEndPlaying(){
+        scheduleASecondOnRegressiveCountingToEndPlaying();
+    }
+
+    @Override
+    public void continueRegressiveCountingToEndPlaying(){
+        scheduleASecondOnRegressiveCountingToEndPlaying();
+    }
+
+    private void scheduleASecondOnRegressiveCountingToEndPlaying() {
         timer.schedule(new TimerTask() {
 
             @Override
@@ -44,10 +69,6 @@ public class TimeoutTimerImpl implements TimeoutTimer {
                 notifySecondPassedOnRegressiveCountingToEndPlaying();
             }
         }, ONE_SECOND);
-    }
-
-    private void notifySecondPassedOnRegressiveCountingToStartPlaying() {
-        client.notifySecondPassedOnRegressiveCountingToStartPlaying();
     }
 
     private void notifySecondPassedOnRegressiveCountingToEndPlaying() {

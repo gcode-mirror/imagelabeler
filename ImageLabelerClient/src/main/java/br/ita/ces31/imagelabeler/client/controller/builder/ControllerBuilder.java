@@ -1,8 +1,10 @@
 /*
  * Image Labeler - Projeto de CES-31
  */
-package br.ita.ces31.imagelabeler.client;
+package br.ita.ces31.imagelabeler.client.controller.builder;
 
+import br.ita.ces31.imagelabeler.client.communicator.ClientCommunicatorSingleton;
+import br.ita.ces31.imagelabeler.client.communicator.CommunicationException;
 import br.ita.ces31.imagelabeler.client.controller.Controller;
 import br.ita.ces31.imagelabeler.client.screen.ConnectionFailedScreen;
 import br.ita.ces31.imagelabeler.client.screen.ConnectionLostScreen;
@@ -19,7 +21,6 @@ import br.ita.ces31.imagelabeler.client.screen.WaitScreen;
  * @author diego
  */
 public abstract class ControllerBuilder {
-
     protected abstract ConnectionFailedScreen getConnectionFailedScreen();
     protected abstract ConnectionLostScreen getConnectionLostScreen();
     protected abstract GameScreen getGameScreen();
@@ -30,8 +31,9 @@ public abstract class ControllerBuilder {
     protected abstract ServerBusyScreen getServerBusyScreen();
     protected abstract WaitScreen getWaitScreen();
 
-    public Controller buildController(){
+    public Controller buildController() throws CommunicationException{
         Controller controller = new Controller();
+
         controller.setConnectionFailedScreen(getConnectionFailedScreen());
         controller.setConnectionLostScreen(getConnectionLostScreen());
         controller.setGameScreen(getGameScreen());
@@ -41,6 +43,8 @@ public abstract class ControllerBuilder {
         controller.setPartnerFoundScreen(getPartnerFoundScreen());
         controller.setServerBusyScreen(getServerBusyScreen());
         controller.setWaitScreen(getWaitScreen());
+
+        controller.setClientCommunicator(ClientCommunicatorSingleton.getCommunicator());
 
         return controller;
     }
