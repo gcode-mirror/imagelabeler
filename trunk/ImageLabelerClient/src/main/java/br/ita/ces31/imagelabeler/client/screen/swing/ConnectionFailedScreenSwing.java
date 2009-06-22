@@ -83,8 +83,8 @@ public class ConnectionFailedScreenSwing extends javax.swing.JFrame implements C
     }//GEN-LAST:event_btnOkActionPerformed
 
     @Override
-    public void setActive(boolean active){
-        setVisible(active);
+    public void setActive(boolean isActive){
+        setVisible(isActive);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -97,6 +97,7 @@ public class ConnectionFailedScreenSwing extends javax.swing.JFrame implements C
         return controller;
     }
 
+    @Override
     public void setController(Controller controller) {
         this.controller = controller;
     }

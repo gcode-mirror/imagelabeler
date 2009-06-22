@@ -319,8 +319,8 @@ public class GameScreenSwing extends javax.swing.JFrame implements GameScreen {
     }
 
     @Override
-    public void setActive(boolean active){
-        if (active){
+    public void setActive(boolean isActive){
+        if (isActive){
             clearTextField();
             clearTypedLabelsList();
             clearMatchedLabelsList();
@@ -328,7 +328,7 @@ public class GameScreenSwing extends javax.swing.JFrame implements GameScreen {
             resetRegressiveCounting();
         }
 
-        setVisible(active);
+        setVisible(isActive);
     }
 
     private void clearTypedLabelsList(){
@@ -371,6 +371,7 @@ public class GameScreenSwing extends javax.swing.JFrame implements GameScreen {
         return controller;
     }
 
+    @Override
     public void setController(Controller controller) {
         this.controller = controller;
     }

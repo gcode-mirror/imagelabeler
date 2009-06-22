@@ -4,8 +4,8 @@
 package br.ita.ces31.imagelabeler.client.controller;
 
 import br.ita.ces31.imagelabeler.client.communicator.ClientCommunicator;
+import br.ita.ces31.imagelabeler.client.communicator.ClientCommunicatorSingleton;
 import br.ita.ces31.imagelabeler.client.communicator.CommunicationException;
-import br.ita.ces31.imagelabeler.client.communicator.Communicator;
 import br.ita.ces31.imagelabeler.client.communicator.CommunicatorObserver;
 import br.ita.ces31.imagelabeler.client.timer.TimeoutNotifiable;
 import br.ita.ces31.imagelabeler.client.timer.TimeoutTimer;
@@ -21,13 +21,14 @@ import br.ita.ces31.imagelabeler.client.screen.Screen;
 import br.ita.ces31.imagelabeler.client.screen.ServerBusyScreen;
 import br.ita.ces31.imagelabeler.client.screen.WaitScreen;
 import br.ita.ces31.imagelabeler.common.GameSummary;
+import br.ita.ces31.imagelabeler.common.Player;
+import java.util.List;
 
 /**
  *
  * @author diego
  */
 public class Controller implements CommunicatorObserver, TimeoutNotifiable {
-    private Communicator clientCommunicator;
     private TimeoutTimer timer;
     private Screen currentScreen;
     private ConnectionFailedScreen connectionFailedScreen;
@@ -48,18 +49,22 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
     //From interface CommunicatorObserver
     @Override
-    public void startGame(String image, String partner){
-        getPartnerFoundScreen().setPartnerName(partner);
+    public void startGame(String imagePath, String partnerName){
+        setPartnerFoundScreenParameters(partnerName);
         setCurrentScreen(getPartnerFoundScreen());
 
-        setGameScreenParameters(image, partner);
+        setGameScreenParameters(imagePath, partnerName);
         getTimer().scheduleRegressiveCountingToStartPlaying();
     }
 
-    private void setGameScreenParameters(String image, String partner){
-        getGameScreen().setGameImage(image);
+    private void setPartnerFoundScreenParameters(String partnerName){
+        getPartnerFoundScreen().setPartnerName(partnerName);
+    }
+    
+    private void setGameScreenParameters(String imagePath, String partnerName){
+        getGameScreen().setGameImage(imagePath);
         getGameScreen().setPlayer1Name(getLoginName());
-        getGameScreen().setPlayer2Name(partner);
+        getGameScreen().setPlayer2Name(partnerName);
     }
 
     //From interface CommunicatorObserver
@@ -78,13 +83,17 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     //From interface CommunicatorObserver
     @Override
     public void endGame(GameSummary summary){
-        getGameSummaryScreen().setPlayerName(getLoginName());
-        getGameSummaryScreen().setMatchedLabelsList(summary.getMatches());
-        getGameSummaryScreen().setFinalPontuation(summary.getScore());
-        getGameSummaryScreen().setRank(summary.getTopPlayers());
+        setGameSummaryScreenParameters(summary.getMatches(), summary.getScore(), summary.getTopPlayers());
         setCurrentScreen(getGameSummaryScreen());
     }
 
+    private void setGameSummaryScreenParameters(List<String> matches, int finalScore, List<Player> topPlayers){
+        getGameSummaryScreen().setPlayerName(getLoginName());
+        getGameSummaryScreen().setMatchedLabelsList(matches);
+        getGameSummaryScreen().setFinalPontuation(finalScore);
+        getGameSummaryScreen().setRank(topPlayers);
+    }
+    
     //From interface TimeoutNotifiable
     @Override
     public void notifySecondPassedOnRegressiveCountingToStartPlaying(){
@@ -111,7 +120,14 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     }
 
     private String getLoginName(){
-        return ((ClientCommunicator) getClientCommunicator()).getLoginName();
+        String loginName = "";
+        try{
+            ClientCommunicator communicator = (ClientCommunicator) ClientCommunicatorSingleton.getCommunicator();
+            loginName = communicator.getLoginName();
+        } catch (CommunicationException ex){
+            ex.printStackTrace();
+        }
+        return loginName;
     }
 
     public void startClient(){
@@ -127,7 +143,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         setCurrentScreen(getWaitScreen());
        
         try {
-            if( !getClientCommunicator().identify(loginName) ){
+            if( !ClientCommunicatorSingleton.getCommunicator().identify(loginName) ){
                 setCurrentScreen(getServerBusyScreen());
             }
         } catch (CommunicationException ex) {
@@ -139,7 +155,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     //Send label Action
     public void sendLabel(String label){
         try {
-            getClientCommunicator().sendLabel(label);
+            ClientCommunicatorSingleton.getCommunicator().sendLabel(label);
         } catch (CommunicationException ex) {
             ex.printStackTrace();
         }
@@ -148,7 +164,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     //Button Penico Action
     public void penico(){
         try{
-            getClientCommunicator().askPenico();
+            ClientCommunicatorSingleton.getCommunicator().askPenico();
         } catch (CommunicationException ex) {
             ex.printStackTrace();
         }
@@ -159,7 +175,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         setCurrentScreen(getWaitScreen());
         
         try {
-            getClientCommunicator().notifyWait();
+            ClientCommunicatorSingleton.getCommunicator().notifyWait();
         } catch (CommunicationException ex) {
             ex.printStackTrace();
         }
@@ -179,14 +195,6 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     //Button Exit Action
     public void exit(){
         System.exit(0);
-    }
-
-    public Communicator getClientCommunicator() {
-        return clientCommunicator;
-    }
-
-    public void setClientCommunicator(Communicator clientCommunicator) {
-        this.clientCommunicator = clientCommunicator;
     }
 
     public TimeoutTimer getTimer() {

@@ -128,12 +128,12 @@ public class PartnerFoundScreenSwing extends javax.swing.JFrame implements Partn
     }
 
     @Override
-    public void setActive(boolean active){
-        if (active){
+    public void setActive(boolean isActive){
+        if (isActive){
             resetRegressiveCounting();
         }
 
-        setVisible(active);
+        setVisible(isActive);
     }
 
     private void resetRegressiveCounting(){
