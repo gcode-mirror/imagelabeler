@@ -11,6 +11,7 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
+import java.util.MissingResourceException;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -269,7 +270,7 @@ public class GameScreenSwing extends javax.swing.JFrame implements GameScreen {
     }
 
     @Override
-    public void setGameImage(String imageFileName){
+    public void setGameImage(String imageFileName) throws MissingResourceException{
         ClassLoader loader = getClass().getClassLoader();
         String imagePath1 = "pictures" + File.separator + imageFileName;
         String imagePath2 = "/pictures/" + imageFileName;
@@ -288,22 +289,23 @@ public class GameScreenSwing extends javax.swing.JFrame implements GameScreen {
 
             getLblImage().setIcon(new ImageIcon(getScaledImage(imageIcon.getImage(), w, h)));
         } else {
-        //LANÇAR EXCEÇÃO AQUI
+            throw new MissingResourceException("No image with such path was found!",
+                    String.class.getName(), imagePath2);
         }
     }
 
     /**
-     * Resizes an image using a Graphics2D object backed by a BufferedImage.
-     * @param srcImg - source image to scale
-     * @param w - desired width
-     * @param h - desired height
+     * Resizes an image
+     * @param srcImgPath - path to the source image to scale
+     * @param width - desired width
+     * @param heigth - desired height
      * @return - the new resized image
      */
-    private Image getScaledImage(Image srcImg, int w, int h) {
-        BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+    private Image getScaledImage(Image srcImgPath, int width, int height) {
+        BufferedImage resizedImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics2D g2 = resizedImg.createGraphics();
         g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g2.drawImage(srcImg, 0, 0, w, h, null);
+        g2.drawImage(srcImgPath, 0, 0, width, height, null);
         g2.dispose();
         return resizedImg;
     }

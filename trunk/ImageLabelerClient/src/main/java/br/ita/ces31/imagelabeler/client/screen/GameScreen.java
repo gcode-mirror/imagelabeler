@@ -3,6 +3,8 @@
  */
 package br.ita.ces31.imagelabeler.client.screen;
 
+import java.util.MissingResourceException;
+
 /**
  *
  * @author diego
@@ -14,7 +16,7 @@ public interface GameScreen extends Screen{
 
     public void updateRegressiveCounting(int miliseconds);
 
-    public void setGameImage(String image);
+    public void setGameImage(String image) throws MissingResourceException;
 
     public void setPlayer1Name(String player1Name);
 
