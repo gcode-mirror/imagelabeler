@@ -4,7 +4,6 @@
 package br.ita.ces31.imagelabeler.client.controller;
 
 import br.ita.ces31.imagelabeler.client.communicator.ClientCommunicator;
-import br.ita.ces31.imagelabeler.client.communicator.ClientCommunicatorSingleton;
 import br.ita.ces31.imagelabeler.client.communicator.CommunicationException;
 import br.ita.ces31.imagelabeler.client.communicator.Communicator;
 import br.ita.ces31.imagelabeler.client.communicator.CommunicatorObserver;
@@ -28,7 +27,6 @@ import br.ita.ces31.imagelabeler.common.GameSummary;
  * @author diego
  */
 public class Controller implements CommunicatorObserver, TimeoutNotifiable {
-
     private Communicator clientCommunicator;
     private TimeoutTimer timer;
     private Screen currentScreen;
@@ -43,33 +41,19 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
     private WaitScreen waitScreen;
     private static final int ONE_SECOND = 1000;
 
+    //Constructor
     public Controller(){
         setTimer(new TimeoutTimerImpl(this));
     }
 
     //From interface CommunicatorObserver
-    public String getLoginName(){
-        return ((ClientCommunicator) getClientCommunicator()).getLoginName();
-    }
-
-    //From interface CommunicatorObserver
-    public void endGameByPenico(){
-        getTimer().cancelRegressiveCounting();
-        setCurrentScreen(getInterruptionGameScreen());
-    }
-
-    //From interface CommunicatorObserver
-    public void notifyLabelMatch(String match, int score){
-        getGameScreen().ProcessLabelMatch(match, score);
-    }
-
-    //From interface CommunicatorObserver
+    @Override
     public void startGame(String image, String partner){
         getPartnerFoundScreen().setPartnerName(partner);
         setCurrentScreen(getPartnerFoundScreen());
 
         setGameScreenParameters(image, partner);
-        getTimer().scheduleASecondOnRegressiveCountingToStartPlaying();
+        getTimer().scheduleRegressiveCountingToStartPlaying();
     }
 
     private void setGameScreenParameters(String image, String partner){
@@ -78,34 +62,56 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         getGameScreen().setPlayer2Name(partner);
     }
 
-    public void notifySecondPassedOnRegressiveCountingToStartPlaying(){
-        int counting = getPartnerFoundScreen().getRegressiveCounting();
-
-        if(counting != 0){
-            getPartnerFoundScreen().updateRegressiveCounting(ONE_SECOND);
-            getTimer().scheduleASecondOnRegressiveCountingToStartPlaying();
-        } else {
-            setCurrentScreen(getGameScreen());
-            getTimer().scheduleASecondOnRegressiveCountingToEndPlaying();
-        }
-    }
-
-    public void notifySecondPassedOnRegressiveCountingToEndPlaying(){
-        int counting = getGameScreen().getRegressiveCounting();
-
-        if(counting != 0){
-            getGameScreen().updateRegressiveCounting(ONE_SECOND);
-            getTimer().scheduleASecondOnRegressiveCountingToEndPlaying();
-        }
+    //From interface CommunicatorObserver
+    @Override
+    public void notifyLabelMatch(String match, int score){
+        getGameScreen().ProcessLabelMatch(match, score);
     }
 
     //From interface CommunicatorObserver
+    @Override
+    public void endGameByPenico(){
+        getTimer().cancelRegressiveCounting();
+        setCurrentScreen(getInterruptionGameScreen());
+    }
+
+    //From interface CommunicatorObserver
+    @Override
     public void endGame(GameSummary summary){
         getGameSummaryScreen().setPlayerName(getLoginName());
         getGameSummaryScreen().setMatchedLabelsList(summary.getMatches());
         getGameSummaryScreen().setFinalPontuation(summary.getScore());
         getGameSummaryScreen().setRank(summary.getTopPlayers());
         setCurrentScreen(getGameSummaryScreen());
+    }
+
+    //From interface TimeoutNotifiable
+    @Override
+    public void notifySecondPassedOnRegressiveCountingToStartPlaying(){
+        int counting = getPartnerFoundScreen().getRegressiveCounting();
+
+        if(counting != 0){
+            getPartnerFoundScreen().updateRegressiveCounting(ONE_SECOND);
+            getTimer().continueRegressiveCountingToStartPlaying();
+        } else {
+            setCurrentScreen(getGameScreen());
+            getTimer().scheduleRegressiveCountingToEndPlaying();
+        }
+    }
+
+    //From interface TimeoutNotifiable
+    @Override
+    public void notifySecondPassedOnRegressiveCountingToEndPlaying(){
+        int counting = getGameScreen().getRegressiveCounting();
+
+        if(counting != 0){
+            getGameScreen().updateRegressiveCounting(ONE_SECOND);
+            getTimer().continueRegressiveCountingToEndPlaying();
+        }
+    }
+
+    private String getLoginName(){
+        return ((ClientCommunicator) getClientCommunicator()).getLoginName();
     }
 
     public void startClient(){

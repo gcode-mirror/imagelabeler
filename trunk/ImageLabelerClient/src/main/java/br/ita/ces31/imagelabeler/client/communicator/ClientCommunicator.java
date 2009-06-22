@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Bridge entre interface de usuário (representado pela interface Communicator)
+ * Ponte entre interface de usuário (representado pela interface Communicator)
  * e servidor (representado pela interface Client).
  * @author Helder Suzuki <helder@aluno.ita.br>
  */
@@ -23,68 +23,58 @@ public class ClientCommunicator extends UnicastRemoteObject
     private String loginName;
     private Server server;
 
+    //Constructor
     public ClientCommunicator(Server server) throws RemoteException {
         this.server = server;
         observers = new ArrayList<CommunicatorObserver>();
     }
 
+    //From interface Client
+    @Override
     public String getLoginName() {
         return this.loginName;
     }
 
-    public void endGame(GameSummary summary) throws RemoteException {
-        for (CommunicatorObserver o : observers) {
-            o.endGame(summary);
-        }
-    }
-
-    public void notifyLabelMatch(String match, int score) throws RemoteException {
-        for (CommunicatorObserver o : observers) {
-            o.notifyLabelMatch(match, score);
-        }
-    }
-
+    //From interface Client
+    @Override
     public void startGame(String image, String partner) throws RemoteException {
         for (CommunicatorObserver o : observers) {
             o.startGame(image, partner);
         }
     }
 
-    public boolean isAlive() throws RemoteException {
-        return true;
+    //From interface Client
+    @Override
+    public void notifyLabelMatch(String match, int score) throws RemoteException {
+        for (CommunicatorObserver o : observers) {
+            o.notifyLabelMatch(match, score);
+        }
     }
 
+    //From interface Client
+    @Override
     public void notifyPenico() throws RemoteException {
         for (CommunicatorObserver o : observers) {
             o.endGameByPenico();
         }
     }
 
-    public void sendLabel(String label) throws CommunicationException {
-        try {
-            server.sendLabel(label);
-        } catch (RemoteException ex) {
-            ex.printStackTrace();
-            throw new CommunicationException();
+    //From interface Client
+    @Override
+    public void endGame(GameSummary summary) throws RemoteException {
+        for (CommunicatorObserver o : observers) {
+            o.endGame(summary);
         }
     }
 
-    public void cancelWait() throws CommunicationException {
-        try {
-            server.cancelWait(this);
-        } catch (RemoteException ex) {
-            throw new CommunicationException();
-        }
+    //From interface Client
+    @Override
+    public boolean isAlive() throws RemoteException {
+        return true;
     }
 
-    public void notifyWait() throws CommunicationException {
-        try {
-            server.notifyWait(this);
-        } catch (RemoteException ex) {
-            throw new CommunicationException();
-        }
-    }
-
+    //From interface Communicator
+    @Override
     public boolean identify(String loginName) throws CommunicationException {
         this.loginName = loginName;
         try {
@@ -99,6 +89,39 @@ public class ClientCommunicator extends UnicastRemoteObject
         return false;
     }
 
+    //From interface Communicator
+    @Override
+    public void sendLabel(String label) throws CommunicationException {
+        try {
+            server.sendLabel(label);
+        } catch (RemoteException ex) {
+            ex.printStackTrace();
+            throw new CommunicationException();
+        }
+    }
+
+    //From interface Communicator
+    @Override
+    public void notifyWait() throws CommunicationException {
+        try {
+            server.notifyWait(this);
+        } catch (RemoteException ex) {
+            throw new CommunicationException();
+        }
+    }
+
+    //From interface Communicator
+    @Override
+    public void cancelWait() throws CommunicationException {
+        try {
+            server.cancelWait(this);
+        } catch (RemoteException ex) {
+            throw new CommunicationException();
+        }
+    }
+
+    //From interface Communicator
+    @Override
     public void askPenico() throws CommunicationException {
         try {
             server.notifyPenico();
@@ -108,12 +131,9 @@ public class ClientCommunicator extends UnicastRemoteObject
         }
     }
 
+    //From interface Communicator
+    @Override
     public synchronized void addObserver(CommunicatorObserver observer) {
         observers.add(observer);
     }
-
-    public synchronized void removeObserver(CommunicatorObserver observer) {
-        observers.remove(observer);
-    }
-
 }

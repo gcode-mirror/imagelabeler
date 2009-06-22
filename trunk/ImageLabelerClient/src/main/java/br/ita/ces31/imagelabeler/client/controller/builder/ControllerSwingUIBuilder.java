@@ -1,7 +1,7 @@
 /*
  * Image Labeler - Projeto de CES-31
  */
-package br.ita.ces31.imagelabeler.client;
+package br.ita.ces31.imagelabeler.client.controller.builder;
 
 import br.ita.ces31.imagelabeler.client.screen.ConnectionFailedScreen;
 import br.ita.ces31.imagelabeler.client.screen.ConnectionLostScreen;

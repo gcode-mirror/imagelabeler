@@ -20,6 +20,15 @@ public interface Client extends Remote {
     public String getLoginName() throws RemoteException;
 
     /**
+     * Inicia a partida.
+     * @param image
+     * @param seconds
+     * @param partner
+     * @throws java.rmi.RemoteException
+     */
+    public void startGame(String image, String partner) throws RemoteException;
+
+    /**
      * Notifica cliente da ocorrência de um match.
      * @param match
      * @param score
@@ -32,15 +41,6 @@ public interface Client extends Remote {
      * @throws java.rmi.RemoteException
      */
     public void notifyPenico() throws RemoteException;
-
-    /**
-     * Inicia a partida.
-     * @param image
-     * @param seconds
-     * @param partner 
-     * @throws java.rmi.RemoteException
-     */
-    public void startGame(String image, String partner) throws RemoteException;
 
     /**
      * Encerra a partida.

@@ -9,5 +9,6 @@ package br.ita.ces31.imagelabeler.client.timer;
  */
 public interface TimeoutNotifiable {
     void notifySecondPassedOnRegressiveCountingToStartPlaying();
+    
     void notifySecondPassedOnRegressiveCountingToEndPlaying();
 }
