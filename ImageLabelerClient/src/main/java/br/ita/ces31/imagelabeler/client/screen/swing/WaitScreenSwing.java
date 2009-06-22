@@ -76,8 +76,8 @@ public class WaitScreenSwing extends javax.swing.JFrame implements WaitScreen {
     }//GEN-LAST:event_btnOkActionPerformed
 
     @Override
-    public void setActive(boolean active){
-        setVisible(active);
+    public void setActive(boolean isActive){
+        setVisible(isActive);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -86,8 +86,8 @@ public class InterruptionGameScreenSwing extends javax.swing.JFrame implements I
 }//GEN-LAST:event_btnExitActionPerformed
 
     @Override
-    public void setActive(boolean active){
-        setVisible(active);
+    public void setActive(boolean isActive){
+        setVisible(isActive);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -193,8 +193,8 @@ public class GameSummaryScreenSwing extends javax.swing.JFrame implements GameSu
     }
 
     @Override
-    public void setActive(boolean active){
-        setVisible(active);
+    public void setActive(boolean isActive){
+        setVisible(isActive);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

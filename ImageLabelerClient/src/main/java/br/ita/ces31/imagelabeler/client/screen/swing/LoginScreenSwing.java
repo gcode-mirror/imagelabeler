@@ -95,8 +95,8 @@ public class LoginScreenSwing extends JFrame implements LoginScreen {
     }//GEN-LAST:event_btnExitActionPerformed
 
     @Override
-    public void setActive(boolean active){
-        setVisible(active);
+    public void setActive(boolean isActive){
+        setVisible(isActive);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -44,8 +44,6 @@ public abstract class ControllerBuilder {
         controller.setServerBusyScreen(getServerBusyScreen());
         controller.setWaitScreen(getWaitScreen());
 
-        controller.setClientCommunicator(ClientCommunicatorSingleton.getCommunicator());
-
         return controller;
     }
 }

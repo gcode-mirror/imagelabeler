@@ -6,6 +6,7 @@ package br.ita.ces31.imagelabeler.client;
 import br.ita.ces31.imagelabeler.client.controller.builder.ControllerBuilder;
 import br.ita.ces31.imagelabeler.client.communicator.ClientCommunicatorSingleton;
 import br.ita.ces31.imagelabeler.client.communicator.CommunicationException;
+import br.ita.ces31.imagelabeler.client.communicator.Communicator;
 import br.ita.ces31.imagelabeler.client.controller.Controller;
 import br.ita.ces31.imagelabeler.client.controller.builder.ControllerSwingUIBuilder;
 
@@ -34,7 +35,11 @@ public class ClientMain {
                     ControllerBuilder builder = new ControllerSwingUIBuilder();
                     controller = builder.buildController();
 
-                    ClientCommunicatorSingleton.getCommunicator().addObserver(controller);
+                    //connect to client to the server
+                    Communicator clientCommunicator = ClientCommunicatorSingleton.getCommunicator();
+                    
+                    clientCommunicator.addObserver(controller);
+
                     controller.startClient();
                 } catch (CommunicationException ex) {
                     ex.printStackTrace();
