@@ -42,7 +42,7 @@ public class PlayerPersistenceImplTest extends TestCase {
     public void testDeleteaAll() throws PersistenceException {
         playerPersistence.update(new Player("Ninguem", 0));
         playerPersistence.deleteAll();
-        List<Player> content = playerPersistence.getBestPlayers(1);
+        List<Player> content = playerPersistence.getPlayers();
         assertNotNull(content);
         assertEquals(0, content.size());
     }
@@ -65,30 +65,9 @@ public class PlayerPersistenceImplTest extends TestCase {
         assertNotNull(p);
         assertEquals(score, p.getScore());
 
-        List<Player> content = playerPersistence.getBestPlayers(2);
+        List<Player> content = playerPersistence.getPlayers();
         assertNotNull(content);
         assertEquals(2, content.size());
-    }
-
-    public void testBestPlayers() throws PersistenceException {
-        playerPersistence.update(new Player("Gates", 14));
-        playerPersistence.update(new Player("Schmitd", 10));
-        playerPersistence.update(new Player("Brin", 16));
-        playerPersistence.update(new Player("Page", 15));
-        playerPersistence.update(new Player("Balmer", 3));
-        playerPersistence.update(new Player("Jobs", 17));
-
-        List<Player> content = playerPersistence.getBestPlayers(3);
-        assertNotNull(content);
-        assertEquals(3, content.size());
-        assertEquals("Jobs", content.get(0).getName());
-        assertEquals("Brin", content.get(1).getName());
-        assertEquals("Page", content.get(2).getName());
-
-        content = playerPersistence.getBestPlayers(1);
-        assertNotNull(content);
-        assertEquals(1, content.size());
-        assertEquals("Jobs", content.get(0).getName());
     }
 
     public void testGetPlayer() throws PersistenceException {

@@ -61,16 +61,6 @@ public class PlayerPersistenceImpl implements PlayerPersistence {
         serialize();
     }
 
-    public synchronized ArrayList<Player> getBestPlayers(int n)
-            throws PersistenceException {
-        deserialize();
-
-        Collections.sort(content);
-        n = Math.min(n, content.size());
-
-        // Se der algum bug bizarro, é pq devia retornar uma "deep copy" aqui.
-        return new ArrayList<Player>(content.subList(0, n));
-    }
 
     private Player _getPlayer(String name) throws PersistenceException {
         deserialize();
@@ -99,5 +89,12 @@ public class PlayerPersistenceImpl implements PlayerPersistence {
     public synchronized void deleteAll() throws PersistenceException {
         content = new ArrayList<Player>();
         serialize();
+    }
+
+    public synchronized ArrayList<Player> getPlayers() throws PersistenceException {
+         deserialize();
+
+        Collections.sort(content);
+        return new ArrayList<Player>(content);
     }
 }

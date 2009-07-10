@@ -15,7 +15,7 @@ public interface PlayerPersistence {
     /**
      * Atualiza registro de Player no banco de dados.
      * @param player
-     * @throws br.ita.ces31.ImageLabelerServer.persistence.PersistenceException
+     * @throws PersistenceException
      */
     public void update(Player player) throws PersistenceException;
 
@@ -23,21 +23,20 @@ public interface PlayerPersistence {
      * Adquire registro de Player no banco de dados.
      * @param name
      * @return
-     * @throws br.ita.ces31.ImageLabelerServer.persistence.PersistenceException
+     * @throws PersistenceException
      */
     public Player getPlayer(String name) throws PersistenceException;
 
     /**
      * Deleta todos registros no banco de dados.
-     * @throws br.ita.ces31.ImageLabelerServer.persistence.PersistenceException
+     * @throws PersistenceException
      */
     public void deleteAll() throws PersistenceException;
 
     /**
-     * Adquire lista com n players que possuem as maiores pontuações.
-     * @param n
+     * Adquire lista com players.
      * @return
-     * @throws br.ita.ces31.ImageLabelerServer.persistence.PersistenceException
+     * @throws PersistenceException
      */
-    public ArrayList<Player> getBestPlayers(int n) throws PersistenceException;
+    public ArrayList<Player> getPlayers() throws PersistenceException;
 }
