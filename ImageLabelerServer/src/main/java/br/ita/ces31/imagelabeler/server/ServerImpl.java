@@ -351,10 +351,19 @@ public class ServerImpl extends UnicastRemoteObject
             playerPersistence.update(p2);
         }
 
+        private ArrayList<Player> getBestPlayers(int n)
+            throws PersistenceException {
+
+            ArrayList<Player> content = playerPersistence.getPlayers();
+            n = Math.min(n, content.size());
+
+            return new ArrayList<Player>(content.subList(0, n));
+        }
+
         private GameSummary getGameSummary(Game game) {
             try {
                 ArrayList<Player> rank;
-                rank = playerPersistence.getBestPlayers(10);
+                rank = getBestPlayers(10);
                 return new GameSummary(game.getScore(), rank,
                                        game.getMatches());
             } catch (Exception ex) {
@@ -377,12 +386,12 @@ public class ServerImpl extends UnicastRemoteObject
 
 abstract class ServerState implements Server, TimeoutNotifiable {
 
-    public boolean identify(Client client) throws RemoteException {
-        return false;
-    }
-
     public void notifyTimeout() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public boolean identify(Client client) throws RemoteException {
+        return false;
     }
 
     public void notifyPenico() throws RemoteException {
