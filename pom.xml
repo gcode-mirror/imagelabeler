@@ -76,6 +76,7 @@
         <module>ImageLabelerClient</module>
         <module>ImageLabelerServer</module>
         <module>ImageLabelerCommon</module>
+        <module>ImageLabelerTest</module>
     </modules>
 	
     <build>
