@@ -16,7 +16,7 @@ public interface GameScreen extends Screen{
 
     public void updateRegressiveCounting(int miliseconds);
 
-    public void setGameImage(String image) throws MissingResourceException;
+    public void setGameImage(String imageFileName) throws MissingResourceException;
 
     public void setPlayer1Name(String player1Name);
 

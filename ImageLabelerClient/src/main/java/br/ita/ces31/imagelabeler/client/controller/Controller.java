@@ -50,11 +50,11 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
     //From interface CommunicatorObserver
     @Override
-    public void startGame(String imagePath, String partnerName){
+    public void startGame(String imageFileName, String partnerName){
         setPartnerFoundScreenParameters(partnerName);
         setCurrentScreen(getPartnerFoundScreen());
 
-        setGameScreenParameters(imagePath, partnerName);
+        setGameScreenParameters(imageFileName, partnerName);
         getTimeoutTimer().scheduleRegressiveCountingToStartPlaying();
     }
 
@@ -62,9 +62,9 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
         getPartnerFoundScreen().setPartnerName(partnerName);
     }
     
-    private void setGameScreenParameters(String imagePath, String partnerName){
+    private void setGameScreenParameters(String imageFileName, String partnerName){
         try {
-            getGameScreen().setGameImage(imagePath);
+            getGameScreen().setGameImage(imageFileName);
         } catch (MissingResourceException ex) {
             ex.printStackTrace();
         }
@@ -174,7 +174,7 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
     //Button Penico Action
     public void penico(){
-        try{
+        try {
             ClientCommunicatorSingleton.getCommunicator().askPenico();
         } catch (CommunicationException ex) {
             ex.printStackTrace();
