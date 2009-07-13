@@ -206,7 +206,7 @@ public class GameScreenSwing extends javax.swing.JFrame implements GameScreen {
     private void txtLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLabelActionPerformed
         if ( typedLabelValidation(getTxtLabel().getText())){
             sendLabel(getTxtLabel().getText());
-            addElementOnTypedLabelsList(getTxtLabel().getText());
+            addElementOnTypedLabelsList(getTxtLabel().getText().toLowerCase());
         }
 
         clearTextField();
@@ -246,7 +246,7 @@ public class GameScreenSwing extends javax.swing.JFrame implements GameScreen {
 
     @Override
     public void ProcessLabelMatch(String match, int score){
-        addElementOnMatchedLabelsList(match);
+        addElementOnMatchedLabelsList(match.toLowerCase());
         updateScore(score);
     }
 
@@ -266,6 +266,12 @@ public class GameScreenSwing extends javax.swing.JFrame implements GameScreen {
     @Override
     public void updateRegressiveCounting(int miliseconds){
         int currentCounting = getRegressiveCounting() - miliseconds / 1000;
+
+        if(currentCounting == 0) {
+            txtLabel.setText("");
+            txtLabel.setEnabled(false);
+        }
+
         setLblRegressiveCounting(String.valueOf(currentCounting));
     }
 
@@ -323,6 +329,7 @@ public class GameScreenSwing extends javax.swing.JFrame implements GameScreen {
     @Override
     public void setActive(boolean isActive){
         if (isActive){
+            enableTextField();
             clearTextField();
             clearTypedLabelsList();
             clearMatchedLabelsList();
@@ -331,6 +338,10 @@ public class GameScreenSwing extends javax.swing.JFrame implements GameScreen {
         }
 
         setVisible(isActive);
+    }
+
+    private void enableTextField(){
+        txtLabel.setEnabled(true);
     }
 
     private void clearTypedLabelsList(){
