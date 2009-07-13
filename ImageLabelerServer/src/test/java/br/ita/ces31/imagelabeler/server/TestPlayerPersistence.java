@@ -41,7 +41,7 @@ public class TestPlayerPersistence implements PlayerPersistence {
     public void deleteAll() throws PersistenceException {
     }
 
-    public ArrayList<Player> getBestPlayers(int n) throws PersistenceException {
+    public ArrayList<Player> getPlayers() throws PersistenceException {
         return bestPlayers;
     }
 }
