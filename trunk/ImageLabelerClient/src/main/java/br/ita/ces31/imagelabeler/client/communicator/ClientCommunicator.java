@@ -37,9 +37,9 @@ public class ClientCommunicator extends UnicastRemoteObject
 
     //From interface Client
     @Override
-    public void startGame(String image, String partner) throws RemoteException {
+    public void startGame(String imageFileName, String partner) throws RemoteException {
         for (CommunicatorObserver o : observers) {
-            o.startGame(image, partner);
+            o.startGame(imageFileName, partner);
         }
     }
 
