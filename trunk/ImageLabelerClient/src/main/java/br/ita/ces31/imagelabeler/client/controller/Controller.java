@@ -202,6 +202,13 @@ public class Controller implements CommunicatorObserver, TimeoutNotifiable {
 
     //Button Cancel Action
     public void cancel(){
+        try{
+            ClientCommunicator communicator = (ClientCommunicator) ClientCommunicatorSingleton.getCommunicator();
+            communicator.cancelWait();
+        } catch (CommunicationException ex) {
+            ex.printStackTrace();
+        }
+        
         System.exit(0);
     }
 
